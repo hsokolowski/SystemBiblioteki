@@ -13,21 +13,27 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div id="cont">
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div id="navbar-header">
+                    Zaloguj
+                </div>
             </div>
             
         </div>
-    </div>
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - System Biblioteki</p>
-        </footer>
+        
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - System Biblioteki</p>
+            </footer>
+        </div>
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
