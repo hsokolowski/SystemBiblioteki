@@ -1,6 +1,5 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -20,7 +19,8 @@ textarea {
 {
     margin-left:auto;
     margin-right:auto;
-    background-color:red;
+ 
+
 }
 .panel{
     float:left;

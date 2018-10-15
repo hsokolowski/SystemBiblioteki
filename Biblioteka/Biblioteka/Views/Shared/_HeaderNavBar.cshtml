@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "_HeaderNavBar";
+}
+<style>
+    #headnav
+    {
+        background-color:black;
+        width:100%;
+        height:50px;
+        color:lightgray;
+    }
+</style>
+
+<div id="headnav">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-default">
+            <div class="navbar-header">
+                @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -4196,11 +4196,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
+  color:lightgray;
 }
 
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
+  color:white;
 }
 
 @media (min-width: 768px) {

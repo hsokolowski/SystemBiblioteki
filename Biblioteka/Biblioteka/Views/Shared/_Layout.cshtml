@@ -7,32 +7,36 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-    <script src="jquery-3.3.1.min.js"></script>
-    <script src="JavaScript.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/JavaScript.js"></script>
 
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <style>
+        #cont {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            
+        }
+        #main{
+            margin-top:0px;
+        }
+    </style>
 </head>
 <body>
     <div id="cont">
+        <div id="main">
+            @Html.Partial("_HeaderNavBar", Session["login"])
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div id="navbar-header">
-                    Zaloguj
-                </div>
+
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - System Biblioteki</p>
+                </footer>
             </div>
-            
-        </div>
-        
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - System Biblioteki</p>
-            </footer>
         </div>
     </div>
 
