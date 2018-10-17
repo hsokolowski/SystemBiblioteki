@@ -6,3 +6,31 @@
 <h2>Index</h2>
 
 <h1>Biblioteka System</h1>
+
+<div style="margin-left:auto;margin-right:auto;">
+    <table>
+        <tr>
+            <th>Nr.</th>
+            <th>Nazwa</th>
+            <th>ID</th>
+        </tr>
+        @{
+            int counter = 1;
+            foreach (var u in Model)
+            {
+        <tr>
+            <td>@counter</td>
+            <td>@u.pracownikID</td>
+            <td>@u.imie_p</td>
+            <td>@u.nazwisko_p</td>
+            <td>@u.login_p</td>
+            <td>@u.email_p</td>
+        </tr>
+                counter += 1;
+            }
+
+        }
+
+    </table>
+
+</div>

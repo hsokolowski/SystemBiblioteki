@@ -5,10 +5,49 @@
 <style>
     #headnav
     {
-        background-color:black;
-        width:100%;
+
+        width:90px;
         height:50px;
         color:lightgray;
+        float:left;
+        text-align:center;
+        font-size: 10px;
+
+    }
+    #headnav:hover{
+        color:white;
+    }
+    .koszyk {
+        float: right;
+        height: 33px;
+        text-align: center;
+        font-size: 16px;
+        color: darkgray;
+        padding-top:13px;
+    }
+    .koszyk:hover {
+        color: white;
+    }
+    #prawa
+    {
+        float:right;
+        color:lightgray;
+        margin-right:30px;
+    }
+    #prawa:hover{
+        color:white;
+    }
+    #licznik_koszyka {
+        float:right;
+        border-radius:5px;
+        height:16px;
+        width:16px;
+        background-color:lightgray;
+        color:black;
+        text-align:center;
+        font-size:13px;
+        font-weight:bold;
+        padding-top:15px;
     }
 </style>
 
@@ -16,10 +55,27 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-default">
             <div class="navbar-header">
-                @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @style = "font-size:22px; font-weight:bold;", @class = "navbar-brand" })
+            </div>
+            <div id="headnav">
+                @Html.ActionLink("Załóż konto", "Pracownik", "Home", new { area = "" }, new { @style = "font-size:16px;margin-right:20px;", @class = "navbar-brand" })
+            </div>
+            <div id="headnav">
+                @Html.ActionLink("Zaloguj", "Lista", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
+            </div>
+            <div id="prawa">
+                @Html.ActionLink("Koszyk", "Koszyk", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
+                <div class="koszyk">
+                    <i class="icon icon-basket"></i> 34
+                </div>
+
+
             </div>
         </div>
+        <div style="height:10px;width:100%;background-color:dimgrey;clear:both;">
 
+        </div>
     </div>
+    
 </div>
 
