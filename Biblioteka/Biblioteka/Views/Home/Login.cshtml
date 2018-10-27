@@ -1,0 +1,42 @@
+﻿@model Biblioteka.Models.Account
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<hr/>
+<div style="margin-top:auto;">
+    @using (Html.BeginForm("Login", "Home", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.login, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control", style = "width:200px;" } })
+                    @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", style = "width:200px;" } })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                    @ViewBag.LoginErrorMessage
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Zaloguj" class="btn btn-default" />
+                    <input type="reset" value="Resetuj" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+
+    }
+</div>

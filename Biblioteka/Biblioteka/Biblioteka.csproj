@@ -121,6 +121,10 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -135,13 +139,44 @@
     <Compile Include="Migrations\201810171836206_migration_1.Designer.cs">
       <DependentUpon>201810171836206_migration_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810271158252_newBD.cs" />
+    <Compile Include="Migrations\201810271158252_newBD.Designer.cs">
+      <DependentUpon>201810271158252_newBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810271211156_newBDv1.cs" />
+    <Compile Include="Migrations\201810271211156_newBDv1.Designer.cs">
+      <DependentUpon>201810271211156_newBDv1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810271303427_newBDv2.cs" />
+    <Compile Include="Migrations\201810271303427_newBDv2.Designer.cs">
+      <DependentUpon>201810271303427_newBDv2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810271344254_newBDv3.cs" />
+    <Compile Include="Migrations\201810271344254_newBDv3.Designer.cs">
+      <DependentUpon>201810271344254_newBDv3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810271509014_newBDv4.cs" />
+    <Compile Include="Migrations\201810271509014_newBDv4.Designer.cs">
+      <DependentUpon>201810271509014_newBDv4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810271852535_newBDv5.cs" />
+    <Compile Include="Migrations\201810271852535_newBDv5.Designer.cs">
+      <DependentUpon>201810271852535_newBDv5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Czytelnik.cs" />
-    <Compile Include="Models\Kategoria.cs" />
-    <Compile Include="Models\Ksiazka.cs" />
-    <Compile Include="Models\Pracownik.cs" />
-    <Compile Include="ModelView\PracownikADD.cs" />
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Borrowing.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\Penalty.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\Queue.cs" />
+    <Compile Include="ModelView\AccountVM.cs" />
+    <Compile Include="ModelView\AuthorizationVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\IsPesel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -157,6 +192,10 @@
     <Content Include="Views\Home\Lista.cshtml" />
     <Content Include="Views\Home\Koszyk.cshtml" />
     <Content Include="Views\Home\Pracownik.cshtml" />
+    <Content Include="Views\Home\Konto.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -170,6 +209,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810171836206_migration_1.resx">
       <DependentUpon>201810171836206_migration_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810271158252_newBD.resx">
+      <DependentUpon>201810271158252_newBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810271211156_newBDv1.resx">
+      <DependentUpon>201810271211156_newBDv1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810271303427_newBDv2.resx">
+      <DependentUpon>201810271303427_newBDv2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810271344254_newBDv3.resx">
+      <DependentUpon>201810271344254_newBDv3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810271509014_newBDv4.resx">
+      <DependentUpon>201810271509014_newBDv4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810271852535_newBDv5.resx">
+      <DependentUpon>201810271852535_newBDv5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

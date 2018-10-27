@@ -7,38 +7,29 @@ using System.Web;
 
 namespace Biblioteka.Models
 {
-    public class Ksiazka
+    public class Book
     {
         [Key]
         [Display(Name = "ID")]
-        public int ksiazkaID { get; set; }
+        public int id_book { get; set; }
 
         [Display(Name = "Tytuł")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string tytul { get; set; }
+        public string title { get; set; }
 
         [Display(Name = "Autor")]
-        [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string autor { get; set; }
+        //[ForeignKey("Author")]
+        //[Required(ErrorMessage = "To pole jest wymagane!")]
+        public int id_author { get; set; }
 
         [Display(Name = "Rok")]
         [Range(0, 99999, ErrorMessage = "Rok nie może być ujemny!")]
-        public int rok { get; set; }
-
-        [NotMapped]
-        public Typ Type { get; set; }
+        public int year { get; set; }
 
         [Display(Name = "Kategoria")]
-        public string TypeString
+        public int id_category
         {
-            get
-            {
-                return Type.ToString();
-            }
-            private set
-            {
-                Type = value.ParseEnum<Typ>();
-            }
+            get;set;
 
         }
 
@@ -46,14 +37,15 @@ namespace Biblioteka.Models
         [Required(ErrorMessage = "To pole jest wymagane!")]
         public int ilosc_str { get; set; }
 
-        [Display(Name = "Data")]
-        public DateTime data { get; set; }
+        [Display(Name = "Numer ISBN")]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
+        public int ISBN { get; set; }
 
         [NotMapped]
-        public Dlakogo from_who { get; set; }
+        public Forwho from_who { get; set; }
 
         [Display(Name = "Przeznaczona")]
-        public string dla_kogo
+        public string for_who
         {
             get
             {
@@ -61,46 +53,35 @@ namespace Biblioteka.Models
             }
             private set
             {
-                from_who = value.ParseEnum<Dlakogo>();
+                from_who = value.ParseEnum<Forwho>();
             }
 
         }
-
+       
         public string agecolor
         {
             get
             {
-                if (dla_kogo =="Dzieci")
+                if (for_who == "Dzieci")
                 {
                     return "green";
                 }
-                else if (dla_kogo=="Młodzież")
+                else if (for_who == "Młodzież")
                 {
                     return "orange";
                 }
-                else 
+                else
                 {
                     return "red";
                 }
             }
         }
-
-        
     }
-    public enum Dlakogo
+    public enum Forwho
     {
-        Dzieci=1,
-        Młodzież=2,
-        Dorośli=3
-    }
-    public enum Typ
-    {
-        Horror = 1,
-        Komedia = 2,
-        Obyczajowy = 3,
-        Thriller = 4,
-        Romantyczny = 5,
-        Dokumentalny = 6
+        Dzieci = 1,
+        Młodzież = 2,
+        Dorośli = 3,
     }
     public static class StringExtensions
     {

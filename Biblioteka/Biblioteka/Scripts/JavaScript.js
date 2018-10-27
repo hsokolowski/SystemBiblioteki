@@ -3,3 +3,8 @@
         $("#panel").slideToggle("slow");
     });
 });
+$().ready(function () {
+    $("#StartDate").datepicker();
+    $("#EndDate").datepicker();
+    return false;
+});

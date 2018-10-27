@@ -49,6 +49,15 @@
         font-weight:bold;
         padding-top:15px;
     }
+    #user {
+        float: left;
+        color: lightgray;
+        text-align:center;
+        margin-top:7px;
+    }
+    h2{
+        margin-top:70px;
+    }
 </style>
 
 <div id="headnav">
@@ -58,12 +67,29 @@
                 @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @style = "font-size:22px; font-weight:bold;", @class = "navbar-brand" })
             </div>
             <div id="headnav">
-                @Html.ActionLink("Załóż konto", "Pracownik", "Home", new { area = "" }, new { @style = "font-size:16px;margin-right:20px;", @class = "navbar-brand" })
+                @Html.ActionLink("Załóż konto", "Konto", "Home", new { area = "" }, new { @style = "font-size:16px;margin-right:20px;", @class = "navbar-brand" })
             </div>
             <div id="headnav">
-                @Html.ActionLink("Zaloguj", "Lista", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
+                @Html.ActionLink("Zaloguj", "Login", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
             </div>
+            
             <div id="prawa">
+                <div id="user">
+                    <div id="naduser">
+                        <h5>
+                            <i class="icon-user-circle-o"></i>
+                             @if (Session["login"] != null)
+                             {@Session["login"].ToString()}
+                        </h5>
+                    </div>
+                    <div id="poduser">
+                        @if (Session["login"] != null)
+                        {
+                            <i class="icon-logout"></i>
+                            <a id="wyg" href="@Url.Action("Logout","Home")">Wyloguj</a>
+                        }
+                    </div>
+                </div>
                 @Html.ActionLink("Koszyk", "Koszyk", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
                 <div class="koszyk">
                     <i class="icon icon-basket"></i> 34
