@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -46,5 +47,34 @@ namespace Biblioteka.Models
         [DataType(DataType.Password)]
         [Compare("password")]
         public string confirmedpassword { get; set; }
+
+        //[NotMapped]
+        [Display(Name = "Rola")]
+        public Role role { get; set; }
+
+        //[Display(Name = "Rola")]
+        //public string TypeString {
+        //    get
+        //    {
+        //        return Type.ToString();
+        //    }
+        //    private set
+        //    {
+        //        Type = value.ParseEnum<Role>();
+        //    }
+        //}
     }
+    public enum Role
+    {
+        Admin=1,
+        Reader=2,
+        Worker =3
+    }
+    //public static class StringExtensions
+    //{
+    //    public static T ParseEnum<T>(this string value)
+    //    {
+    //        return (T)Enum.Parse(typeof(T), value, true);
+    //    }
+    //}
 }

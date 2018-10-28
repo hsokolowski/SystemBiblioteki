@@ -27,5 +27,8 @@ namespace Biblioteka.Models
         [Display(Name = "Kara")]
         public int id_penalty { get; set; }
 
+        [Display(Name = "Kolejka")]
+        public int id_queue { get; set; }
+
     }
 }

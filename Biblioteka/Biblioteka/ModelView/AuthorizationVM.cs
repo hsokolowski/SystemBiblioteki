@@ -15,5 +15,13 @@ namespace Biblioteka.ModelView
             List<Account> listaDB = mDb.Accounts.ToList();
             return listaDB;
         }
+        public bool IsAdmin(Account a)
+        {
+            if (a.login == "admin" && a.password == "admin")
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

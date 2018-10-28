@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using static Biblioteka.Models.CustomAuthorizeAttribute;
 
 namespace Biblioteka.Controllers
 {
@@ -16,6 +17,7 @@ namespace Biblioteka.Controllers
         {
             AccountVM vm = new AccountVM();
             List<Account> lista = vm.Get_list();
+            
             return View(lista);
         }
         public ActionResult Lista()
@@ -95,6 +97,11 @@ namespace Biblioteka.Controllers
                 }
                 else
                 {
+                    if(userdeatils.activ==false)
+                    {
+                        ViewBag.LoginErrorMessage = "Konto nie aktywowane";
+                        return View("Login", user);
+                    }
                     Session["adminID"] = userdeatils.id_account;
                     Session["login"] = userdeatils.login;
                     FormsAuthentication.SetAuthCookie(user.login, false);
@@ -126,6 +133,45 @@ namespace Biblioteka.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Home");
         }
+        [CustomAuthorize(Roles = "Admin")]
+        public ActionResult Admin()
+        {
+            
+            return View();
+        }
+        
+        public ActionResult Dodaj_kategorie(int id = 0)
+        {
+            Category c = new Category();
+            return View(c);
+        }
+        [HttpPost]
+        public ActionResult Dodaj_kategorie(Category c)
+        {
+            CategoryVM vm = new CategoryVM();
+            List<Category> list = vm.Get_list();
+
+            if (list.Any(x => x.name==c.name))
+            {
+                ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
+                return View("Dodaj_kategorie", c);
+            }
+            vm.Dodaj(c);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Kategorie()
+        {
+            CategoryVM cvm = new CategoryVM();
+            List<Category> lista2 = cvm.Get_list();
+            return View(lista2);
+        }
+        public ActionResult Ksiazki()
+        {
+            BookVM vm = new BookVM();
+            List<Book> lista2 = vm.Get_list();
+            return View(lista2);
+        }
+
 
     }
 }

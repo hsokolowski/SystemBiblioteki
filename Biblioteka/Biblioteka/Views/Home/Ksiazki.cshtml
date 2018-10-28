@@ -1,0 +1,17 @@
+﻿@*@model IEnumerable<Biblioteka.Models.Book>*@
+@model Biblioteka.ModelView.Global1VM
+@{
+    ViewBag.Title = "Ksiazki";
+}
+
+<h2>Ksiazki</h2>
+
+<div>
+    @foreach (var c in Model.Item1)
+    {
+        <div>
+            @c.id_book - @c.title - @c.id_category - @c.id_author - @c.ISBN - @c.ilosc_str - @c.for_who
+
+        </div>
+    }
+</div>

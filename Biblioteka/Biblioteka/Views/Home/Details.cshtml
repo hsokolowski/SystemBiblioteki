@@ -45,8 +45,8 @@
             <td style="background-color: red;">@Html.DisplayFor(m => Model.activ)</td>
         </tr>
         <tr>
-            <th style="text-align:right">Kto dodał: </th>
-            <td>@Html.DisplayFor(m => Model.id_account)</td>
+            <th style="text-align:right">Rola: </th>
+            <td>@Html.DisplayFor(m => Model.role)</td>
         </tr>
     </table>
     @Html.ActionLink("Edytuj", "Edit", new { id = Model.id_account })

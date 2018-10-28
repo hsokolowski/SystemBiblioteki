@@ -1,4 +1,5 @@
-﻿using Biblioteka.Models;
+﻿using Biblioteka.App_Start;
+using Biblioteka.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +12,7 @@ namespace Biblioteka.DAL
     {
         public DB() : base("MyDB")
         {
-
+            
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Book> Books { get; set; }
@@ -22,7 +23,7 @@ namespace Biblioteka.DAL
         public DbSet<Penalty> Penalties { get; set; }
         public DbSet<Queue> Queues { get; set; }
         public DbSet<Position> Positions { get; set; }
-
+        public DbSet<FileBook> Files { get; set; }
 
     }
 }

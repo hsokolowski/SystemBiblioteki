@@ -72,14 +72,20 @@
             <div id="headnav">
                 @Html.ActionLink("Zaloguj", "Login", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
             </div>
-            
+            <div id="headnav">
+                @Html.ActionLink("Dodaj kategorie", "Dodaj_kategorie", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
+            </div>
+            <div id="headnav">
+                @Html.ActionLink("Lista Kategori", "Kategorie", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
+            </div>
+
             <div id="prawa">
                 <div id="user">
                     <div id="naduser">
                         <h5>
                             <i class="icon-user-circle-o"></i>
-                             @if (Session["login"] != null)
-                             {@Session["login"].ToString()}
+                            @if (Session["login"] != null)
+                            {@Session["login"].ToString()}
                         </h5>
                     </div>
                     <div id="poduser">
