@@ -2,6 +2,7 @@
 using Biblioteka.ModelView;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,9 +28,41 @@ namespace Biblioteka.Controllers
         }
         public ActionResult Koszyk()
         {
-            return View();
+            BorrowingVM vm = new BorrowingVM();
+            return View(vm.Get_list());
         }
-        
+        [Authorize]
+        public ActionResult Koszyk2(int id, int kto)
+        {
+            BookVM gm = new BookVM();
+            List<Book> list = gm.Get_list();
+            BorrowingVM vm = new BorrowingVM();
+            Borrowing b = new Borrowing();
+            int licznik;
+            var tym = list.SingleOrDefault(m => m.id_book == id);
+
+            if (tym != null)
+            {
+                b.id_book = id;
+                b.id_reader = kto;
+                b.date_borrow = DateTime.Now;
+                b.date_back = b.date_borrow.AddDays(5);
+                b.id_queue = 1;
+                b.id_penalty = 1;
+                vm.Dodaj(b);
+                List<Borrowing> wypo = vm.Get_list();
+                licznik = wypo.Where(m => m.id_reader == kto).Count();
+                Session["Licznik"] = licznik;
+                return View("Koszyk", wypo);
+            }
+            else
+            {
+                TempData["Message"] = "Ten film jest już w Ulubionych!";
+                TempData["ID_z_ulub"] = id;
+                return RedirectToAction("Ksiazki");
+                //jest w bazie
+            }
+        }
         public ActionResult Konto(int id = 0)
         {
             Account a = new Account();
@@ -102,6 +135,11 @@ namespace Biblioteka.Controllers
                         ViewBag.LoginErrorMessage = "Konto nie aktywowane";
                         return View("Login", user);
                     }
+                    int licznik;
+                    BorrowingVM vm = new BorrowingVM();
+                    List<Borrowing> wypo = vm.Get_list();
+                    licznik = wypo.Where(m => m.id_reader == userdeatils.id_account).Count();
+                    Session["Licznik"] = licznik;
                     Session["adminID"] = userdeatils.id_account;
                     Session["login"] = userdeatils.login;
                     FormsAuthentication.SetAuthCookie(user.login, false);
@@ -168,8 +206,13 @@ namespace Biblioteka.Controllers
         public ActionResult Ksiazki()
         {
             BookVM vm = new BookVM();
-            List<Book> lista2 = vm.Get_list();
-            return View(lista2);
+            CategoryVM vm1 = new CategoryVM();
+            AuthorVM vm2 = new AuthorVM();
+            dynamic mymodel = new ExpandoObject();
+            mymodel.book = vm.Get_list();
+            mymodel.cate = vm1.Get_list();
+            mymodel.auth = vm2.Get_list();
+            return View(mymodel);
         }
 
 

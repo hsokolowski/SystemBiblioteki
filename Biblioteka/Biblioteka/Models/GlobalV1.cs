@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Biblioteka.Models
 {
-    public class Global1VM
+    public class GlobalV1
     {
         public IEnumerable<Biblioteka.Models.Book> book { get; set; }
         public IEnumerable<Biblioteka.Models.Author> auth { get; set; }

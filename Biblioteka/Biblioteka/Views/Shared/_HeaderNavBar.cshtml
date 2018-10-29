@@ -78,6 +78,9 @@
             <div id="headnav">
                 @Html.ActionLink("Lista Kategori", "Kategorie", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
             </div>
+            <div id="headnav">
+                @Html.ActionLink("Ksiązki", "Ksiazki", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
+            </div>
 
             <div id="prawa">
                 <div id="user">
@@ -98,7 +101,11 @@
                 </div>
                 @Html.ActionLink("Koszyk", "Koszyk", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
                 <div class="koszyk">
-                    <i class="icon icon-basket"></i> 34
+                    <i class="icon icon-basket"></i> 
+                    @if (Session["login"] != null)
+                    {
+                       @Session["Licznik"].ToString();
+                    }
                 </div>
 
 

@@ -1,5 +1,5 @@
-﻿@*@model IEnumerable<Biblioteka.Models.Book>*@
-@model Biblioteka.ModelView.Global1VM
+﻿
+@model dynamic
 @{
     ViewBag.Title = "Ksiazki";
 }
@@ -7,11 +7,34 @@
 <h2>Ksiazki</h2>
 
 <div>
-    @foreach (var c in Model.Item1)
+    @foreach (var c in Model.book)
     {
-        <div>
-            @c.id_book - @c.title - @c.id_category - @c.id_author - @c.ISBN - @c.ilosc_str - @c.for_who
+        foreach (var b in Model.cate)
+        {
+            foreach (var a in Model.auth)
+            {
+    <div>
+        @c.id_book - @c.title -
+        @if (@c.id_category == @b.id_category)
+        {
+            @b.name
+        }
+        -
+        @if (@c.id_author == @a.id_author)
+        {
+            @a.name
 
+            @a.surname
+        }
+
+        - @c.ISBN - @c.ilosc_str - @c.for_who
+        @if (Session["login"] != null)
+        {
+            <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", new { id = c.id_book, kto = (Session["adminID"]) })
+        }
         </div>
+            }
+        }
+
     }
 </div>

@@ -70,6 +70,7 @@ namespace Biblioteka.Models
         Reader=2,
         Worker =3
     }
+   
     //public static class StringExtensions
     //{
     //    public static T ParseEnum<T>(this string value)

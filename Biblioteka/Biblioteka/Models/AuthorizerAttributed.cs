@@ -4,28 +4,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Biblioteka.Models
 {
-    public class AuthorizerAttributed : AuthorizeAttribute
+    public class AppAuthorizeAttribute : AuthorizeAttribute, IAuthorizationFilter
     {
-        private readonly string userRole;
+        //#region Properties
 
-        public AuthorizerAttributed(string userRole)
-        {
-            this.userRole = userRole;
-        }
+        //Enums.Acces[] RequestedAcces { get; set; }
 
-        protected override bool AuthorizeCore(HttpContextBase httpContext) // metoda, przy pomocy której udzielamy dostępu do akcji bądź nie
-        {
-            List<IdentityRole> roles = new List<IdentityRole>();
+        //#endregion
 
-            if (httpContext.User.IsInRole(userRole)) // sprawdzamy, czy aktualny user jest piekarzem
-            {
-                return true; // jeśli tak - uzyskuje on dostęp do akcji BakeBread
-            }
+        //#region Constructors
+        //public AppAuthorizeAttribute(params Enums.Acces[] acces)
+        //{
+        //    this.RequestedAcces = acces;
+        //}
 
-            return false; // jeśli nie, błąd 401 - nieuprawnionym wstęp wzbroniony
-        }
+        //#endregion
+
+        //#region Public
+
+        //protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        //{
+        //    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Error", action = "AccessDenied" }));
+        //}
+
+        //protected override bool AuthorizeCore(HttpContextBase httpContext)
+        //{
+        //    if (httpContext == null)
+        //    {
+        //        throw new ArgumentNullException("httpContext");
+        //    }
+        //    if (CurrentUser.Model.IsAdmin) return true;
+
+        //    foreach (Enums.Acces acces in RequestedAcces)
+        //    {
+        //        switch (acces)
+        //        {
+        //            case Enums.Acces.Active:
+        //                if (CurrentUser.Model.IsActiv) return true;
+        //                break;
+        //            case Enums.Acces.All:
+        //                return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+
+        //#endregion
     }
+
 }

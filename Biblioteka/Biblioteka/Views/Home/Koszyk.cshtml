@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Biblioteka.Models.Borrowing>
 @{
     ViewBag.Title = "Koszyk";
 }
@@ -7,4 +7,23 @@
 
 <div>
     <h1>Twój koszyk</h1>
+    @foreach (var u in Model)
+    {
+        if (Session["login"] != null)
+        {
+            @u.id_borrow
+            <div>|</div>
+            @u.id_book
+            <div>|</div>
+            @u.id_reader
+            <div>|</div>
+            @u.date_borrow
+            <div>|</div>
+            @u.date_back
+            <div>|</div>
+            @u.id_queue <div>|</div>
+            @u.id_queue <div>|</div>
+         }
+
+     }
 </div>

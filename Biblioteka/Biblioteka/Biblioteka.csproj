@@ -232,7 +232,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CustomAuthorizeAttribute.cs" />
     <Compile Include="Models\FileBook.cs" />
-    <Compile Include="ModelView\Global1VM.cs" />
+    <Compile Include="Models\GlobalV1.cs" />
     <Compile Include="Models\IndentityModels.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Penalty.cs" />
@@ -240,7 +240,9 @@
     <Compile Include="Models\Queue.cs" />
     <Compile Include="ModelView\AccountVM.cs" />
     <Compile Include="ModelView\AuthorizationVM.cs" />
+    <Compile Include="ModelView\AuthorVM.cs" />
     <Compile Include="ModelView\BookVM.cs" />
+    <Compile Include="ModelView\BorrowingVM.cs" />
     <Compile Include="ModelView\CategoryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\IsPesel.cs" />
