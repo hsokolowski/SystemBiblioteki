@@ -1,29 +1,25 @@
-﻿@model IEnumerable<Biblioteka.Models.Borrowing>
+﻿@model IEnumerable<Biblioteka.Models.Book>
 @{
     ViewBag.Title = "Koszyk";
+    var lista = Session["Zamowienie"] as IEnumerable<Biblioteka.Models.Book>;
 }
 
 <h2>Koszyk</h2>
 
 <div>
     <h1>Twój koszyk</h1>
-    @foreach (var u in Model)
+    @if (lista != null)
     {
-        if (Session["login"] != null)
+        foreach (var u in lista)
         {
-            @u.id_borrow
-            <div>|</div>
-            @u.id_book
-            <div>|</div>
-            @u.id_reader
-            <div>|</div>
-            @u.date_borrow
-            <div>|</div>
-            @u.date_back
-            <div>|</div>
-            @u.id_queue <div>|</div>
-            @u.id_queue <div>|</div>
-         }
+            if (Session["login"] != null)
+            {
+                @u.id_book @u.title
+            }
 
-     }
+        }
+        @Html.ActionLink("Wypożycz", "Borrow", new { }) // liste przekazac / odebrac w kontrolerze / dodac do borrowingow i wypisac
+    }
+
+
 </div>

@@ -100,13 +100,15 @@
                     </div>
                 </div>
                 @Html.ActionLink("Koszyk", "Koszyk", "Home", new { area = "" }, new { @style = "font-size:16px;", @class = "navbar-brand" })
-                <div class="koszyk">
-                    <i class="icon icon-basket"></i> 
-                    @if (Session["login"] != null)
-                    {
-                       @Session["Licznik"].ToString();
-                    }
-                </div>
+                <a href="/Home/Koszyk">
+                    <div class="koszyk">
+                        <i class="icon icon-basket"></i>
+                        @if (Session["login"] != null)
+                        {
+                            @Session["Licznik"].ToString();
+                        }
+                    </div>
+                </a>
 
 
             </div>

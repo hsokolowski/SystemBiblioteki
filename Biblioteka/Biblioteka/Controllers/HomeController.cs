@@ -28,32 +28,39 @@ namespace Biblioteka.Controllers
         }
         public ActionResult Koszyk()
         {
-            BorrowingVM vm = new BorrowingVM();
-            return View(vm.Get_list());
+            //List<Book> lista = List<Session["Zamowienie"]>;
+            var list = System.Web.HttpContext.Current.Session["Zamowienie"];
+            return View(list);
         }
         [Authorize]
         public ActionResult Koszyk2(int id, int kto)
         {
             BookVM gm = new BookVM();
             List<Book> list = gm.Get_list();
-            BorrowingVM vm = new BorrowingVM();
-            Borrowing b = new Borrowing();
-            int licznik;
+
+            //BorrowingVM vm = new BorrowingVM();
+            //Borrowing b = new Borrowing();
+
+            int licznik=0;
             var tym = list.SingleOrDefault(m => m.id_book == id);
 
+            List<Book> koszyk = new List<Book>();
+            
             if (tym != null)
             {
-                b.id_book = id;
-                b.id_reader = kto;
-                b.date_borrow = DateTime.Now;
-                b.date_back = b.date_borrow.AddDays(5);
-                b.id_queue = 1;
-                b.id_penalty = 1;
-                vm.Dodaj(b);
-                List<Borrowing> wypo = vm.Get_list();
-                licznik = wypo.Where(m => m.id_reader == kto).Count();
+                //b.id_book = id;
+                //b.id_reader = kto;
+                //b.date_borrow = DateTime.Now;
+                //b.date_back = b.date_borrow.AddDays(5);
+                //b.id_queue = 1;
+                //b.id_penalty = 1;
+                //vm.Dodaj(b);
+                //List<Borrowing> wypo = vm.Get_list();
+                koszyk.Add(tym);
+                licznik = koszyk.Count();
+                HttpContext.Session["Zamowienie"] = koszyk;
                 Session["Licznik"] = licznik;
-                return View("Koszyk", wypo);
+                return View("Koszyk", koszyk);
             }
             else
             {
@@ -135,11 +142,17 @@ namespace Biblioteka.Controllers
                         ViewBag.LoginErrorMessage = "Konto nie aktywowane";
                         return View("Login", user);
                     }
+                    ///
                     int licznik;
-                    BorrowingVM vm = new BorrowingVM();
-                    List<Borrowing> wypo = vm.Get_list();
-                    licznik = wypo.Where(m => m.id_reader == userdeatils.id_account).Count();
+                    List<Book> tmp = (List<Book>)Session["Zamowienie"];
+                    if (tmp != null)
+                    {
+                        licznik = tmp.Count();
+                    }
+                    else licznik =0;
+                    
                     Session["Licznik"] = licznik;
+                    ///
                     Session["adminID"] = userdeatils.id_account;
                     Session["login"] = userdeatils.login;
                     FormsAuthentication.SetAuthCookie(user.login, false);
