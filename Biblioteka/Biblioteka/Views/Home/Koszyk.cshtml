@@ -14,10 +14,11 @@
         {
             if (Session["login"] != null)
             {
-                @u.id_book @u.title
+                @u.id_book @u.title <a class="linkUlub" href="@Url.Action("DeleteKoszyk", "Home",new {id = u.id_book})"><i class="icon-minus-circled"></i></a>
             }
 
         }
+        <br />
         @Html.ActionLink("Wypożycz", "Borrow", new { }) // liste przekazac / odebrac w kontrolerze / dodac do borrowingow i wypisac
     }
 

@@ -44,8 +44,15 @@ namespace Biblioteka.Controllers
             int licznik=0;
             var tym = list.SingleOrDefault(m => m.id_book == id);
 
-            List<Book> koszyk = new List<Book>();
-            
+            List<Book> koszyk;
+            if (Session["Zamowienie"] != null)
+            {
+                koszyk = (List<Book>)Session["Zamowienie"];
+            }
+            else  koszyk = new List<Book>();
+
+
+
             if (tym != null)
             {
                 //b.id_book = id;
@@ -69,6 +76,14 @@ namespace Biblioteka.Controllers
                 return RedirectToAction("Ksiazki");
                 //jest w bazie
             }
+        }
+        public ActionResult DeleteKoszyk(int id)
+        {
+            List<Book> list =(List<Book>) System.Web.HttpContext.Current.Session["Zamowienie"];
+            Book book =list.Where(m=>m.id_book==id).FirstOrDefault();
+            list.Remove(book);
+            Session["Zamowienie"] = list;
+            return View("Koszyk", list);
         }
         public ActionResult Konto(int id = 0)
         {
