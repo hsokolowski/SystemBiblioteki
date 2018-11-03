@@ -243,6 +243,10 @@ namespace Biblioteka.Controllers
             return View(mymodel);
         }
 
+        public ActionResult Filozofia()
+        {
+            return View();
+        }
 
     }
 }
