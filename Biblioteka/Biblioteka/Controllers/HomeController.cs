@@ -23,8 +23,8 @@ namespace Biblioteka.Controllers
         }
         public ActionResult Lista()
         {
-            
-            return View();
+            BorrowingVM vm = new BorrowingVM();
+            return View(vm.Get_list());
         }
         public ActionResult Koszyk()
         {
@@ -242,7 +242,24 @@ namespace Biblioteka.Controllers
             mymodel.auth = vm2.Get_list();
             return View(mymodel);
         }
+        public ActionResult Borrow(int id)
+        {
+            BorrowingVM vm = new BorrowingVM();
+            
+            Borrowing b = new Borrowing();
+            b.id_reader = id;
+            b.date_borrow = DateTime.Now;
+            // TODO zmienić pozniej na parametr ustawiany przez admina;
+            b.date_back = b.date_borrow.AddDays(30);
+            b.id_books = (List<Book>)Session["Zamowienie"];
 
+            //defaoltowo na 0
+            b.id_penalty = 0;
+            b.id_queue = 0;
+            vm.Dodaj(b);
+            List<Borrowing> list = vm.Get_list();
+            return View("Lista",list);
+        }
 
     }
 }

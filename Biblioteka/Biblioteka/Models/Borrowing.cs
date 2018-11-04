@@ -14,8 +14,8 @@ namespace Biblioteka.Models
         [Display(Name = "ID Czytelnik")]
         public int id_reader { get; set; }
 
-        [Display(Name = "ID Książka")]
-        public int id_book { get; set; }
+        [Display(Name = "Książki")]
+        public virtual List<Book> id_books { get; set; }
 
         [Display(Name = "Data wypożyczenia")]
         public DateTime date_borrow { get; set; }

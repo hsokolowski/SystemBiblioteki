@@ -223,6 +223,10 @@
     <Compile Include="Migrations\201810281420222_resetdb.Designer.cs">
       <DependentUpon>201810281420222_resetdb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811031434221_borrowing.cs" />
+    <Compile Include="Migrations\201811031434221_borrowing.Designer.cs">
+      <DependentUpon>201811031434221_borrowing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Author.cs" />
@@ -324,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810281420222_resetdb.resx">
       <DependentUpon>201810281420222_resetdb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031434221_borrowing.resx">
+      <DependentUpon>201811031434221_borrowing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
