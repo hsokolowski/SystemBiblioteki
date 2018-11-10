@@ -285,6 +285,14 @@
     <Content Include="Views\Home\Dodaj_kategorie.cshtml" />
     <Content Include="Views\Home\Kategorie.cshtml" />
     <Content Include="Views\Home\Ksiazki.cshtml" />
+    <Content Include="Views\Home\Autor.cshtml" />
+    <Content Include="Views\Home\Edit_Author.cshtml" />
+    <Content Include="Views\Home\Details_Author.cshtml" />
+    <Content Include="Views\Home\Delete_Author.cshtml" />
+    <Content Include="Views\Home\BookAdd.cshtml" />
+    <Content Include="Views\Home\BookEdit.cshtml" />
+    <Content Include="Views\Home\BookDetails.cshtml" />
+    <Content Include="Views\Home\BookDelete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
