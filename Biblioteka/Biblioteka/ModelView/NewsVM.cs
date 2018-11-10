@@ -8,34 +8,31 @@ using System.Web;
 
 namespace Biblioteka.ModelView
 {
-    public class AuthorVM
+    public class NewsVM
     {
-        public List<Author> Get_list()
+        public List<News> Get_list()
         {
             DB mDb = new DB();
-            List<Author> listaDB = mDb.Authors.ToList();
+            List<News> listaDB = mDb.News.ToList();
             return listaDB;
         }
-        public void Dodaj(Author u)
+        public void Dodaj(News u)
         {
             DB mDb = new DB();
-            mDb.Authors.Add(u);
+            mDb.News.Add(u);
             mDb.Configuration.ValidateOnSaveEnabled = false;
             //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
         }
-        public void Update(Author a)
+        public void Update(News a)
         {
             DB db = new DB();
-
             db.Entry(a).State = EntityState.Modified;
-
             try
             {
                 db.SaveChanges();
                 // Your code...
                 // Could also be before try if you know the exception occurs in SaveChanges
-
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
@@ -54,26 +51,23 @@ namespace Biblioteka.ModelView
                 }
                 throw raise;
             }
-            
         }
 
-        public Author Find(int id)
+        public News Find(int id)
         {
-            Author u = new Author();
+            News u = new News();
             DB db = new DB();
-            db.Authors.Attach(u);
-            u = db.Authors.Find(id);
+            db.News.Attach(u);
+            u = db.News.Find(id);
             return u;
-            
         }
         public void Delete(int id)
         {
             DB db = new DB();
-            Author move = new Author() { id_author = id };
-            db.Authors.Attach(move);
-            db.Authors.Remove(move);
+            News move = new News() { id_news = id };
+            db.News.Attach(move);
+            db.News.Remove(move);
             db.SaveChanges();
-         
         }
     }
 }

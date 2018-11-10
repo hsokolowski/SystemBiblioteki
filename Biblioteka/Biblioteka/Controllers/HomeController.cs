@@ -1,13 +1,13 @@
-﻿using Biblioteka.Models;
+﻿using Biblioteka.CustomFilters;
+using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using static Biblioteka.Models.CustomAuthorizeAttribute;
+//using static Biblioteka.Models.CustomAuthorizeAttribute;
 
 namespace Biblioteka.Controllers
 {
@@ -28,7 +28,6 @@ namespace Biblioteka.Controllers
         }
         public ActionResult Koszyk()
         {
-            //List<Book> lista = List<Session["Zamowienie"]>;
             var list = System.Web.HttpContext.Current.Session["Zamowienie"];
             return View(list);
         }
@@ -82,6 +81,8 @@ namespace Biblioteka.Controllers
             List<Book> list =(List<Book>) System.Web.HttpContext.Current.Session["Zamowienie"];
             Book book =list.Where(m=>m.id_book==id).FirstOrDefault();
             list.Remove(book);
+            var tmp = Session["Licznik"].ToString();
+            Session["Licznik"] =Int32.Parse(tmp)-1;
             Session["Zamowienie"] = list;
             return View("Koszyk", list);
         }
@@ -157,6 +158,7 @@ namespace Biblioteka.Controllers
                         ViewBag.LoginErrorMessage = "Konto nie aktywowane";
                         return View("Login", user);
                     }
+                    
                     ///
                     int licznik;
                     List<Book> tmp = (List<Book>)Session["Zamowienie"];
@@ -171,8 +173,7 @@ namespace Biblioteka.Controllers
                     Session["adminID"] = userdeatils.id_account;
                     Session["login"] = userdeatils.login;
                     FormsAuthentication.SetAuthCookie(user.login, false);
-                    //return Redirect(ReturnUrl);
-
+                    
                     if (Url.IsLocalUrl(ReturnUrl))
                     {
                         return Redirect(ReturnUrl);
@@ -199,13 +200,13 @@ namespace Biblioteka.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Home");
         }
-        [CustomAuthorize(Roles = "Admin")]
+        //[CustomAuthorize(Roles="Admin")]
+        [AdminRole]
         public ActionResult Admin()
         {
-            
             return View();
         }
-        
+        [Authorize]
         public ActionResult Dodaj_kategorie(int id = 0)
         {
             Category c = new Category();
@@ -259,6 +260,102 @@ namespace Biblioteka.Controllers
             vm.Dodaj(b);
             List<Borrowing> list = vm.Get_list();
             return View("Lista",list);
+        }
+
+        public ActionResult Autor(int id=0)
+        {
+            Author a = new Author();
+            return View(a);
+        }
+        [HttpPost]
+        public ActionResult Autor(Author a)
+        {
+            AuthorVM vm = new AuthorVM();
+            List<Author> list = vm.Get_list();
+
+            if (list.Any(x => x.name == a.name && x.surname==a.surname))
+            {
+                ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
+                return View("Autor", a);
+            }
+            vm.Dodaj(a);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Edit_Author(int id)
+        {
+            AuthorVM vm = new AuthorVM();
+            List<Author> lista = vm.Get_list();
+            Author a = lista.Where(s => s.id_author == id).FirstOrDefault();
+            return View(a);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit_Author(Author m)
+        {
+            AuthorVM vm = new AuthorVM();
+            vm.Update(m);
+            ViewBag.Succesmessage = "Edycja pomyślna!";
+            return RedirectToAction("Index"); //zmienić
+        }
+        public ActionResult Details_Author(int id)
+        {
+            AuthorVM vm = new AuthorVM();
+            Author u = vm.Find(id);
+            return View(u);
+        }
+        public ActionResult Delete_Author(int id)
+        {
+            AuthorVM vm = new AuthorVM();
+            vm.Delete(id);
+            return RedirectToAction("Index");//zmienić
+        }
+
+        public ActionResult BookAdd(int id=0)
+        {
+            Book b = new Book();
+            return View(b);
+        }
+        [HttpPost]
+        public ActionResult BookAdd(Book a)
+        {
+            BookVM vm = new BookVM();
+            List<Book> list = vm.Get_list();
+
+            //if (list.Any(x => x.name == a.name && x.surname == a.surname))
+            //{
+            //    ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
+            //    return View("Dodaj_kategorie", a);
+            //}
+            vm.Dodaj(a);
+            return RedirectToAction("Index");
+        }
+        public ActionResult BookEdit(int id)
+        {
+            BookVM vm = new BookVM();
+            List<Book> lista = vm.Get_list();
+            Book a = lista.Where(s => s.id_book == id).FirstOrDefault();
+            return View(a);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BookEdit(Book m)
+        {
+            BookVM vm = new BookVM();
+            vm.Update(m);
+            ViewBag.Succesmessage = "Edycja pomyślna!";
+            return RedirectToAction("Index"); //zmienić
+        }
+        public ActionResult BookDetails(int id)
+        {
+            BookVM vm = new BookVM();
+            Book u = vm.Find(id);
+            return View(u);
+        }
+        public ActionResult BookDelete(int id)
+        {
+            BookVM vm = new BookVM();
+            vm.Delete(id);
+            return RedirectToAction("Index");//zmienić
         }
 
     }

@@ -8,34 +8,31 @@ using System.Web;
 
 namespace Biblioteka.ModelView
 {
-    public class AuthorVM
+    public class PositionVM
     {
-        public List<Author> Get_list()
+        public List<Position> Get_list()
         {
             DB mDb = new DB();
-            List<Author> listaDB = mDb.Authors.ToList();
+            List<Position> listaDB = mDb.Positions.ToList();
             return listaDB;
         }
-        public void Dodaj(Author u)
+        public void Dodaj(Position u)
         {
             DB mDb = new DB();
-            mDb.Authors.Add(u);
+            mDb.Positions.Add(u);
             mDb.Configuration.ValidateOnSaveEnabled = false;
             //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
         }
-        public void Update(Author a)
+        public void Update(Position a)
         {
             DB db = new DB();
-
             db.Entry(a).State = EntityState.Modified;
-
             try
             {
                 db.SaveChanges();
                 // Your code...
                 // Could also be before try if you know the exception occurs in SaveChanges
-
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
@@ -54,26 +51,23 @@ namespace Biblioteka.ModelView
                 }
                 throw raise;
             }
-            
         }
 
-        public Author Find(int id)
+        public Position Find(int id)
         {
-            Author u = new Author();
+            Position u = new Position();
             DB db = new DB();
-            db.Authors.Attach(u);
-            u = db.Authors.Find(id);
+            db.Positions.Attach(u);
+            u = db.Positions.Find(id);
             return u;
-            
         }
         public void Delete(int id)
         {
             DB db = new DB();
-            Author move = new Author() { id_author = id };
-            db.Authors.Attach(move);
-            db.Authors.Remove(move);
+            Position move = new Position() { id_position = id };
+            db.Positions.Attach(move);
+            db.Positions.Remove(move);
             db.SaveChanges();
-         
         }
     }
 }

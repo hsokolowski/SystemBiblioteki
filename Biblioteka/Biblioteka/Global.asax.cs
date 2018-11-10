@@ -23,7 +23,7 @@ namespace Biblioteka
             //    db.Database.SetInitializer(new Initial());
             //    db.Database.Initialize(true);
             //}
-            Database.SetInitializer<ApplicationDbContext>(new IdentityDbInitializer());
+           // Database.SetInitializer<ApplicationDbContext>(new IdentityDbInitializer());
         }
     }
 }

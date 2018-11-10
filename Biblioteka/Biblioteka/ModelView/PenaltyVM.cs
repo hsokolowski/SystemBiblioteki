@@ -8,34 +8,31 @@ using System.Web;
 
 namespace Biblioteka.ModelView
 {
-    public class AuthorVM
+    public class PenaltyVM
     {
-        public List<Author> Get_list()
+        public List<Penalty> Get_list()
         {
             DB mDb = new DB();
-            List<Author> listaDB = mDb.Authors.ToList();
+            List<Penalty> listaDB = mDb.Penalties.ToList();
             return listaDB;
         }
-        public void Dodaj(Author u)
+        public void Dodaj(Penalty u)
         {
             DB mDb = new DB();
-            mDb.Authors.Add(u);
+            mDb.Penalties.Add(u);
             mDb.Configuration.ValidateOnSaveEnabled = false;
             //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
         }
-        public void Update(Author a)
+        public void Update(Penalty a)
         {
             DB db = new DB();
-
             db.Entry(a).State = EntityState.Modified;
-
             try
             {
                 db.SaveChanges();
                 // Your code...
                 // Could also be before try if you know the exception occurs in SaveChanges
-
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
@@ -54,26 +51,23 @@ namespace Biblioteka.ModelView
                 }
                 throw raise;
             }
-            
         }
 
-        public Author Find(int id)
+        public Penalty Find(int id)
         {
-            Author u = new Author();
+            Penalty u = new Penalty();
             DB db = new DB();
-            db.Authors.Attach(u);
-            u = db.Authors.Find(id);
+            db.Penalties.Attach(u);
+            u = db.Penalties.Find(id);
             return u;
-            
         }
         public void Delete(int id)
         {
             DB db = new DB();
-            Author move = new Author() { id_author = id };
-            db.Authors.Attach(move);
-            db.Authors.Remove(move);
+            Penalty move = new Penalty() { id_penalty = id };
+            db.Penalties.Attach(move);
+            db.Penalties.Remove(move);
             db.SaveChanges();
-         
         }
     }
 }

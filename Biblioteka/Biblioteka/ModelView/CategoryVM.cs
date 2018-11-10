@@ -2,6 +2,7 @@
 using Biblioteka.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -22,6 +23,57 @@ namespace Biblioteka.ModelView
             mDb.Configuration.ValidateOnSaveEnabled = false;
             //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
+        }
+        public void Update(Category a)
+        {
+            DB db = new DB();
+
+            db.Entry(a).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+                // Your code...
+                // Could also be before try if you know the exception occurs in SaveChanges
+
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting
+                        // the current instance as InnerException
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
+
+        }
+
+        public Category Find(int id)
+        {
+            Category u = new Category();
+            DB db = new DB();
+            db.Categories.Attach(u);
+            u = db.Categories.Find(id);
+            return u;
+
+        }
+        public void Delete(int id)
+        {
+            DB db = new DB();
+            Category move = new Category() { id_category = id };
+            db.Categories.Attach(move);
+            db.Categories.Remove(move);
+            db.SaveChanges();
+
         }
     }
 }
