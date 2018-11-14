@@ -233,6 +233,7 @@ namespace Biblioteka.Controllers
         }
         public ActionResult Ksiazki()
         {
+            
             BookVM vm = new BookVM();
             CategoryVM vm1 = new CategoryVM();
             AuthorVM vm2 = new AuthorVM();
@@ -240,6 +241,7 @@ namespace Biblioteka.Controllers
             mymodel.book = vm.Get_list();
             mymodel.cate = vm1.Get_list();
             mymodel.auth = vm2.Get_list();
+           
             return View(mymodel);
         }
 
