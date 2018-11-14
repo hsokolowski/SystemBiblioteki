@@ -22,7 +22,7 @@
 
 
 </head>
-<body>
+<body class="bg-dark">
     <header>
 
         <nav class="navbar navbar-dark badge-success navbar-expand-lg ">
@@ -48,6 +48,12 @@
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Ksiązki", "Ksiazki", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Dodaj książkę", "BookAdd", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Szczegóły", "BookDetails/1", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
                 </ul>
 
@@ -129,46 +135,19 @@
 
 
     <main>
-        <div class="container">
-            <section>
+        <div class="container bg-dark text-light">
+            
                 @RenderBody()
-            </section>
+            
         </div>
     </main>
     <footer>
 
-        <div class="info">
+        <div class="info text-light">
             Wszelkie prawa zastrzeżone <a style="text-decoration:none; color: black;" href="/Home/Admin">&copy;</a> @DateTime.Now.Year - System Biblioteki
         </div>
 
     </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @*<div id="cont">
-            <div id="main">
-               @Html.Partial("_HeaderNavBar", Session["login"])
-                <div class="container body-content">
-                    <hr />
-                    <footer>
-                        <p>&copy; @DateTime.Now.Year - System Biblioteki</p>
-                    </footer>
-                </div>
-            </div>
-        </div>*@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>

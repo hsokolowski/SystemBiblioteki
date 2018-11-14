@@ -1,11 +1,10 @@
-﻿body {
-    margin: 0;
-    background-color: black;
-    font-family: 'Open Sans', sans-serif;
+﻿main {
+    min-height:500px;
     font-size: 17px;
+    
 }
 
-.container {
+#container {
     margin-left: auto;
     margin-right: auto;
     width: 1000px;
@@ -30,7 +29,7 @@ h2 {
 }
 
 #newsfeed {
-    background-color: rgba(255,255,255,.5);
+    background-color: white;
     min-height: 30px;
 }
 
@@ -40,4 +39,33 @@ h2 {
 
 .info {
     text-align: center;
+}
+
+a.tilelink {
+    height: 170px;
+    width: 350px;
+    text-decoration: none;
+}
+.card-body{
+    min-height:142px;
+}
+.tile1 {
+    height:170px;
+    width:350px;
+}
+.tile1:hover {
+    background-color:lightgray;
+}
+a.tilelinkhtml5 {
+    text-decoration: none;
+}
+
+.cardSpec {
+    min-width: 230px;
+    min-height: 142px;
+    text-align:center;
+}
+
+.icon-size{
+    font-size:76px;
 }
