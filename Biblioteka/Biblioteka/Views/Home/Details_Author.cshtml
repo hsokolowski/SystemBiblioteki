@@ -1,7 +1,42 @@
-﻿
+﻿@model Biblioteka.Models.Author
+
 @{
     ViewBag.Title = "Details_Author";
 }
 
 <h2>Details_Author</h2>
 
+<div>
+    <h4>Author</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit_Author", new { id = Model.id_author }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

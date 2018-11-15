@@ -38,9 +38,14 @@ h2 {
 }
 
 .info {
+    position:absolute;
+    bottom:0;
     text-align: center;
+    width:100%;
 }
-
+#kontener{
+    height:100%;
+}
 a.tilelink {
     height: 170px;
     width: 350px;
