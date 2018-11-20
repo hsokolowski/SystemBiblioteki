@@ -13,5 +13,8 @@ namespace Biblioteka.Models
 
         [Display(Name ="Nazwa")]
         public string name { get; set; }
+
+        [Display(Name = "Kat. nadrzędna")]
+        public int id_father { get; set; }
     }
 }

@@ -236,6 +236,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AutBook.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Frees\AuthorizerAttributed.cs" />
     <Compile Include="Models\Book.cs" />
@@ -249,6 +250,8 @@
     <Compile Include="Models\Penalty.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Queue.cs" />
+    <Compile Include="Models\Specimen.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="ModelView\AccountVM.cs" />
     <Compile Include="ModelView\AuthorizationVM.cs">
       <SubType>ASPXCodeBehind</SubType>

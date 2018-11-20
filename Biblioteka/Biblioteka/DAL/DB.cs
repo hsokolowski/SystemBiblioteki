@@ -24,6 +24,9 @@ namespace Biblioteka.DAL
         public DbSet<Queue> Queues { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<FileBook> Files { get; set; }
+        public DbSet<AutBook> AutBooks { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Specimen> Specimens { get; set; }
 
     }
 }
