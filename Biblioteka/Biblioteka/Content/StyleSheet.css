@@ -1,0 +1,76 @@
+﻿main {
+    min-height:500px;
+    font-size: 17px;
+    
+}
+
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 400;
+    color: cornflowerblue;
+    margin: 20px;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 400;
+    color: cornflowerblue;
+    margin: 20px;
+}
+
+.navbar {
+    min-height: 57px;
+}
+
+#newsfeed {
+    background-color: white;
+    min-height: 30px;
+}
+
+#user {
+    color: rgba(255,255,255,.5);
+}
+
+.info {
+    position:absolute;
+    bottom:0;
+    text-align: center;
+    width:100%;
+}
+#kontener{
+    height:100%;
+}
+a.tilelink {
+    height: 170px;
+    width: 350px;
+    text-decoration: none;
+}
+.card-body{
+    min-height:142px;
+}
+.tile1 {
+    height:170px;
+    width:350px;
+}
+.tile1:hover {
+    background-color:lightgray;
+}
+a.tilelinkhtml5 {
+    text-decoration: none;
+}
+
+.cardSpec {
+    min-width: 230px;
+    min-height: 142px;
+    text-align:center;
+}
+
+.icon-size{
+    font-size:76px;
+}

@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <title>@ViewBag.Title Biblioteka</title>
+    <link rel="stylesheet" href="~/Content/StyleSheet.css">
+    <link rel="stylesheet" href="~/Content/fontello/css/basket.css">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/fontello/css/basket.css" rel="stylesheet" type="text/css" />
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
 
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -18,44 +18,136 @@
     <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
     <script src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")' type='text/javascript'></script>
-    
 
-    <style>
-        #cont {
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 0;
-        }
 
-        #main {
-            margin-top: 0px;
-        }
 
-        .form-control:hover {
-            transition: all 500ms linear;
-            background-color: #ccffff;
-        }
-
-        .backtolist:hover {
-            color: black;
-        }
-    </style>
 </head>
-<body>
-    <div id="cont">
-        <div id="main">
-            @Html.Partial("_HeaderNavBar", Session["login"])
+<body class="bg-dark">
+    <header>
+
+        <nav class="navbar navbar-dark badge-success navbar-expand-lg ">
 
 
-            <div class="container body-content">
-                @RenderBody()
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - System Biblioteki</p>
-                </footer>
+            <button class="navbar-toggler navbartext" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainmenu">
+
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "nav-link " })
+
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Dodaj kategorie", "Dodaj_kategorie", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Lista Kategori", "Kategorie", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Ksiązki", "Ksiazki", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Dodaj książkę", "BookAdd", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Szczegóły", "BookDetails/1", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+
+                <form class="form-inline">
+
+                    <input class="form-control mr-1" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
+                    <button class="btn btn-light" type="submit">Znajdź</button>
+
+                </form>
+                <ul class="navbar-nav navbar-right">
+
+
+                    @if (Session["login"] == null)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Załóż konto", "Konto", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+
+
+                        <li class="nav-item ">
+                            @Html.ActionLink("Zaloguj", "Login", "Home", new { area = "" }, new { @class = "nav-link icon-login" })
+                        </li>
+
+                    }
+                    <li id="user" class="nav-item">
+
+                        <a class="navbar-text icon-user">
+                            @if (Session["login"] != null)
+                            {@Session["login"].ToString()}
+                        </a>
+                    </li>
+
+
+
+
+                    @if (Session["login"] != null)
+                    {
+                        <li class="nav-item ">
+                            <a class="nav-link navbartext icon-logout" href="@Url.Action("Logout","Home")">Wyloguj</a>
+
+                        </li>
+
+                    }
+
+                    @if (Session["login"] != null)
+                    {
+                        <li class="nav-item">
+
+                            @Html.ActionLink("Koszyk", "Koszyk", "Home", new { area = "" }, new { @class = "nav-link icon-basket" })
+
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Koszyk">
+
+                                @if (Session["login"] != null)
+                                {
+                                    @Session["Licznik"].ToString();
+                                }
+
+                            </a>
+                        </li>
+                    }
+                </ul>
+
             </div>
+
+        </nav>
+        <div id="newsfeed">
+            TU COŚ BĘDZIE NEWSY BĘDĄ
         </div>
-    </div>
+
+
+
+
+    </header>
+
+
+
+    <main>
+        <div class="container h-100 bg-dark text-light">
+            
+                @RenderBody()
+            
+        </div>
+    </main>
+    <footer>
+
+        <div class="info text-light">
+            Wszelkie prawa zastrzeżone <a style="text-decoration:none; color:white;" href="/Home/Admin">&copy;</a> @DateTime.Now.Year - System Biblioteki
+        </div>
+
+    </footer>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
