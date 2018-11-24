@@ -18,7 +18,7 @@ namespace Biblioteka.ModelView
         }
         public bool IsAdmin(Account a)
         {
-            if (a.login == "admin" && a.password == "admin" && a.role.ToString()=="Admin")
+            if (a.Login == "admin" && a.Password == "admin" && a.Role.ToString()=="Admin")
             {
                 return true;
             }

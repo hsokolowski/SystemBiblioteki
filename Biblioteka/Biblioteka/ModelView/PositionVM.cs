@@ -10,13 +10,13 @@ namespace Biblioteka.ModelView
 {
     public class PositionVM
     {
-        public List<Position> Get_list()
+        public List<Repository> Get_list()
         {
             DB mDb = new DB();
-            List<Position> listaDB = mDb.Positions.ToList();
+            List<Repository> listaDB = mDb.Positions.ToList();
             return listaDB;
         }
-        public void Dodaj(Position u)
+        public void Dodaj(Repository u)
         {
             DB mDb = new DB();
             mDb.Positions.Add(u);
@@ -24,7 +24,7 @@ namespace Biblioteka.ModelView
             //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
         }
-        public void Update(Position a)
+        public void Update(Repository a)
         {
             DB db = new DB();
             db.Entry(a).State = EntityState.Modified;
@@ -53,9 +53,9 @@ namespace Biblioteka.ModelView
             }
         }
 
-        public Position Find(int id)
+        public Repository Find(int id)
         {
-            Position u = new Position();
+            Repository u = new Repository();
             DB db = new DB();
             db.Positions.Attach(u);
             u = db.Positions.Find(id);
@@ -64,7 +64,7 @@ namespace Biblioteka.ModelView
         public void Delete(int id)
         {
             DB db = new DB();
-            Position move = new Position() { id_position = id };
+            Repository move = new Repository() { RepositoryID = id };
             db.Positions.Attach(move);
             db.Positions.Remove(move);
             db.SaveChanges();

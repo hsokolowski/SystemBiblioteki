@@ -64,7 +64,7 @@ namespace Biblioteka.ModelView
         public void Delete(int id)
         {
             DB db = new DB();
-            News move = new News() { id_news = id };
+            News move = new News() { NewsID = id };
             db.News.Attach(move);
             db.News.Remove(move);
             db.SaveChanges();

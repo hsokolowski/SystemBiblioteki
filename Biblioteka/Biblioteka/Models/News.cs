@@ -8,20 +8,20 @@ namespace Biblioteka.Models
 {
     public class News
     {
-        [Key]
-        public int id_news { get; set; }
+       
+        public int NewsID { get; set; }
 
         [Display(Name = "Tytuł")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string title { get; set; }
+        public string Title { get; set; }
 
         [Display(Name = "Data")]
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
 
         [Display(Name = "Dodał")]
-        public int id_employer { get; set; }
+        public int UserID { get; set; }
 
         [Display(Name = "Treść")]
-        public string content { get; set; }
+        public string Content { get; set; }
     }
 }

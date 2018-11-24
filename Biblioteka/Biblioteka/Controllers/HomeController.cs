@@ -41,7 +41,7 @@ namespace Biblioteka.Controllers
             //Borrowing b = new Borrowing();
 
             int licznik=0;
-            var tym = list.SingleOrDefault(m => m.id_book == id);
+            var tym = list.SingleOrDefault(m => m.BookID == id);
 
             List<Book> koszyk;
             if (Session["Zamowienie"] != null)
@@ -79,7 +79,7 @@ namespace Biblioteka.Controllers
         public ActionResult DeleteKoszyk(int id)
         {
             List<Book> list =(List<Book>) System.Web.HttpContext.Current.Session["Zamowienie"];
-            Book book =list.Where(m=>m.id_book==id).FirstOrDefault();
+            Book book =list.Where(m=>m.BookID==id).FirstOrDefault();
             list.Remove(book);
             var tmp = Session["Licznik"].ToString();
             Session["Licznik"] =Int32.Parse(tmp)-1;
@@ -97,7 +97,7 @@ namespace Biblioteka.Controllers
             AccountVM userBL = new AccountVM();
             List<Account> list = userBL.Get_list();
 
-            if (list.Any(x => x.login == p.login))
+            if (list.Any(x => x.Login == p.Login))
             {
                 ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
                 return View("Account", p);
@@ -111,7 +111,7 @@ namespace Biblioteka.Controllers
         {
             AccountVM vm = new AccountVM();
             List<Account> lista = vm.Get_list();
-            Account a= lista.Where(s => s.id_account == id).FirstOrDefault();
+            Account a= lista.Where(s => s.AccountID == id).FirstOrDefault();
             return View(a);
         }
         [HttpPost]
@@ -145,7 +145,7 @@ namespace Biblioteka.Controllers
             using (DAL.DB db = new DAL.DB())
             {
                 //var tym = Encrypt.GetHash(user.password);
-                var userdeatils = db.Accounts.Where(x => x.login == user.login && x.password == user.password).FirstOrDefault();
+                var userdeatils = db.Accounts.Where(x => x.Login == user.Login && x.Password == user.Password).FirstOrDefault();
                 if (userdeatils == null)
                 {
                     ViewBag.LoginErrorMessage = "Nie poprawny login lub hasło";
@@ -153,7 +153,7 @@ namespace Biblioteka.Controllers
                 }
                 else
                 {
-                    if(userdeatils.activ==false)
+                    if(userdeatils.Active==false)
                     {
                         ViewBag.LoginErrorMessage = "Konto nie aktywowane";
                         return View("Login", user);
@@ -170,9 +170,9 @@ namespace Biblioteka.Controllers
                     
                     Session["Licznik"] = licznik;
                     ///
-                    Session["adminID"] = userdeatils.id_account;
-                    Session["login"] = userdeatils.login;
-                    FormsAuthentication.SetAuthCookie(user.login, false);
+                    Session["adminID"] = userdeatils.AccountID;
+                    Session["login"] = userdeatils.Login;
+                    FormsAuthentication.SetAuthCookie(user.Login, false);
                     
                     if (Url.IsLocalUrl(ReturnUrl))
                     {
@@ -218,7 +218,7 @@ namespace Biblioteka.Controllers
             CategoryVM vm = new CategoryVM();
             List<Category> list = vm.Get_list();
 
-            if (list.Any(x => x.name==c.name))
+            if (list.Any(x => x.Name==c.Name))
             {
                 ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
                 return View("Dodaj_kategorie", c);
@@ -248,15 +248,15 @@ namespace Biblioteka.Controllers
             BorrowingVM vm = new BorrowingVM();
             
             Borrowing b = new Borrowing();
-            b.id_reader = id;
-            b.date_borrow = DateTime.Now;
+            b.ReaderID = id;
+            b.Borrow_date = DateTime.Now;
             // TODO zmienić pozniej na parametr ustawiany przez admina;
-            b.date_back = b.date_borrow.AddDays(30);
-            b.id_books = (List<Book>)Session["Zamowienie"];
+            b.Return_date = b.Borrow_date.AddDays(30);
+            b.Books = (List<Book>)Session["Zamowienie"];
 
             //defaoltowo na 0
-            b.id_penalty = 0;
-            b.id_queue = 0;
+            b.PenaltyID = 0;
+            b.QueueID = 0;
             vm.Dodaj(b);
             List<Borrowing> list = vm.Get_list();
             return View("Lista",list);
@@ -273,7 +273,7 @@ namespace Biblioteka.Controllers
             AuthorVM vm = new AuthorVM();
             List<Author> list = vm.Get_list();
 
-            if (list.Any(x => x.name == a.name && x.surname==a.surname))
+            if (list.Any(x => x.Name == a.Name && x.Surname==a.Surname))
             {
                 ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
                 return View("Autor", a);
@@ -285,7 +285,7 @@ namespace Biblioteka.Controllers
         {
             AuthorVM vm = new AuthorVM();
             List<Author> lista = vm.Get_list();
-            Author a = lista.Where(s => s.id_author == id).FirstOrDefault();
+            Author a = lista.Where(s => s.AuthorID == id).FirstOrDefault();
             return View(a);
         }
         [HttpPost]
@@ -333,7 +333,7 @@ namespace Biblioteka.Controllers
         {
             BookVM vm = new BookVM();
             List<Book> lista = vm.Get_list();
-            Book a = lista.Where(s => s.id_book == id).FirstOrDefault();
+            Book a = lista.Where(s => s.BookID == id).FirstOrDefault();
             return View(a);
         }
         [HttpPost]

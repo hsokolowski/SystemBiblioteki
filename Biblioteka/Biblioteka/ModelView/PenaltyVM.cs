@@ -64,7 +64,7 @@ namespace Biblioteka.ModelView
         public void Delete(int id)
         {
             DB db = new DB();
-            Penalty move = new Penalty() { id_penalty = id };
+            Penalty move = new Penalty() { PenaltyID = id };
             db.Penalties.Attach(move);
             db.Penalties.Remove(move);
             db.SaveChanges();

@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
 
 namespace Biblioteka.Models
 {
-    public class Tag
+    public class File
     {
         
-        public string TagID { get; set; }
+        public int FileID { get; set; }
 
-        [Display(Name = "Tag")]
-        [Required]
         public string Name { get; set; }
 
-      
-        public virtual ICollection<Book> Books { get; set; }
+        public string Stream { get; set; }
+
+        public int BookID { get; set; }
     }
 }

@@ -268,9 +268,9 @@
     <Compile Include="Migrations\201811031434221_borrowing.Designer.cs">
       <DependentUpon>201811031434221_borrowing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811042056274_borrowings1.cs" />
-    <Compile Include="Migrations\201811042056274_borrowings1.Designer.cs">
-      <DependentUpon>201811042056274_borrowings1.cs</DependentUpon>
+    <Compile Include="Migrations\201811242221359_autbook.cs" />
+    <Compile Include="Migrations\201811242221359_autbook.Designer.cs">
+      <DependentUpon>201811242221359_autbook.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -281,14 +281,13 @@
     <Compile Include="Models\Borrowing.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Frees\CustomAuthorizeAttribute.cs" />
-    <Compile Include="Models\FileBook.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\GlobalV1.cs" />
     <Compile Include="Frees\IndentityModels.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Penalty.cs" />
-    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Queue.cs" />
-    <Compile Include="Models\Specimen.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="ModelView\AccountVM.cs" />
     <Compile Include="ModelView\AuthorizationVM.cs">
@@ -399,8 +398,8 @@
     <EmbeddedResource Include="Migrations\201811031434221_borrowing.resx">
       <DependentUpon>201811031434221_borrowing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811042056274_borrowings1.resx">
-      <DependentUpon>201811042056274_borrowings1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811242221359_autbook.resx">
+      <DependentUpon>201811242221359_autbook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

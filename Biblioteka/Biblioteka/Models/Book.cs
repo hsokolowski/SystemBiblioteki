@@ -11,49 +11,49 @@ namespace Biblioteka.Models
     {
         [Key]
         [Display(Name = "ID")]
-        public int id_book { get; set; }
+        public int BookID { get; set; }
 
         [Display(Name = "Tytuł")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string title { get; set; }
+        public string Title { get; set; }
 
-        [Display(Name = "Autor")]
+        //[Display(Name = "Autor")]
         //[ForeignKey("Author")]
         //[Required(ErrorMessage = "To pole jest wymagane!")]
-        public int id_author { get; set; }
+        //public int AuthorID { get; set; }
 
         [Display(Name = "Rok")]
         [Range(0, 99999, ErrorMessage = "Rok nie może być ujemny!")]
-        public int year { get; set; }
+        public int Year { get; set; }
 
         [Display(Name = "Kategoria")]
-        public int id_category
-        {
-            get;set;
-
-        }
+        public int CategoryID { get; set; }
 
         [Display(Name = "Ilość stron")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public int ilosc_str { get; set; }
+        public int Pages { get; set; }
 
         [Display(Name = "Numer ISBN")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
         public int ISBN { get; set; }
 
         [NotMapped]
-        public Forwho from_who { get; set; }
+        public Forwho For_who { get; set; }
+
+
+        public virtual ICollection<AutBook> AutBooks { get; set; }
+
 
         [Display(Name = "Przeznaczona")]
         public string for_who
         {
             get
             {
-                return from_who.ToString();
+                return For_who.ToString();
             }
             private set
             {
-                from_who = value.ParseEnum<Forwho>();
+                For_who = value.ParseEnum<Forwho>();
             }
 
         }

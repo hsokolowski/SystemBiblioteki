@@ -9,26 +9,26 @@ namespace Biblioteka.Models
     public class Borrowing
     {
         [Key]
-        public int id_borrow { get; set; }
+        public int BorrowID { get; set; }
 
         [Display(Name = "ID Czytelnik")]
-        public int id_reader { get; set; }
+        public int ReaderID { get; set; }
 
         [Display(Name = "Książki")]
-        public virtual List<Book> id_books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
 
         [Display(Name = "Data wypożyczenia")]
-        public DateTime date_borrow { get; set; }
+        public DateTime Borrow_date { get; set; }
 
 
         [Display(Name = "Data zwrotu")]
-        public DateTime date_back { get; set; }
+        public DateTime Return_date { get; set; }
 
         [Display(Name = "Kara")]
-        public int id_penalty { get; set; }
+        public int PenaltyID { get; set; }
 
         [Display(Name = "Kolejka")]
-        public int id_queue { get; set; }
+        public int QueueID { get; set; }
 
     }
 }

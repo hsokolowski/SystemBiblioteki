@@ -69,7 +69,7 @@ namespace Biblioteka.ModelView
         public void Delete(int id)
         {
             DB db = new DB();
-            Author move = new Author() { id_author = id };
+            Author move = new Author() { AuthorID = id };
             db.Authors.Attach(move);
             db.Authors.Remove(move);
             db.SaveChanges();

@@ -8,11 +8,12 @@ namespace Biblioteka.Models
 {
     public class Penalty
     {
-        [Key]
-        public int id_penalty { get; set; }
+        
+        public int PenaltyID { get; set; }
 
         [Display(Name = "Kwota")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public int amount { get; set; }
+        public int Value { get; set; }
+        public int Days { get; set; }
     }
 }

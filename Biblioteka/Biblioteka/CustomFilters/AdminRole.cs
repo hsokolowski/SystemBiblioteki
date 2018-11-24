@@ -23,9 +23,9 @@ namespace Biblioteka.CustomFilters
                 DB db = new DB();
                 AccountVM vm = new AccountVM();
                 List<Account> userList;
-                userList = vm.Get_list().Where(r => r.role == Role.Admin).ToList();
+                userList = vm.Get_list().Where(r => r.Role == Role.Admin).ToList();
 
-                if (!userList.Any(u => u.login == filterContext.HttpContext.User.Identity.Name))
+                if (!userList.Any(u => u.Login == filterContext.HttpContext.User.Identity.Name))
                 {
                     //filterContext.Controller.TempData["Message"] = "Zaloguj się na konto z odpowiednimi uprawnieniami by poznać sekret ;) ";
                     filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "Index" }));

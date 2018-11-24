@@ -7,16 +7,17 @@ using System.Web;
 
 namespace Biblioteka.Models
 {
-    public class Position
+    public class Repository
     {
         [Key]
-        public int id_position { get; set; }
+        public int RepositoryID { get; set; }
 
         [Display(Name = "ISBN")]
         //[Required(ErrorMessage = "To pole jest wymagane!")]
         public int ISBN { get; set; }
 
         [Display(Name = "ID Książki")]
-        public int id_book { get; set; }
+        public int BookID { get; set; }
+        public Book Book { get; set; }
     }
 }

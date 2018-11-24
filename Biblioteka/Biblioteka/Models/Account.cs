@@ -10,47 +10,47 @@ namespace Biblioteka.Models
 {
     public class Account
     {
-        [Key]
-        public int id_account { get; set; }
+        
+        public int AccountID { get; set; }
 
         [Display(Name = "Imię")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [Display(Name = "Nazwisko")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string surname { get; set; }
+        public string Surname { get; set; }
 
         [Display(Name = "Pesel")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
         //[IsPesel]
         [StringLength(11, ErrorMessage = "Pole musi mieć 11 znaków")]
-        public string pesel { get; set; }
+        public string Pesel { get; set; }
 
         [Required(ErrorMessage = "To pole jest wymagane!"), Display(Name = "E-mail"), EmailAddress]
-        public string email { get; set; }
+        public string Email { get; set; }
 
         [Display(Name = "Czy aktywne?")]
-        public bool activ { get; set; }
+        public bool Active { get; set; }
 
         [Display(Name = "Login")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string login { get; set; }
+        public string Login { get; set; }
 
         [Display(Name = "Hasło")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "To pole jest wymagane!")]
         [StringLength(100, ErrorMessage = "Hasło musi mieć minimum {2} znaków", MinimumLength = 3)]
-        public string password { get; set; }
+        public string Password { get; set; }
 
         [Display(Name = "Potwierdź Hasło")]
         [DataType(DataType.Password)]
         [Compare("password")]
-        public string confirmedpassword { get; set; }
+        public string Confirmedpassword { get; set; }
 
         //[NotMapped]
         [Display(Name = "Rola")]
-        public Role role { get; set; }
+        public Role Role { get; set; }
 
         //[Display(Name = "Rola")]
         //public string TypeString {

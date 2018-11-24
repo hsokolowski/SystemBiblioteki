@@ -70,7 +70,7 @@ namespace Biblioteka.ModelView
         public void Delete(int id)
         {
             DB db = new DB();
-            Account move = new Account() { id_account = id };
+            Account move = new Account() { AccountID = id };
             db.Accounts.Attach(move);
             db.Accounts.Remove(move);
             db.SaveChanges();

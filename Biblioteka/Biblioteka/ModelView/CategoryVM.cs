@@ -69,7 +69,7 @@ namespace Biblioteka.ModelView
         public void Delete(int id)
         {
             DB db = new DB();
-            Category move = new Category() { id_category = id };
+            Category move = new Category() { CategoryID = id };
             db.Categories.Attach(move);
             db.Categories.Remove(move);
             db.SaveChanges();

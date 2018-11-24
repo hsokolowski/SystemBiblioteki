@@ -9,16 +9,16 @@ namespace Biblioteka.Models
     public class AutBook
     {
         [Key]
-        public int id { get; set; }
+        public int AutBookID { get; set; }
 
         [Display(Name = "Autor")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public int id_author { get; set; }
+        public int AuthorID { get; set; }
 
         [Display(Name = "Książka")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public int id_book { get; set; }
-
-       
+        public int BookID { get; set; }
+        public virtual Author Author { get; set; }
+        public virtual Book Book { get; set; }
     }
 }
