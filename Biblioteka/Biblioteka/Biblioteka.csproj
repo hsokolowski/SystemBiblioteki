@@ -272,6 +272,50 @@
     <Compile Include="Migrations\201811242221359_autbook.Designer.cs">
       <DependentUpon>201811242221359_autbook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811251816578_tag_book.cs" />
+    <Compile Include="Migrations\201811251816578_tag_book.Designer.cs">
+      <DependentUpon>201811251816578_tag_book.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811251901281_tag2.cs" />
+    <Compile Include="Migrations\201811251901281_tag2.Designer.cs">
+      <DependentUpon>201811251901281_tag2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811251904155_tag3.cs" />
+    <Compile Include="Migrations\201811251904155_tag3.Designer.cs">
+      <DependentUpon>201811251904155_tag3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811251921419_tag4.cs" />
+    <Compile Include="Migrations\201811251921419_tag4.Designer.cs">
+      <DependentUpon>201811251921419_tag4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811251941494_category_sub.cs" />
+    <Compile Include="Migrations\201811251941494_category_sub.Designer.cs">
+      <DependentUpon>201811251941494_category_sub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252021353_penalty_borrow.cs" />
+    <Compile Include="Migrations\201811252021353_penalty_borrow.Designer.cs">
+      <DependentUpon>201811252021353_penalty_borrow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252051374_queue.cs" />
+    <Compile Include="Migrations\201811252051374_queue.Designer.cs">
+      <DependentUpon>201811252051374_queue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252053167_queue1.cs" />
+    <Compile Include="Migrations\201811252053167_queue1.Designer.cs">
+      <DependentUpon>201811252053167_queue1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252057379_news.cs" />
+    <Compile Include="Migrations\201811252057379_news.Designer.cs">
+      <DependentUpon>201811252057379_news.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252114343_repo.cs" />
+    <Compile Include="Migrations\201811252114343_repo.Designer.cs">
+      <DependentUpon>201811252114343_repo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252121288_repo1.cs" />
+    <Compile Include="Migrations\201811252121288_repo1.Designer.cs">
+      <DependentUpon>201811252121288_repo1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -288,6 +332,7 @@
     <Compile Include="Models\Penalty.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Queue.cs" />
+    <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="ModelView\AccountVM.cs" />
     <Compile Include="ModelView\AuthorizationVM.cs">
@@ -400,6 +445,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811242221359_autbook.resx">
       <DependentUpon>201811242221359_autbook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811251816578_tag_book.resx">
+      <DependentUpon>201811251816578_tag_book.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811251901281_tag2.resx">
+      <DependentUpon>201811251901281_tag2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811251904155_tag3.resx">
+      <DependentUpon>201811251904155_tag3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811251921419_tag4.resx">
+      <DependentUpon>201811251921419_tag4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811251941494_category_sub.resx">
+      <DependentUpon>201811251941494_category_sub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252021353_penalty_borrow.resx">
+      <DependentUpon>201811252021353_penalty_borrow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252051374_queue.resx">
+      <DependentUpon>201811252051374_queue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252053167_queue1.resx">
+      <DependentUpon>201811252053167_queue1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252057379_news.resx">
+      <DependentUpon>201811252057379_news.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252114343_repo.resx">
+      <DependentUpon>201811252114343_repo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252121288_repo1.resx">
+      <DependentUpon>201811252121288_repo1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

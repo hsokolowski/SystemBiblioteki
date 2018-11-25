@@ -19,8 +19,8 @@ namespace Biblioteka.Models
         public DateTime Date { get; set; }
 
         [Display(Name = "Dodał")]
-        public int UserID { get; set; }
-
+        public int AccountID { get; set; }
+        public Account Account { get; set; }
         [Display(Name = "Treść")]
         public string Content { get; set; }
     }

@@ -9,15 +9,17 @@ namespace Biblioteka.Models
 {
     public class Repository
     {
-        [Key]
-        public int RepositoryID { get; set; }
+        
+       // public int RepositoryID { get; set; }
 
         [Display(Name = "ISBN")]
         //[Required(ErrorMessage = "To pole jest wymagane!")]
         public int ISBN { get; set; }
-
+        public int Amount { get; set; }
+        [ForeignKey("Book")]
         [Display(Name = "ID Książki")]
-        public int BookID { get; set; }
-        public Book Book { get; set; }
+        public int RepositoryID { get; set; }
+        public virtual Book Book { get; set; }
+
     }
 }

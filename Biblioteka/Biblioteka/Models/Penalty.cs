@@ -15,5 +15,6 @@ namespace Biblioteka.Models
         [Required(ErrorMessage = "To pole jest wymagane!")]
         public int Value { get; set; }
         public int Days { get; set; }
+        public ICollection<Borrowing> Borrowings { get; set; }
     }
 }

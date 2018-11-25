@@ -14,8 +14,9 @@ namespace Biblioteka.Models
 
         public string Name { get; set; }
 
-        public string Stream { get; set; }
+        public string Path { get; set; }
 
         public int BookID { get; set; }
+        public Book Book { get; set; }
     }
 }

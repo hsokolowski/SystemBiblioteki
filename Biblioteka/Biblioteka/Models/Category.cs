@@ -8,13 +8,13 @@ namespace Biblioteka.Models
 {
     public class Category
     {
-        [Key]
+        
         public int CategoryID { get; set; }
 
         [Display(Name ="Nazwa")]
         public string Name { get; set; }
 
-        [Display(Name = "Kat. nadrzędna")]
-        public int id_father { get; set; }
+        public virtual ICollection<SubCategory> SubCategories { get; set; }
+
     }
 }

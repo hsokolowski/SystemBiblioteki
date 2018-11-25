@@ -9,7 +9,7 @@ namespace Biblioteka.Models
 {
     public class Book
     {
-        [Key]
+        
         [Display(Name = "ID")]
         public int BookID { get; set; }
 
@@ -43,6 +43,11 @@ namespace Biblioteka.Models
 
         public virtual ICollection<AutBook> AutBooks { get; set; }
 
+        public virtual ICollection<Tag> Tags { get; set; }
+
+        public virtual ICollection<Queue> Queues { get; set; }
+
+        public virtual Repository Repository { get; set; }
 
         [Display(Name = "Przeznaczona")]
         public string for_who

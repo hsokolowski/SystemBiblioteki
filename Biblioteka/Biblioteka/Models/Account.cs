@@ -52,6 +52,9 @@ namespace Biblioteka.Models
         [Display(Name = "Rola")]
         public Role Role { get; set; }
 
+        public ICollection<Queue> Queues { get; set; }
+        public ICollection<News> News { get; set; }
+
         //[Display(Name = "Rola")]
         //public string TypeString {
         //    get

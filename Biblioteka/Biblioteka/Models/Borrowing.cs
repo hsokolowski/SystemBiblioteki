@@ -26,7 +26,9 @@ namespace Biblioteka.Models
 
         [Display(Name = "Kara")]
         public int PenaltyID { get; set; }
+        public Penalty Penalty { get; set; }
 
+        //prawdopodobnie skasować
         [Display(Name = "Kolejka")]
         public int QueueID { get; set; }
 
