@@ -7,13 +7,13 @@ namespace Biblioteka.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class rolev13 : IMigrationMetadata
+    public sealed partial class reborn : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(rolev13));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(reborn));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810272208013_rolev13"; }
+            get { return "201811271155587_reborn"; }
         }
         
         string IMigrationMetadata.Source
