@@ -14,5 +14,8 @@ namespace Biblioteka.Models
         [Display(Name = "Kwota")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
         public int amount { get; set; }
+
+        [Display(Name ="Przedział")]
+        public int days {get;set;}
     }
 }

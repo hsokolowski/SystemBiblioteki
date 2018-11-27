@@ -7,6 +7,6 @@ namespace Biblioteka.Models
 {
     public class Specimen
     {
-
+        
     }
 }

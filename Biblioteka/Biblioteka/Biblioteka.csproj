@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201811042056274_borrowings1.Designer.cs">
       <DependentUpon>201811042056274_borrowings1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811201938148_tagilagi.cs" />
+    <Compile Include="Migrations\201811201938148_tagilagi.Designer.cs">
+      <DependentUpon>201811201938148_tagilagi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -401,6 +405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811042056274_borrowings1.resx">
       <DependentUpon>201811042056274_borrowings1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201938148_tagilagi.resx">
+      <DependentUpon>201811201938148_tagilagi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
