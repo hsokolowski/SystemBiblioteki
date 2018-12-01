@@ -13,13 +13,13 @@ namespace Biblioteka.ModelView
         public List<Repository> Get_list()
         {
             DB mDb = new DB();
-            List<Repository> listaDB = mDb.Positions.ToList();
+            List<Repository> listaDB = mDb.Repositories.ToList();
             return listaDB;
         }
         public void Dodaj(Repository u)
         {
             DB mDb = new DB();
-            mDb.Positions.Add(u);
+            mDb.Repositories.Add(u);
             mDb.Configuration.ValidateOnSaveEnabled = false;
             //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
@@ -57,16 +57,16 @@ namespace Biblioteka.ModelView
         {
             Repository u = new Repository();
             DB db = new DB();
-            db.Positions.Attach(u);
-            u = db.Positions.Find(id);
+            db.Repositories.Attach(u);
+            u = db.Repositories.Find(id);
             return u;
         }
         public void Delete(int id)
         {
             DB db = new DB();
             Repository move = new Repository() { RepositoryID = id };
-            db.Positions.Attach(move);
-            db.Positions.Remove(move);
+            db.Repositories.Attach(move);
+            db.Repositories.Remove(move);
             db.SaveChanges();
         }
     }
