@@ -243,8 +243,8 @@ ServiceFabricBackup/
 *.rptproj.bak
 
 # SQL Server files
-*.mdf
-*.ldf
+.mdf
+.ldf
 *.ndf
 
 # Business Intelligence projects
@@ -328,3 +328,4 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/Biblioteka/Biblioteka/App_Data/Nowy folder

@@ -208,6 +208,10 @@
     <Compile Include="Migrations\201811271155587_reborn.Designer.cs">
       <DependentUpon>201811271155587_reborn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812012002254_test.cs" />
+    <Compile Include="Migrations\201812012002254_test.Designer.cs">
+      <DependentUpon>201812012002254_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -296,6 +300,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811271155587_reborn.resx">
       <DependentUpon>201811271155587_reborn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812012002254_test.resx">
+      <DependentUpon>201812012002254_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
