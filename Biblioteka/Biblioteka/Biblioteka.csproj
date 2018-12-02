@@ -123,7 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\BazaDB.mdf" />
-    <Content Include="App_Data\databaseEntities.mdf" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />

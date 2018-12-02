@@ -21,7 +21,7 @@ namespace Biblioteka
             routes.MapRoute(
                name: "Second",
                url: "{controller}/{action}/{id}",
-               defaults: new {controller="Account", id = UrlParameter.Optional }
+               defaults: new {controller="Account", action="Index", id = UrlParameter.Optional }
            );
         }
     }

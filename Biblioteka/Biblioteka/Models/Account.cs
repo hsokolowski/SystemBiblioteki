@@ -45,7 +45,7 @@ namespace Biblioteka.Models
 
         [Display(Name = "Potwierdź Hasło")]
         [DataType(DataType.Password)]
-        [Compare("password")]
+        [Compare("Password")]
         public string Confirmedpassword { get; set; }
 
         //[NotMapped]
