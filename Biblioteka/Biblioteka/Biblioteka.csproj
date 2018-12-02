@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\BazaDB.mdf" />
+    <Content Include="App_Data\databaseEntities.mdf" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -199,7 +200,18 @@
     <Compile Include="App_Start\Initial.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\BorrowingController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PenaltyController.cs" />
+    <Compile Include="Controllers\QueueController.cs" />
+    <Compile Include="Controllers\RepositoryController.cs" />
     <Compile Include="CustomFilters\AdminRole.cs" />
     <Compile Include="CustomFilters\ReaderRole.cs" />
     <Compile Include="CustomFilters\WorkerRole.cs" />
@@ -214,6 +226,10 @@
     <Compile Include="Migrations\201812012002254_test.cs" />
     <Compile Include="Migrations\201812012002254_test.Designer.cs">
       <DependentUpon>201812012002254_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812021955185_setcontrollers.cs" />
+    <Compile Include="Migrations\201812021955185_setcontrollers.Designer.cs">
+      <DependentUpon>201812021955185_setcontrollers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -253,25 +269,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Lista.cshtml" />
     <Content Include="Views\Home\Koszyk.cshtml" />
-    <Content Include="Views\Home\Pracownik.cshtml" />
-    <Content Include="Views\Home\Konto.cshtml" />
-    <Content Include="Views\Home\Edit.cshtml" />
-    <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\Home\Dodaj_kategorie.cshtml" />
-    <Content Include="Views\Home\Kategorie.cshtml" />
-    <Content Include="Views\Home\Ksiazki.cshtml" />
-    <Content Include="Views\Home\Autor.cshtml" />
-    <Content Include="Views\Home\Edit_Author.cshtml" />
-    <Content Include="Views\Home\Details_Author.cshtml" />
-    <Content Include="Views\Home\Delete_Author.cshtml" />
-    <Content Include="Views\Home\BookAdd.cshtml" />
-    <Content Include="Views\Home\BookEdit.cshtml" />
-    <Content Include="Views\Home\BookDetails.cshtml" />
-    <Content Include="Views\Home\BookDelete.cshtml" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -283,6 +282,21 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Add.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Author\Index.cshtml" />
+    <Content Include="Views\Author\Add.cshtml" />
+    <Content Include="Views\Author\Edit.cshtml" />
+    <Content Include="Views\Author\Details.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\Add.cshtml" />
+    <Content Include="Views\Book\Edit.cshtml" />
+    <Content Include="Views\Book\Details.cshtml" />
+    <Content Include="Views\Borrowing\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -290,7 +304,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\File\" />
+    <Folder Include="Views\News\" />
+    <Folder Include="Views\Penalty\" />
+    <Folder Include="Views\Queue\" />
+    <Folder Include="Views\Repository\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -304,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812012002254_test.resx">
       <DependentUpon>201812012002254_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812021955185_setcontrollers.resx">
+      <DependentUpon>201812021955185_setcontrollers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

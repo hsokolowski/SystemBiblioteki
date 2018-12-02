@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Biblioteka.Models.Account>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index Account</h2>
+
+<h1>Biblioteka </h1>
+
+<div>
+    <table>
+        <tr>
+            <th>Nr.</th>
+            <th>Nazwa</th>
+            <th>ID</th>
+        </tr>
+        @{
+            int counter = 1;
+            foreach (var u in Model)
+            {
+                <tr>
+                    <td>@counter</td>
+                    <td>@u.AccountID</td>
+                    <td>@u.Name</td>
+                    <td>@u.Surname</td>
+                    <td>@u.Pesel</td>
+                    <td>@u.Login</td>
+                    <td>@u.Email</td>
+                    <td>@u.Password</td>
+                    <td>@u.Active</td>
+                    <td>@u.Role</td>
+                    <td><i class="icon-edit"></i>@Html.ActionLink("Edytuj", "Edit", "Account", new { id = u.AccountID },null)</td>
+                    <td><i class="icon-folder-open"></i>@Html.ActionLink("Szczegóły", "Details", "Account", new { id = u.AccountID },null)</td>
+                    <td><i class="icon-trash-empty"></i>@Html.ActionLink("Kasuj", "Delete", "Account", new { id = u.AccountID }, new { onclick = "return confirm('Czy chcesz na pewno usunać?');" })</td>
+                </tr>
+                counter += 1;
+            }
+
+        }
+
+    </table>
+
+</div>

@@ -1,0 +1,53 @@
+﻿@model Biblioteka.Models.Account
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div style="margin-left:auto;margin-right:auto;">
+    <table align="center">
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.AccountID): </th>
+            <td>@Html.DisplayFor(m => Model.AccountID) </td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Name): </th>
+            <td>@Html.DisplayFor(m => Model.Name)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Surname): </th>
+            <td>@Html.DisplayFor(m => Model.Surname)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Pesel) </th>
+            <td>@Html.DisplayFor(m => Model.Pesel)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Email) </th>
+            <td>@Html.DisplayFor(m => Model.Email)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Login): </th>
+            <td>@Html.DisplayFor(m => Model.Login)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Password): </th>
+            <td>@Html.DisplayFor(m => Model.Password)</td>
+        </tr>
+
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Confirmedpassword): </th>
+            <td>@Html.DisplayFor(m => Model.Confirmedpassword)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right;width:80px;">Aktywne?: </th>
+            <td style="background-color: red;">@Html.DisplayFor(m => Model.Active)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">Rola: </th>
+            <td>@Html.DisplayFor(m => Model.Role)</td>
+        </tr>
+    </table>
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.AccountID })
+</div>

@@ -18,6 +18,11 @@ namespace Biblioteka
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+               name: "Second",
+               url: "{controller}/{action}/{id}",
+               defaults: new {controller="Account", id = UrlParameter.Optional }
+           );
         }
     }
 }

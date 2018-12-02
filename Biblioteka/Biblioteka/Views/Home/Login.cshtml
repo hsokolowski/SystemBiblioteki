@@ -11,21 +11,21 @@
         <table>
             <tr>
                 <td>
-                    @Html.LabelFor(model => model.login, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
                 <td>
-                    @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control", style = "width:200px;" } })
-                    @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", style = "width:200px;" } })
+                    @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
 
                 </td>
             </tr>
             <tr>
                 <td>
-                    @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
                 <td>
-                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", style = "width:200px;" } })
-                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", style = "width:200px;" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     @ViewBag.LoginErrorMessage
                 </td>
             </tr>

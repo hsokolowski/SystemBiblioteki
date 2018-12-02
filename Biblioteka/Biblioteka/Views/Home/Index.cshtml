@@ -20,17 +20,18 @@
             {
         <tr>
             <td>@counter</td>
-            <td>@u.id_account</td>
-            <td>@u.name</td>
-            <td>@u.surname</td>
-            <td>@u.pesel</td>
-            <td>@u.login</td>
-            <td>@u.email</td>
-            <td>@u.password</td>
-            <td>@u.activ</td>
-            <td><i class="icon-edit"></i>@Html.ActionLink("Edytuj", "Edit", new { id = u.id_account })</td>
-            <td><i class="icon-folder-open"></i>@Html.ActionLink("Szczególy", "Details", new { id = u.id_account })</td>
-            <td><i class="icon-trash-empty"></i>@Html.ActionLink("Kasuj", "Delete", new { id = u.id_account }, new { onclick = "return confirm('Czy chcesz na pewno usunać?');" })</td>
+            <td>@u.AccountID</td>
+            <td>@u.Name</td>
+            <td>@u.Surname</td>
+            <td>@u.Pesel</td>
+            <td>@u.Login</td>
+            <td>@u.Email</td>
+            <td>@u.Password</td>
+            <td>@u.Active</td>
+            <td>@u.Role</td>
+            <td><i class="icon-edit"></i>@Html.ActionLink("Edytuj", "Edit","Account", new { id = u.AccountID },null)</td>
+            <td><i class="icon-folder-open"></i>@Html.ActionLink("Szczególy", "Details", "Account", new { id = u.AccountID },null)</td>
+            <td><i class="icon-trash-empty"></i>@Html.ActionLink("Kasuj", "Delete", "Account", new { id = u.AccountID }, new { onclick = "return confirm('Czy chcesz na pewno usunać?');" })</td>
         </tr>
                 counter += 1;
             }
