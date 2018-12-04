@@ -126,10 +126,6 @@
     <Content Include="App_Data\BazaDB_log.ldf">
       <DependentUpon>BazaDB.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\database.mdf" />
-    <Content Include="App_Data\database_log.ldf">
-      <DependentUpon>database.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -225,25 +221,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811271155587_reborn.cs" />
-    <Compile Include="Migrations\201811271155587_reborn.Designer.cs">
-      <DependentUpon>201811271155587_reborn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812012002254_test.cs" />
-    <Compile Include="Migrations\201812012002254_test.Designer.cs">
-      <DependentUpon>201812012002254_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812021955185_setcontrollers.cs" />
-    <Compile Include="Migrations\201812021955185_setcontrollers.Designer.cs">
-      <DependentUpon>201812021955185_setcontrollers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812042036438_onekey.cs" />
-    <Compile Include="Migrations\201812042036438_onekey.Designer.cs">
-      <DependentUpon>201812042036438_onekey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812042103094_keys.cs" />
-    <Compile Include="Migrations\201812042103094_keys.Designer.cs">
-      <DependentUpon>201812042103094_keys.cs</DependentUpon>
+    <Compile Include="Migrations\201812042146439_againdb.cs" />
+    <Compile Include="Migrations\201812042146439_againdb.Designer.cs">
+      <DependentUpon>201812042146439_againdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -334,20 +314,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811271155587_reborn.resx">
-      <DependentUpon>201811271155587_reborn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812012002254_test.resx">
-      <DependentUpon>201812012002254_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812021955185_setcontrollers.resx">
-      <DependentUpon>201812021955185_setcontrollers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812042036438_onekey.resx">
-      <DependentUpon>201812042036438_onekey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812042103094_keys.resx">
-      <DependentUpon>201812042103094_keys.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812042146439_againdb.resx">
+      <DependentUpon>201812042146439_againdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
