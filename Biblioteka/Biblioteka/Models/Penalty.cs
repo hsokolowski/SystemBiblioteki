@@ -8,7 +8,7 @@ namespace Biblioteka.Models
 {
     public class Penalty
     {
-        
+        [Key]
         public int PenaltyID { get; set; }
 
         [Display(Name = "Kwota")]

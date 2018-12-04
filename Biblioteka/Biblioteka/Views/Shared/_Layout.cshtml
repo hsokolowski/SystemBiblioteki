@@ -82,7 +82,10 @@
 
                         <a class="navbar-text icon-user">
                             @if (Session["login"] != null)
-                            {@Session["login"].ToString()}
+                            {
+                                @Session["login"].ToString()
+                                //@Html.ActionLink(@Session["login"].ToString(),"Details","Account",null,null)
+                            }
                         </a>
                     </li>
 

@@ -8,7 +8,7 @@ namespace Biblioteka.Models
 {
     public class News
     {
-       
+        [Key]
         public int NewsID { get; set; }
 
         [Display(Name = "Tytuł")]

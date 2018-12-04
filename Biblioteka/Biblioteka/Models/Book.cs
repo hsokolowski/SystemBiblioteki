@@ -9,7 +9,7 @@ namespace Biblioteka.Models
 {
     public class Book
     {
-        
+        [Key]
         [Display(Name = "ID")]
         public int BookID { get; set; }
 
@@ -49,8 +49,8 @@ namespace Biblioteka.Models
 
         public virtual Repository Repository { get; set; }
 
-        [Display(Name = "Przeznaczona")]
-        public string for_who
+        [Display(Name = "Przeznaczona:")]
+        public string for_who_string
         {
             get
             {
@@ -67,11 +67,11 @@ namespace Biblioteka.Models
         {
             get
             {
-                if (for_who == "Dzieci")
+                if (for_who_string == "Dzieci")
                 {
                     return "green";
                 }
-                else if (for_who == "Młodzież")
+                else if (for_who_string == "Młodzież")
                 {
                     return "orange";
                 }

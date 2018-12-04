@@ -123,6 +123,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\BazaDB.mdf" />
+    <Content Include="App_Data\BazaDB_log.ldf">
+      <DependentUpon>BazaDB.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\database.mdf" />
+    <Content Include="App_Data\database_log.ldf">
+      <DependentUpon>database.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -230,6 +237,14 @@
     <Compile Include="Migrations\201812021955185_setcontrollers.Designer.cs">
       <DependentUpon>201812021955185_setcontrollers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812042036438_onekey.cs" />
+    <Compile Include="Migrations\201812042036438_onekey.Designer.cs">
+      <DependentUpon>201812042036438_onekey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812042103094_keys.cs" />
+    <Compile Include="Migrations\201812042103094_keys.Designer.cs">
+      <DependentUpon>201812042103094_keys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -242,6 +257,7 @@
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\GlobalV1.cs" />
     <Compile Include="Frees\IndentityModels.cs" />
+    <Compile Include="Models\GMailer.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Penalty.cs" />
     <Compile Include="Models\Repository.cs" />
@@ -326,6 +342,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812021955185_setcontrollers.resx">
       <DependentUpon>201812021955185_setcontrollers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812042036438_onekey.resx">
+      <DependentUpon>201812042036438_onekey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812042103094_keys.resx">
+      <DependentUpon>201812042103094_keys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

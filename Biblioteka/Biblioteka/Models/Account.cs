@@ -10,7 +10,7 @@ namespace Biblioteka.Models
 {
     public class Account
     {
-        
+        [Key]
         public int AccountID { get; set; }
 
         [Display(Name = "Imię")]

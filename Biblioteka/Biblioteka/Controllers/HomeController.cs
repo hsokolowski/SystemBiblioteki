@@ -67,7 +67,7 @@ namespace Biblioteka.Controllers
             {
                 TempData["Message"] = "Ten film jest już w Ulubionych!";
                 TempData["ID_z_ulub"] = id;
-                return RedirectToAction("Ksiazki");
+                return RedirectToAction("Index","Book");
                 //jest w bazie
             }
         }

@@ -9,7 +9,7 @@ namespace Biblioteka.Models
 {
     public class File
     {
-        
+        [Key]
         public int FileID { get; set; }
 
         public string Name { get; set; }

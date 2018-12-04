@@ -59,16 +59,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.for_who)
+            @Html.DisplayNameFor(model => model.for_who_string)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.for_who)
+            @Html.DisplayFor(model => model.for_who_string)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "BookEdit", new { id = Model.BookID }) |
+    @Html.ActionLink("Edit", "Edit","Book",null, new { id = Model.BookID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
