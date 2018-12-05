@@ -22,10 +22,10 @@
 
 
 </head>
-<body class="bg-dark">
+<body class="bg-light">
     <header>
 
-        <nav class="navbar navbar-dark badge-success navbar-expand-lg ">
+        <nav class="navbar navbar-light navbar-expand-lg  fixed-top ">
 
 
             <button class="navbar-toggler navbartext" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
@@ -40,8 +40,25 @@
                         @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "nav-link " })
 
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navabardrop" data-toggle="dropdown">
+                            Kategorie
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item">
+                                @Html.ActionLink("Dodaj kategorie", "Add", "Category", new { area = "" }, new { @class = "nav-link" })
+                            </a>
+                            <a class="dropdown-item">
+                                @Html.ActionLink("Wyświetl kategorie", "Index", "Category", new { area = "" }, new { @class = "nav-link" })
+                            </a>
+
+                        </div>
+                    </li>
+
+
+
                     <li class="nav-item">
-                        @Html.ActionLink("Dodaj kategorie", "Add", "Category", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Lista Kategorii", "Index", "Category", new { area = "" }, new { @class = "nav-link" })
@@ -52,23 +69,21 @@
                     <li class="nav-item">
                         @Html.ActionLink("Dodaj książkę", "Add", "Book", new { area = "" }, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Szczegóły", "Details/1", "Book", new { area = "" }, new { @class = "nav-link" })
-                    </li>
+
                 </ul>
 
                 <form class="form-inline">
 
-                    <input class="form-control mr-1" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
-                    <button class="btn btn-light" type="submit">Znajdź</button>
+                        <input class="form-control mr-1" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
+                        <button class="btn btn-light" type="submit">Znajdź</button>
 
-                </form>
+                    </form>
                 <ul class="navbar-nav navbar-right">
 
 
                     @if (Session["login"] == null)
                     {
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             @Html.ActionLink("Załóż konto", "Add", "Account", new { area = "" }, new { @class = "nav-link" })
                         </li>
 
@@ -126,9 +141,6 @@
             </div>
 
         </nav>
-        <div id="newsfeed">
-            TU COŚ BĘDZIE NEWSY BĘDĄ
-        </div>
 
 
 
@@ -138,12 +150,13 @@
 
 
     <main>
-        <div class="container h-100 bg-dark text-light">
-            
-                @RenderBody()
-            
+        <div class="container mt-5">
+
+            @RenderBody()
+
         </div>
     </main>
+
     <footer>
 
         <div class="info text-light">

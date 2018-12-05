@@ -1,16 +1,16 @@
 ﻿@model Biblioteka.Models.Author
 
 @{
-    ViewBag.Title = "Edit_Author";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Edit_Author</h2>
+<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>Author</h4>
         <hr />
@@ -32,8 +32,6 @@
                 @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
             </div>
         </div>
-
-       
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

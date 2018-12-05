@@ -1,68 +1,69 @@
 ﻿@model IEnumerable<Biblioteka.Models.Book>
-@*@model dynamic*@
+
 @{
-    ViewBag.Title = "Ksiazki";
+    ViewBag.Title = "Index";
 }
 
-<h2>Ksiazki</h2>
+<h2>Index</h2>
 
-<div>
-    <table>
-        <tr>
-            <th>Nr.</th>
-            <th>Nazwa</th>
-            <th>ID</th>
-        </tr>
+<p>
+    @Html.ActionLink("Create New", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Repository.RepositoryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.for_who_string)
+        </th>
+        <th></th>
+    </tr>
 
-        @foreach (var b in Model)
-        {
-        <tr>
-            <td style="width:60px;">@b.BookID</td>
-            <td style="width:60px;">@b.Title</td>
-            <td style="width:60px;">@b.Year</td>
-            <td style="width:60px;">@b.Pages</td>
-            <td style="width:60px;">@b.ISBN</td>
-            <td style="width:60px;">@b.for_who_string</td>
-            <td style="width:60px;"><i class="icon-trash-empty"></i>@Html.ActionLink("Kasuj", "Delete", "Book", new { id = b.BookID }, new { onclick = "return confirm('Czy chcesz na pewno usunać?');" })</td>
-            <td>
-                @if (Session["login"] != null)
-                {
-                    <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2","Home", new { id = b.BookID, kto = (Session["adminID"]) },null)
-                }
-            </td>
-        </tr>
-        }
-    </table>
-</div>
-@*<div>
-    @foreach (var c in Model.book)
-    {
-        foreach (var b in Model.cate)
-        {
-            foreach (var a in Model.auth)
-            {
-                <div>
-                    @c.id_book - @c.title -
-                    @if (@c.id_category == @b.id_category)
-                    {
-                        @b.name
-                    }
-                    -
-                    @if (@c.id_author == @a.id_author)
-                    {
-                        @a.name
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Repository.RepositoryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pages)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.for_who_string)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookID })
+        </td>
+    </tr>
+}
 
-                        @a.surname
-                    }
-
-                    - @c.ISBN - @c.ilosc_str - @c.for_who
-                    @if (Session["login"] != null)
-                    {
-                        <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", new { id = c.id_book, kto = (Session["adminID"]) })
-                    }
-                </div>
-            }
-        }
-
-    }
-</div>*@
+</table>

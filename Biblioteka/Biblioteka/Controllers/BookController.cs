@@ -1,4 +1,5 @@
-﻿using Biblioteka.Models;
+﻿using Biblioteka.DAL;
+using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Biblioteka.Controllers
 {
     public class BookController : Controller
     {
+        private DB db = new DB();
         // GET: Book
         public ActionResult Index()
         {
@@ -32,6 +34,10 @@ namespace Biblioteka.Controllers
         }
         public ActionResult Add(int id = 0)
         {
+            AuthorVM authorVM = new AuthorVM();
+
+            ViewBag.Authors = db.Authors.Select(a => a.Name + a.Surname).ToList();
+
             Book b = new Book();
             return View(b);
         }

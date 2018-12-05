@@ -1,29 +1,29 @@
 ﻿@model Biblioteka.Models.Book
 
 @{
-    ViewBag.Title = "BookDetails";
+    ViewBag.Title = "Details";
 }
 
-<h2>BookDetails</h2>
+<h2>Details</h2>
 
 <div>
     <h4>Book</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Repository.RepositoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repository.RepositoryID)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AutBooks)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AutBooks)
         </dd>
 
         <dt>
@@ -69,6 +69,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit","Book",null, new { id = Model.BookID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -126,6 +126,8 @@
     <Content Include="App_Data\BazaDB_log.ldf">
       <DependentUpon>BazaDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\books.jpg" />
+    <Content Include="Content\images\books-2.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -143,6 +145,7 @@
     <Content Include="Content\fontello\LICENSE.txt" />
     <Content Include="Content\fontello\README.txt" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Style-main_site.css" />
     <Content Include="Content\StyleSheet.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -263,9 +266,6 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Koszyk.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -281,17 +281,20 @@
     <Content Include="Views\Account\Add.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
-    <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Author\Add.cshtml" />
     <Content Include="Views\Author\Edit.cshtml" />
     <Content Include="Views\Author\Details.cshtml" />
+    <Content Include="Views\Author\Delete.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\Add.cshtml" />
     <Content Include="Views\Book\Edit.cshtml" />
     <Content Include="Views\Book\Details.cshtml" />
-    <Content Include="Views\Borrowing\Index.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Book\Delete.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Koszyk.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Index1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -299,13 +302,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\File\" />
-    <Folder Include="Views\News\" />
-    <Folder Include="Views\Penalty\" />
-    <Folder Include="Views\Queue\" />
-    <Folder Include="Views\Repository\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

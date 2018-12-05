@@ -1,10 +1,10 @@
 ﻿@model Biblioteka.Models.Author
 
 @{
-    ViewBag.Title = "Details_Author";
+    ViewBag.Title = "Details";
 }
 
-<h2>Details Author</h2>
+<h2>Details</h2>
 
 <div>
     <h4>Author</h4>
@@ -26,11 +26,9 @@
             @Html.DisplayFor(model => model.Surname)
         </dd>
 
-        
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit_Author", new { id = Model.AuthorID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AuthorID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

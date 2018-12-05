@@ -1,0 +1,126 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index1</title>
+</head>
+<body>
+    <header>
+
+        <nav class="navbar navbar-dark badge-success navbar-expand-lg ">
+
+
+            <button class="navbar-toggler navbartext" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainmenu">
+
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "nav-link " })
+
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Dodaj kategorie", "Add", "Category", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Lista Kategorii", "Index", "Category", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Książki", "Index", "Book", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Dodaj książkę", "Add", "Book", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Szczegóły", "Details/1", "Book", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+
+                <form class="form-inline">
+
+                    <input class="form-control mr-1" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
+                    <button class="btn btn-light" type="submit">Znajdź</button>
+
+                </form>
+                <ul class="navbar-nav navbar-right">
+
+
+                    @if (Session["login"] == null)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Załóż konto", "Add", "Account", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+
+
+                        <li class="nav-item ">
+                            @Html.ActionLink("Zaloguj", "Login", "Home", new { area = "" }, new { @class = "nav-link icon-login" })
+                        </li>
+
+                    }
+                    <li id="user" class="nav-item">
+
+                        <a class="navbar-text icon-user">
+                            @if (Session["login"] != null)
+                            {
+                                @Session["login"].ToString()
+                                //@Html.ActionLink(@Session["login"].ToString(),"Details","Account",null,null)
+                            }
+                        </a>
+                    </li>
+
+
+
+
+                    @if (Session["login"] != null)
+                    {
+                        <li class="nav-item ">
+                            <a class="nav-link navbartext icon-logout" href="@Url.Action("Logout","Home")">Wyloguj</a>
+
+                        </li>
+
+                    }
+
+                    @if (Session["login"] != null)
+                    {
+                        <li class="nav-item">
+
+                            @Html.ActionLink("Koszyk", "Koszyk", "Home", new { area = "" }, new { @class = "nav-link icon-basket" })
+
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Koszyk">
+
+                                @if (Session["login"] != null)
+                                {
+                                    @Session["Licznik"].ToString();
+                                }
+
+                            </a>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+
+        </nav>
+        <div id="newsfeed">
+            TU COŚ BĘDZIE NEWSY BĘDĄ
+        </div>
+
+
+
+
+    </header>
+</body>
+</html>

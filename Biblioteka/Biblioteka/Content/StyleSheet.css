@@ -1,31 +1,16 @@
-﻿main {
-    min-height:500px;
-    font-size: 17px;
-    
-}
-
+﻿
 #container {
     margin-left: auto;
     margin-right: auto;
     width: 1000px;
 }
 
-h1 {
-    font-size: 36px;
-    font-weight: 400;
-    color: cornflowerblue;
-    margin: 20px;
-}
-
-h2 {
-    font-size: 36px;
-    font-weight: 400;
-    color: cornflowerblue;
-    margin: 20px;
-}
-
 .navbar {
     min-height: 57px;
+    font-size: large;
+    background: #57ba98;
+    color: black;
+    font-weight: bold;
 }
 
 #newsfeed {
@@ -34,7 +19,7 @@ h2 {
 }
 
 #user {
-    color: rgba(255,255,255,.5);
+    color: rgba(0,0,0,.5);
 }
 
 .info {
@@ -73,4 +58,14 @@ a.tilelinkhtml5 {
 
 .icon-size{
     font-size:76px;
+}
+div.container6 {
+    height: 50em;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+#centerdiv {
+    padding-top: 200px;
+    align-content: center;
 }
