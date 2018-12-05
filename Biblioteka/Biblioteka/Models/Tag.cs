@@ -8,7 +8,7 @@ namespace Biblioteka.Models
 {
     public class Tag
     {
-        
+        [Key]
         public int TagID { get; set; }
 
         [Display(Name = "Tag")]

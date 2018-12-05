@@ -9,7 +9,7 @@ namespace Biblioteka.Models
 {
     public class Queue
     {
-        
+        [Key]
         public int QueueID { get; set; }
 
         [Display(Name = "ID Książki")]

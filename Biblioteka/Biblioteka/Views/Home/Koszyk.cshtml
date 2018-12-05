@@ -14,12 +14,12 @@
         {
             if (Session["login"] != null)
             {
-                @u.id_book @u.title <a class="linkUlub" href="@Url.Action("DeleteKoszyk", "Home",new {id = u.id_book})"><i class="icon-minus-circled"></i></a>
+                @u.BookID @u.Title <a class="linkUlub" href="@Url.Action("DeleteKoszyk", "Home",new {id = u.BookID})"><i class="icon-minus-circled"></i></a>
             }
 
         }
         <br />
-        @Html.ActionLink("Wypożycz", "Borrow", new {id= (Session["adminID"]) }) // liste przekazac / odebrac w kontrolerze / dodac do borrowingow i wypisac
+        @Html.ActionLink("Wypożycz", "Borrow", "Borrowing", new {id= (Session["adminID"]) },null) // liste przekazac / odebrac w kontrolerze / dodac do borrowingow i wypisac
     }
 
 

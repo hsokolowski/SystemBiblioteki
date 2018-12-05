@@ -123,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\BazaDB.mdf" />
+    <Content Include="App_Data\BazaDB_log.ldf">
+      <DependentUpon>BazaDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -218,17 +221,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811271155587_reborn.cs" />
-    <Compile Include="Migrations\201811271155587_reborn.Designer.cs">
-      <DependentUpon>201811271155587_reborn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812012002254_test.cs" />
-    <Compile Include="Migrations\201812012002254_test.Designer.cs">
-      <DependentUpon>201812012002254_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812021955185_setcontrollers.cs" />
-    <Compile Include="Migrations\201812021955185_setcontrollers.Designer.cs">
-      <DependentUpon>201812021955185_setcontrollers.cs</DependentUpon>
+    <Compile Include="Migrations\201812042146439_againdb.cs" />
+    <Compile Include="Migrations\201812042146439_againdb.Designer.cs">
+      <DependentUpon>201812042146439_againdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -242,6 +237,7 @@
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\GlobalV1.cs" />
     <Compile Include="Frees\IndentityModels.cs" />
+    <Compile Include="Models\GMailer.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Penalty.cs" />
     <Compile Include="Models\Repository.cs" />
@@ -318,14 +314,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811271155587_reborn.resx">
-      <DependentUpon>201811271155587_reborn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812012002254_test.resx">
-      <DependentUpon>201812012002254_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812021955185_setcontrollers.resx">
-      <DependentUpon>201812021955185_setcontrollers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812042146439_againdb.resx">
+      <DependentUpon>201812042146439_againdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

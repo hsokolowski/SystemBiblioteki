@@ -14,6 +14,7 @@ namespace Biblioteka.Controllers
         // GET: Book
         public ActionResult Index()
         {
+            //TODO zmienić na listę z poleceniem SQL aby wypiwywana była nazwa kate i autor cały
             BookVM vm = new BookVM();
             List<Book> list = vm.Get_list();
             return View(list);

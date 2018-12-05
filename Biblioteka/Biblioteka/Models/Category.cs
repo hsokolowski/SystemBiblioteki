@@ -8,7 +8,7 @@ namespace Biblioteka.Models
 {
     public class Category
     {
-        
+        [Key]
         public int CategoryID { get; set; }
 
         [Display(Name ="Nazwa")]

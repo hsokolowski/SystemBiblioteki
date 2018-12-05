@@ -1,11 +1,39 @@
-﻿
-@model dynamic
+﻿@model IEnumerable<Biblioteka.Models.Book>
+@*@model dynamic*@
 @{
     ViewBag.Title = "Ksiazki";
 }
 
 <h2>Ksiazki</h2>
 
+<div>
+    <table>
+        <tr>
+            <th>Nr.</th>
+            <th>Nazwa</th>
+            <th>ID</th>
+        </tr>
+
+        @foreach (var b in Model)
+        {
+        <tr>
+            <td style="width:60px;">@b.BookID</td>
+            <td style="width:60px;">@b.Title</td>
+            <td style="width:60px;">@b.Year</td>
+            <td style="width:60px;">@b.Pages</td>
+            <td style="width:60px;">@b.ISBN</td>
+            <td style="width:60px;">@b.for_who_string</td>
+            <td style="width:60px;"><i class="icon-trash-empty"></i>@Html.ActionLink("Kasuj", "Delete", "Book", new { id = b.BookID }, new { onclick = "return confirm('Czy chcesz na pewno usunać?');" })</td>
+            <td>
+                @if (Session["login"] != null)
+                {
+                    <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2","Home", new { id = b.BookID, kto = (Session["adminID"]) },null)
+                }
+            </td>
+        </tr>
+        }
+    </table>
+</div>
 @*<div>
     @foreach (var c in Model.book)
     {
