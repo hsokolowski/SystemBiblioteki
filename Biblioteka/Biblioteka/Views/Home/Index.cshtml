@@ -12,6 +12,7 @@
     <title>@ViewBag.Title Biblioteka</title>
     <link rel="stylesheet" href="~/Content/Style-main_site.css">
     <link rel="stylesheet" href="~/Content/fontello/css/basket.css">
+    <link rel="stylesheet" href="~/Content/MDB-Free_4.5.15/css/mdb.min.css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
 
@@ -28,7 +29,7 @@
 <body>
     <header>
 
-        <nav class="navbar navbar-light navbar-expand-lg  fixed-top ">
+        <nav class="navbar navbar-light navbar-expand-lg fixed-top default-color ">
 
 
             <button class="navbar-toggler navbartext" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
@@ -77,10 +78,10 @@
 
                 @*<form class="form-inline">
 
-                    <input class="form-control mr-1" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
-                    <button class="btn btn-light" type="submit">Znajdź</button>
+                        <input class="form-control mr-1" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
+                        <button class="btn btn-light" type="submit">Znajdź</button>
 
-                </form>*@ 
+                    </form>*@
                 <ul class="navbar-nav navbar-right">
 
 
@@ -150,22 +151,29 @@
 
     </header>
 
-    <main id="intro">
-        <div class="container6">
-            <div>
-                <div id="Search">
-                    <h1>Wyszukaj książkę która Cię interesuje</h1>
+    <div id="intro" class="view flex-center" >
+
+        <div class=" container-fluid full-bg-img d-flex align-items-center justify-content-center mask flex-center rgba-black-light">
+            <div class="row d-flex justify-content-center" >
+                <div class="col-md-12 text-center">
+                    <div id="Search">
+                        <h1>Wyszukaj książkę która Cię interesuje</h1>
+                    </div>
+                    <div>
+                        <form class="form-inline">
+                            <input class="form-control flex-fill" type="search" placeholder="wyszukaj" aria-label="Wyszukaj" />
+                        </form>
+                    </div>
                 </div>
-                <form class="form-inline">
-                    <input class="form-control flex-fill" type="search" placeholder="wyszukaj" aria-label="Wyszukaj" />
-                </form>
             </div>
-          
 
         </div>
-    </main>
 
-  
+
+
+    </div>
+
+
 
     <footer>
 
@@ -177,5 +185,6 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/MDB-Free_4.5.15/js/mdb.min.js"></script>
 </body>
 </html>

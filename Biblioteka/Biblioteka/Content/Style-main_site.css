@@ -14,12 +14,14 @@
 html,
 body,
 #intro {
-    height: 100%;
+    height:100%;
 }
 
 #intro {
     background: url("images/books.jpg")no-repeat center;
     background-size: cover;
+    overflow:auto;
+    padding-bottom:100px;
 }
 
 .info {
@@ -27,15 +29,21 @@ body,
     bottom: 0;
     text-align: center;
     width: 100%;
+    
 }
 
 div.container6 {
     
-    height: 50em;
+    height:50%;
+    /*height: 50em;
     display: flex;
     align-items: center;
-    justify-content: center    
+    justify-content: center;*/
+
+        
 }
+
+
 #Search {
     color: #F2F2F2;
 }
