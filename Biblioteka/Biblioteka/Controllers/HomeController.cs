@@ -94,7 +94,7 @@ namespace Biblioteka.Controllers
                 var userdeatils = db.Accounts.Where(x => x.Login == user.Login && x.Password == user.Password).FirstOrDefault();
                 if (userdeatils == null)
                 {
-                    ViewBag.LoginErrorMessage = "Nie poprawny login lub hasło";
+                    ViewBag.LoginErrorMessage = "Niepoprawny login lub hasło";
                     return View("Login", user);
                 }
                 else

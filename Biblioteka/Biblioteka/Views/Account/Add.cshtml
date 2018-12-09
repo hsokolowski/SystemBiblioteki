@@ -3,97 +3,101 @@
     ViewBag.Title = "Konto";
 }
 
-<h2>Załóż konto</h2>
 
-<div>
-    <div id="inner">
+<div id="bg-new-account" class="view flex-center">
+    <div class=" container-fluid full-bg-image d-flex align-items-center justify-content-center flex-center">
         @using (Html.BeginForm("Add", "Account", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>Czytelnik</h4>
-            <hr />
-            @Html.ValidationSummary(true)
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj imię" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj nazwisko" } })
-                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Pesel, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Pesel, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj pesel" } })
-                    @Html.ValidationMessageFor(model => model.Pesel, "", new { @class = "text-danger" })
-                    <div id="StartDate">
+            <div class="card bg-default row d-flex justify-content-center">
+                <div class=" col-md-12  text-center mt-5">
 
+                    <div>
+                        <h1>Stwórz konto</h1>
                     </div>
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj email" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj login" } })
-                    @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj hasło" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                    @Html.ValidationSummary(true)
+                    <div class="row">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Confirmedpassword, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Confirmedpassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Potwierdź hasło" } })
-                    @Html.ValidationMessageFor(model => model.Confirmedpassword, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-10">
-                    @Html.HiddenFor(x => x.Role, new { @Value = 2 })    
-                </div>
-            </div>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj imię" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Stwórz" class="btn btn-default" />
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj nazwisko" } })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Pesel, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj pesel" } })
+                            @Html.ValidationMessageFor(model => model.Pesel, "", new { @class = "text-danger" })
+                            <div id="StartDate">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj email" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj login" } })
+                            @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                            <p class="text-warning font-weight-bold">@ViewBag.DuplicateMessage</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj hasło" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Confirmedpassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Potwierdź hasło" } })
+                            @Html.ValidationMessageFor(model => model.Confirmedpassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div>
+                            @Html.HiddenFor(x => x.Role, new { @Value = 2 })
+
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-offset-2 col-md-12">
+                            <input type="submit" value="Stwórz" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-offset-2 col-md-12">
+                            @ViewBag.Succesmessage
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-offset-2 col-md-12">
+                            @ViewBag.DuplicateMessage
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    @ViewBag.Succesmessage
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    @ViewBag.DuplicateMessage
-                </div>
-            </div>
-        </div>
         }
+        @Html.ActionLink("Wróć", "Index", null, new { @class = "backtolist" })
+
+        <div>
+        </div>
     </div>
-</div>
-<div>
-    @Html.ActionLink("Wróć", "Index", null, new { @class = "backtolist" })
 </div>

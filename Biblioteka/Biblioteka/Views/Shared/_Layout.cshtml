@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/Content/fontello/css/basket.css">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+    <script type="text/javascript" src="~/Content/MDB-Free_4.5.15/js/mdb.min.js"></script>
+    <link rel="stylesheet" href="~/Content/MDB-Free_4.5.15/css/mdb.min.css" />
 
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -22,11 +24,15 @@
 
 
 </head>
-<body class="bg-light">
+<body >
     <header>
 
-        <nav class="navbar navbar-light navbar-expand-lg  fixed-top ">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
 
+            <a class="navbar-brand">
+                @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "nav-link " })
+
+            </a>
 
             <button class="navbar-toggler navbartext" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
                 <span class="navbar-toggler-icon"></span>
@@ -36,28 +42,16 @@
 
                 <ul class="navbar-nav mr-auto">
 
-                    <li class="nav-item">
-                        @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "nav-link " })
-
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navabardrop" data-toggle="dropdown">
-                            Kategorie
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item">
-                                @Html.ActionLink("Dodaj kategorie", "Add", "Category", new { area = "" }, new { @class = "nav-link" })
-                            </a>
-                            <a class="dropdown-item">
-                                @Html.ActionLink("Wyświetl kategorie", "Index", "Category", new { area = "" }, new { @class = "nav-link" })
-                            </a>
-
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">Kategorie</a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                           
+                                @Html.ActionLink("Dodaj kategorie", "Add", "Category", new { area = "" }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Wyświetl kategorie", "Index", "Category", new { area = "" }, new { @class = "dropdown-item " })
+                           
                         </div>
                     </li>
-
-
-
                     <li class="nav-item">
                     </li>
                     <li class="nav-item">
@@ -73,11 +67,10 @@
                 </ul>
 
                 <form class="form-inline">
-
-                        <input class="form-control mr-1" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
-                        <button class="btn btn-light" type="submit">Znajdź</button>
-
-                    </form>
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
+                    </div>
+                </form>
                 <ul class="navbar-nav navbar-right">
 
 
@@ -150,22 +143,24 @@
 
 
     <main>
-        <div class="container mt-5">
+     
 
             @RenderBody()
 
-        </div>
+        
     </main>
 
     <footer>
 
-        <div class="info text-light">
-            Wszelkie prawa zastrzeżone <a style="text-decoration:none; color:white;" href="/Admin/Admin">&copy;</a> @DateTime.Now.Year - System Biblioteki
+        <div class="info">
+            Wszelkie prawa zastrzeżone <a style="text-decoration:none; color:black;" href="/Admin/Admin">&copy;</a> @DateTime.Now.Year - System Biblioteki
         </div>
 
     </footer>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/MDB-Free_4.5.15/js/mdb.min.js"></script>
+
 </body>
 </html>

@@ -31,7 +31,8 @@ namespace Biblioteka.Controllers
             if (list.Any(x => x.Login == p.Login))
             {
                 ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
-                return View("Account", p);
+                return View("Add", p);
+                //o co chodzi co ma być w account?
             }
 
             userBL.Dodaj(p);

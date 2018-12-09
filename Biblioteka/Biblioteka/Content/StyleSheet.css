@@ -1,16 +1,39 @@
-﻿
-#container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000px;
+﻿/*NAvbar*/
+main{
+    height:100%;
+}
+#user {
+    color: rgba(0,0,0,.5);
 }
 
-.navbar {
-    min-height: 57px;
-    font-size: large;
-    background: #57ba98;
-    color: black;
-    font-weight: bold;
+@media screen and (max-width: 1024px) {
+    .navbar {
+        min-height: 57px;
+
+        font-size: large;
+        background: #57ba98;
+        color: black;
+        font-weight: bold;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+  
+}
+
+@media screen and (min-width: 1024px) {
+    .navbar {
+        min-height: 57px;
+        max-height: 57px;
+        font-size: large;
+        background: #57ba98;
+        color: black;
+        font-weight: bold;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+        .navbar ul {
+            max-height: 43px;
+        }
 }
 
 #newsfeed {
@@ -18,19 +41,51 @@
     min-height: 30px;
 }
 
-#user {
-    color: rgba(0,0,0,.5);
+
+/*Footer*/
+.info {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+   color:black;
+}
+    
+/*login page*/
+
+html,
+body,
+#bg-login {
+    height: 100%;
 }
 
-.info {
-    position:absolute;
-    bottom:0;
-    text-align: center;
-    width:100%;
+#bg-login {
+    background: url("images/books-2.jpg")no-repeat center;
+    background-size: cover;
+    overflow: auto;
+    padding-bottom: 100px;
+
 }
-#kontener{
-    height:100%;
+#bg-login, h1 {
+    color: #F2F2F2;
 }
+#Search, input {
+    color: #F2F2F2;
+    min-width:inherit;
+
+}
+
+/*Add account*/
+html,
+body,
+#bg-new-account {
+
+    overflow:auto;
+}
+.myform form{
+    
+}
+/*admin panel*/
 a.tilelink {
     height: 170px;
     width: 350px;
@@ -64,8 +119,4 @@ div.container6 {
     display: flex;
     align-items: center;
     justify-content: center
-}
-#centerdiv {
-    padding-top: 200px;
-    align-content: center;
 }
