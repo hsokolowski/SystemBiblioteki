@@ -4,8 +4,8 @@
 }
 
 
-<div id="bg-new-account" class="view flex-center">
-    <div class=" container-fluid full-bg-image d-flex align-items-center justify-content-center flex-center">
+<div id="bg-new-account" class="view flex-center rgba-black-light" >
+    <div class=" container-fluid full-bg-image d-flex align-items-center justify-content-center flex-center ">
         @using (Html.BeginForm("Add", "Account", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
@@ -13,21 +13,21 @@
             <div class="card bg-default row d-flex justify-content-center">
                 <div class=" col-md-12  text-center mt-5">
 
-                    <div>
+                    <div class="white-text">
                         <h1>Stwórz konto</h1>
                     </div>
 
                     @Html.ValidationSummary(true)
                     <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 ">
                             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj imię" } })
-                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "white-text font-weight-bold" })
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6  mt-md-0 mt-2">
                             @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj nazwisko" } })
-                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "white-text font-weight-bold" })
                         </div>
                     </div>
 
@@ -36,7 +36,7 @@
                     <div class="row mt-2">
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.Pesel, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj pesel" } })
-                            @Html.ValidationMessageFor(model => model.Pesel, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Pesel, "", new { @class = "white-text font-weight-bold" })
                             <div id="StartDate">
 
                             </div>
@@ -45,13 +45,13 @@
                     <div class="row mt-2">
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj email" } })
-                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "white-text font-weight-bold" })
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj login" } })
-                            @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Login, "", new { @class = "white-text font-weight-bold" })
                             <p class="text-warning font-weight-bold">@ViewBag.DuplicateMessage</p>
                         </div>
                     </div>
@@ -59,14 +59,14 @@
                     <div class="row mt-2">
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj hasło" } })
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "white-text font-weight-bold" })
                         </div>
                     </div>
 
-                    <div class="row mt-2">
+                    <div class="row mt-2 ">
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.Confirmedpassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Potwierdź hasło" } })
-                            @Html.ValidationMessageFor(model => model.Confirmedpassword, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Confirmedpassword, "", new { @class = "white-text font-weight-bold" })
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -77,7 +77,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-offset-2 col-md-12">
-                            <input type="submit" value="Stwórz" class="btn btn-default" />
+                            <input type="submit" value="Stwórz" class="btn aqua-gradient" />
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -95,9 +95,8 @@
 
             </div>
         }
-        @Html.ActionLink("Wróć", "Index", null, new { @class = "backtolist" })
+        @*@Html.ActionLink("Wróć", "Index", null, new { @class = "backtolist" })*@
 
-        <div>
-        </div>
+       
     </div>
 </div>

@@ -9,14 +9,13 @@ main{
 @media screen and (max-width: 1024px) {
     .navbar {
         min-height: 57px;
-
+        max-height: 57px;
         font-size: large;
-        background: #57ba98;
-        color: black;
+        background: #57ba98;    
         font-weight: bold;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
-
+    
   
 }
 
@@ -25,8 +24,7 @@ main{
         min-height: 57px;
         max-height: 57px;
         font-size: large;
-        background: #57ba98;
-        color: black;
+        background: #57ba98;      
         font-weight: bold;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
@@ -40,7 +38,9 @@ main{
     background-color: white;
     min-height: 30px;
 }
-
+#brand {
+    max-height: 55px;
+}
 
 /*Footer*/
 .info {
@@ -82,41 +82,77 @@ body,
 
     overflow:auto;
 }
+#bg-new-account {
+    background: url("images/books-2.jpg")no-repeat center;
+    background-size: cover;
+    overflow: auto;
+    padding-bottom: 100px;
+}
 .myform form{
     
 }
-/*admin panel*/
-a.tilelink {
-    height: 170px;
-    width: 350px;
-    text-decoration: none;
-}
-.card-body{
-    min-height:142px;
-}
-.tile1 {
-    height:170px;
-    width:350px;
-}
-.tile1:hover {
-    background-color:lightgray;
-}
-a.tilelinkhtml5 {
-    text-decoration: none;
+@media screen and (min-width: 1024px) {
+
 }
 
-.cardSpec {
-    min-width: 230px;
-    min-height: 142px;
-    text-align:center;
+/*Details account*/
+html,
+body,
+#bg-details-account {
+    overflow: auto;
 }
 
-.icon-size{
-    font-size:76px;
+#bg-details-account {
+    background: url("images/books-2.jpg")no-repeat center;
+    background-size: cover;
+    overflow: auto;
+    padding-bottom: 100px;
 }
-div.container6 {
-    height: 50em;
-    display: flex;
-    align-items: center;
-    justify-content: center
+
+.myform form {
 }
+
+@media screen and (min-width: 1024px) {
+
+}
+
+    /*admin panel*/
+    a.tilelink {
+        height: 170px;
+        width: 350px;
+        text-decoration: none;
+    }
+
+    .card-body {
+        min-height: 142px;
+    }
+
+    .tile1 {
+        height: 170px;
+        width: 350px;
+    }
+
+        .tile1:hover {
+            background-color: lightgray;
+        }
+
+    a.tilelinkhtml5 {
+        text-decoration: none;
+    }
+
+    .cardSpec {
+        min-width: 230px;
+        min-height: 142px;
+        text-align: center;
+    }
+
+    .icon-size {
+        font-size: 76px;
+    }
+
+    div.container6 {
+        height: 50em;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }

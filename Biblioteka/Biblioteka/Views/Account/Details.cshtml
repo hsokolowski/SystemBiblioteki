@@ -3,51 +3,74 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div style="margin-left:auto;margin-right:auto;">
-    <table align="center">
-        <tr>
-            <th style="text-align:right">@Html.DisplayNameFor(m => m.AccountID): </th>
-            <td>@Html.DisplayFor(m => Model.AccountID) </td>
-        </tr>
-        <tr>
-            <th style="text-align:right">@Html.DisplayNameFor(m => m.Name): </th>
-            <td>@Html.DisplayFor(m => Model.Name)</td>
-        </tr>
-        <tr>
-            <th style="text-align:right">@Html.DisplayNameFor(m => m.Surname): </th>
-            <td>@Html.DisplayFor(m => Model.Surname)</td>
-        </tr>
-        <tr>
-            <th style="text-align:right">@Html.DisplayNameFor(m => m.Pesel) </th>
-            <td>@Html.DisplayFor(m => Model.Pesel)</td>
-        </tr>
-        <tr>
-            <th style="text-align:right">@Html.DisplayNameFor(m => m.Email) </th>
-            <td>@Html.DisplayFor(m => Model.Email)</td>
-        </tr>
-        <tr>
-            <th style="text-align:right">@Html.DisplayNameFor(m => m.Login): </th>
-            <td>@Html.DisplayFor(m => Model.Login)</td>
-        </tr>
-        <tr>
-            <th style="text-align:right">@Html.DisplayNameFor(m => m.Password): </th>
-            <td>@Html.DisplayFor(m => Model.Password)</td>
-        </tr>
+<div id="bg-details-account" class="view flex-center rgba-black-light">
+    <div class=" container-fluid full-bg-image d-flex align-items-center justify-content-center flex-center ">
+     
+            <div  class="card bg-white row d-flex justify-content-center" style="width:400px; ">
+                <div class="col-12 text-center mt-1">
+                    <h1>Twoje dane</h1>
+                </div>
+                <hr/>
+                <div class="col-md-12 text-center mt-0">
+                    <div class="row text-left">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(m => m.Name):
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Name)
+                        </div>
+                    </div>
+                    <hr />
 
-        <tr>
-            <th style="text-align:right">@Html.DisplayNameFor(m => m.Confirmedpassword): </th>
-            <td>@Html.DisplayFor(m => Model.Confirmedpassword)</td>
-        </tr>
-        <tr>
-            <th style="text-align:right;width:80px;">Aktywne?: </th>
-            <td style="background-color: red;">@Html.DisplayFor(m => Model.Active)</td>
-        </tr>
-        <tr>
-            <th style="text-align:right">Rola: </th>
-            <td>@Html.DisplayFor(m => Model.Role)</td>
-        </tr>
-    </table>
-    @Html.ActionLink("Edytuj", "Edit", new { id = Model.AccountID })
+                    <div class="row text-left">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(m => m.Surname):
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Surname)
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row text-left">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(m => m.Pesel):
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Pesel)
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row text-left">
+                        <div class="col-6">
+                            Czy aktywne? :
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Active)
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row text-left">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(m => m.Role):
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Role)
+                        </div>
+                    </div>
+                <hr/>
+
+                    @Html.ActionLink("Edytuj", "Edit", new { id = Model.AccountID }, new { @class = "btn btn-default" })
+
+                </div>
+
+            </div>
+      
+        @*@Html.ActionLink("Wróć", "Index", null, new { @class = "backtolist" })*@
+
+
+    </div>
 </div>
