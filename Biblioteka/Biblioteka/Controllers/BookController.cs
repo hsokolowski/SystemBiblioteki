@@ -35,8 +35,8 @@ namespace Biblioteka.Controllers
         public ActionResult Add(int id = 0)
         {
             AuthorVM authorVM = new AuthorVM();
-
-            ViewBag.Authors = db.Authors.Select(a => a.Name + a.Surname).ToList();
+            ViewBag.Authors = authorVM.Get_list().Select(a => a.Name+ " " + a.Surname);
+             
 
             Book b = new Book();
             return View(b);

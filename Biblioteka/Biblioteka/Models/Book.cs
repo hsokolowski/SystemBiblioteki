@@ -45,6 +45,8 @@ namespace Biblioteka.Models
 
         public virtual ICollection<Tag> Tags { get; set; }
 
+        public virtual ICollection<Borrowing> Borrowings { get; set; }
+
         public virtual ICollection<Queue> Queues { get; set; }
 
         public virtual Repository Repository { get; set; }

@@ -14,9 +14,6 @@ namespace Biblioteka.Models
         [Display(Name = "ID Czytelnik")]
         public int ReaderID { get; set; }
 
-        [Display(Name = "Książki")]
-        public virtual ICollection<Book> Books { get; set; }
-
         [Display(Name = "Data wypożyczenia")]
         public DateTime Borrow_date { get; set; }
 
@@ -31,6 +28,9 @@ namespace Biblioteka.Models
         //prawdopodobnie skasować
         [Display(Name = "Kolejka")]
         public int QueueID { get; set; }
+
+        public int BookID { get; set; }
+        public Book Book { get; set; }
 
     }
 }

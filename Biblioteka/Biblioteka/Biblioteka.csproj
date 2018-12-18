@@ -331,6 +331,10 @@
     <Compile Include="Migrations\201812042146439_againdb.Designer.cs">
       <DependentUpon>201812042146439_againdb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812181633081_book-borrowa.cs" />
+    <Compile Include="Migrations\201812181633081_book-borrowa.Designer.cs">
+      <DependentUpon>201812181633081_book-borrowa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -415,6 +419,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812042146439_againdb.resx">
       <DependentUpon>201812042146439_againdb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812181633081_book-borrowa.resx">
+      <DependentUpon>201812181633081_book-borrowa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

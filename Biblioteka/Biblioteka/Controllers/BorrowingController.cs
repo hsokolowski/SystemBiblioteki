@@ -25,7 +25,7 @@ namespace Biblioteka.Controllers
             b.Borrow_date = DateTime.Now;
             // TODO zmienić pozniej na parametr ustawiany przez admina;
             b.Return_date = b.Borrow_date.AddDays(30);
-            b.Books = (List<Book>)Session["Zamowienie"];
+            //b.Books = (List<Book>)Session["Zamowienie"];
 
             //defaoltowo na 0
             b.PenaltyID = 0;
