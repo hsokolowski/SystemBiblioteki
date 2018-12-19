@@ -2,12 +2,14 @@
 @{
     ViewBag.Title = "Koszyk";
     var lista = Session["Zamowienie"] as IEnumerable<Biblioteka.Models.Book>;
+    
 }
 
 <h2>Koszyk</h2>
 
 <div>
     <h1>Twój koszyk</h1>
+
     @if (lista != null)
     {
         foreach (var u in lista)
@@ -16,10 +18,11 @@
             {
                 @u.BookID @u.Title <a class="linkUlub" href="@Url.Action("DeleteKoszyk", "Home",new {id = u.BookID})"><i class="icon-minus-circled"></i></a>
             }
-
         }
-        <br />
-        @Html.ActionLink("Wypożycz", "Borrow", "Borrowing", new {id= (Session["adminID"]) },null) // liste przekazac / odebrac w kontrolerze / dodac do borrowingow i wypisac
+        @Html.ActionLink("Wypożycz", "Borrow", "Borrowing",null, null)
+
+
+
     }
 
 

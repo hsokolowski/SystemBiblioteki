@@ -59,9 +59,13 @@
             @Html.DisplayFor(modelItem => item.for_who_string)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.BookID })
+            @if (Session["login"] != null)
+            {
+                <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", "Home", new { id = item.BookID, kto = (Session["adminID"]) }, null)
+            }
         </td>
     </tr>
 }

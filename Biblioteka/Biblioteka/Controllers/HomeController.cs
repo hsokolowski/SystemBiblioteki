@@ -34,7 +34,7 @@ namespace Biblioteka.Controllers
 
             //BorrowingVM vm = new BorrowingVM();
             //Borrowing b = new Borrowing();
-
+            
             int licznik=0;
             var tym = list.SingleOrDefault(m => m.BookID == id);
 
@@ -49,14 +49,7 @@ namespace Biblioteka.Controllers
 
             if (tym != null)
             {
-                //b.id_book = id;
-                //b.id_reader = kto;
-                //b.date_borrow = DateTime.Now;
-                //b.date_back = b.date_borrow.AddDays(5);
-                //b.id_queue = 1;
-                //b.id_penalty = 1;
-                //vm.Dodaj(b);
-                //List<Borrowing> wypo = vm.Get_list();
+                
                 koszyk.Add(tym);
                 licznik = koszyk.Count();
                 HttpContext.Session["Zamowienie"] = koszyk;

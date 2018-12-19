@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Biblioteka.ModelView
 {
-    public class PositionVM
+    public class RepositoryVM
     {
         public List<Repository> Get_list()
         {
@@ -21,8 +21,15 @@ namespace Biblioteka.ModelView
             DB mDb = new DB();
             mDb.Repositories.Add(u);
             mDb.Configuration.ValidateOnSaveEnabled = false;
-            //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
+        }
+        public void Minus_amount(Repository repository)
+        {
+            DB dB = new DB();
+            var amount = repository.Amount;
+            var repo = dB.Repositories.Find(repository.RepositoryID);
+            repo.Amount = amount - 1;            
+            dB.SaveChanges();
         }
         public void Update(Repository a)
         {
@@ -31,6 +38,8 @@ namespace Biblioteka.ModelView
             try
             {
                 db.SaveChanges();
+               
+                
                 // Your code...
                 // Could also be before try if you know the exception occurs in SaveChanges
             }

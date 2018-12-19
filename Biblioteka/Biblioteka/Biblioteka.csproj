@@ -364,7 +364,7 @@
     <Compile Include="ModelView\CategoryVM.cs" />
     <Compile Include="ModelView\NewsVM.cs" />
     <Compile Include="ModelView\PenaltyVM.cs" />
-    <Compile Include="ModelView\PositionVM.cs" />
+    <Compile Include="ModelView\RepositoryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\IsPesel.cs" />
   </ItemGroup>
