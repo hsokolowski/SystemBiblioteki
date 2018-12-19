@@ -77,5 +77,13 @@ namespace Biblioteka.Controllers
             vm.Delete(id);
             return RedirectToAction("Index");
         }
+        public ActionResult NewBooks()
+        {
+            BookVM vm = new BookVM();
+            List<Book> list = vm.Get_list();
+            //TODO w widoku foreach reverse i take(3)  -> @foreach (var u in Model.Reverse().Take(3))
+            // pobranie z bazy ścieżek do okładek i zapisania w viewbagach i potem wypisanie ich w widoku w <img>
+            return View(); 
+        }
     }
 }
