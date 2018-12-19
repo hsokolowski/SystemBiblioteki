@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Biblioteka.Controllers
 {
-    [WorkerRole]
+    //[WorkerRole]
     public class CategoryController : Controller
     {
         // GET: Category
@@ -24,6 +24,8 @@ namespace Biblioteka.Controllers
         public ActionResult Add(int id = 0)
         {
             Category c = new Category();
+            CategoryVM vm = new CategoryVM();
+            ViewBag.kategorie = vm.Get_list();
             return View(c);
         }
         [HttpPost]
@@ -31,7 +33,7 @@ namespace Biblioteka.Controllers
         {
             CategoryVM vm = new CategoryVM();
             List<Category> list = vm.Get_list();
-
+            ViewBag.kategorie = new SelectList(vm.Get_list(), "ID", "Name");
             if (list.Any(x => x.Name == c.Name))
             {
                 ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";

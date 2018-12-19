@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Biblioteka.Models
 {
@@ -16,5 +17,7 @@ namespace Biblioteka.Models
         [Display(Name = "Kat. nadrzędna")]
         public int CategoryID { get; set; }
         public Category Category { get; set; }
+
+        
     }
 }

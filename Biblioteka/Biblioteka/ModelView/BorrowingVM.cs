@@ -19,6 +19,7 @@ namespace Biblioteka.ModelView
         public void Dodaj(Borrowing u)
         {
             DB mDb = new DB();
+
             mDb.Borrowings.Add(u);
             mDb.Configuration.ValidateOnSaveEnabled = false;
             //LayerBus.BusPass.DodajFilm(u);

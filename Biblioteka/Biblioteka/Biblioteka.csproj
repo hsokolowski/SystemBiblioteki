@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201812042146439_againdb.Designer.cs">
       <DependentUpon>201812042146439_againdb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812190158321_kategorie_subs.cs" />
+    <Compile Include="Migrations\201812190158321_kategorie_subs.Designer.cs">
+      <DependentUpon>201812190158321_kategorie_subs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -292,6 +296,7 @@
     <Content Include="Views\Book\Details.cshtml" />
     <Content Include="Views\Borrowing\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -316,6 +321,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812042146439_againdb.resx">
       <DependentUpon>201812042146439_againdb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812190158321_kategorie_subs.resx">
+      <DependentUpon>201812190158321_kategorie_subs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
