@@ -7,13 +7,13 @@ namespace Biblioteka.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class bookborrowa : IMigrationMetadata
+    public sealed partial class book_borrow_fix : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(bookborrowa));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(book_borrow_fix));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812181633081_book-borrowa"; }
+            get { return "201812192242095_book_borrow_fix"; }
         }
         
         string IMigrationMetadata.Source

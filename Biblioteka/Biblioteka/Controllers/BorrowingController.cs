@@ -31,7 +31,7 @@ namespace Biblioteka.Controllers
 
             foreach (var item in list_book)
             {
-                var repo_book = repositories.ElementAt(item.BookID - 1);
+                Repository repo_book = repositories.ElementAt(item.Repository.RepositoryID-1);
 
                 if (repo_book.Amount != 0)
                 {

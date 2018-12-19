@@ -3,7 +3,7 @@ namespace Biblioteka.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class bookborrowa : DbMigration
+    public partial class book_borrow_fix : DbMigration
     {
         public override void Up()
         {
