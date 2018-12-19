@@ -49,12 +49,12 @@ namespace Biblioteka.Models
 }
 
 //using w kontrolerze
-//GMailer.GmailUsername = "youremailid@gmail.com";
-//        GMailer.GmailPassword = "YourPassword";
+//GMailer.GmailUsername = "panm67332d@gmail.com";
+//        GMailer.GmailPassword = "zaq1@WSX";
 
 //        GMailer mailer = new GMailer();
-//        mailer.ToEmail = "sumitchourasia91@gmail.com";
-//        mailer.Subject = "Verify your email id";
-//        mailer.Body = "Thanks for Registering your account.<br> please verify your email id by clicking the link <br> <a href='youraccount.com/verifycode=12323232'>verify</a>";
+//        mailer.ToEmail = "a.email";
+//        mailer.Subject = "Twoja książka jest do odebrania!";
+//        mailer.Body = "Książka którą wybrałeś jest już gotowa do odebrania w placówce!";
 //        mailer.IsHtml = true;
 //        mailer.Send();
