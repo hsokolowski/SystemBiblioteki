@@ -8,8 +8,8 @@
 <div>
     @foreach (var c in Model)
     {
-        <div>
-            @c.CategoryID @c.Name 
-        </div>
+    <div>
+        @c.CategoryID @c.Name  ><i class="icon-trash-empty"></i>@Html.ActionLink("Kasuj", "Delete", "Category", new { id = c.CategoryID }, new { onclick = "return confirm('Czy chcesz na pewno usunać?');" })
+    </div>
     }
 </div>

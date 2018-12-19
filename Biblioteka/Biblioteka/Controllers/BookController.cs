@@ -33,6 +33,8 @@ namespace Biblioteka.Controllers
         public ActionResult Add(int id = 0)
         {
             Book b = new Book();
+            CategoryVM vm2 = new CategoryVM();
+            ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
             return View(b);
         }
         [HttpPost]
@@ -40,7 +42,8 @@ namespace Biblioteka.Controllers
         {
             BookVM vm = new BookVM();
             List<Book> list = vm.Get_list();
-
+            CategoryVM vm2 = new CategoryVM();
+            ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
             // dodać plusowanie w repo
             vm.Dodaj(a);
             return RedirectToAction("Index");

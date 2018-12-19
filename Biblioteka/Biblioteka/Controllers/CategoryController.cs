@@ -48,6 +48,12 @@ namespace Biblioteka.Controllers
             List<Category> lista2 = cvm.Get_list();
             return View(lista2);
         }
+        public ActionResult Delete(int id) //dodać w widoku edit
+        {
+            CategoryVM vm = new CategoryVM();
+            vm.Delete(id);
+            return RedirectToAction("Index");
+        }
         //ToDO edit 
     }
 }
