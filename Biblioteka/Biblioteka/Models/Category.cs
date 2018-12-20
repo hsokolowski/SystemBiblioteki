@@ -14,6 +14,7 @@ namespace Biblioteka.Models
         [Display(Name ="Nazwa")]
         public string Name { get; set; }
 
+        [Display(Name = "Nadrzędna")]
         public virtual ICollection<SubCategory> SubCategories { get; set; }
 
     }

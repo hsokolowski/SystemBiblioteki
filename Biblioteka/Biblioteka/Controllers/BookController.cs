@@ -39,6 +39,8 @@ namespace Biblioteka.Controllers
              
 
             Book b = new Book();
+            CategoryVM vm2 = new CategoryVM();
+            ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
             return View(b);
         }
         [HttpPost]
@@ -46,7 +48,8 @@ namespace Biblioteka.Controllers
         {
             BookVM vm = new BookVM();
             List<Book> list = vm.Get_list();
-
+            CategoryVM vm2 = new CategoryVM();
+            ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
             // dodać plusowanie w repo
             vm.Dodaj(a);
             return RedirectToAction("Index");
@@ -79,6 +82,14 @@ namespace Biblioteka.Controllers
             // dodać usuwanie w repo
             vm.Delete(id);
             return RedirectToAction("Index");
+        }
+        public ActionResult NewBooks()
+        {
+            BookVM vm = new BookVM();
+            List<Book> list = vm.Get_list();
+            //TODO w widoku foreach reverse i take(3)  -> @foreach (var u in Model.Reverse().Take(3))
+            // pobranie z bazy ścieżek do okładek i zapisania w viewbagach i potem wypisanie ich w widoku w <img>
+            return View(); 
         }
     }
 }
