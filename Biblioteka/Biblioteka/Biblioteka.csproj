@@ -229,6 +229,18 @@
     <Compile Include="Migrations\201812190158321_kategorie_subs.Designer.cs">
       <DependentUpon>201812190158321_kategorie_subs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812212031400_new_categs.cs" />
+    <Compile Include="Migrations\201812212031400_new_categs.Designer.cs">
+      <DependentUpon>201812212031400_new_categs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812212033108_new_categs1.cs" />
+    <Compile Include="Migrations\201812212033108_new_categs1.Designer.cs">
+      <DependentUpon>201812212033108_new_categs1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812212113469_new_categs2.cs" />
+    <Compile Include="Migrations\201812212113469_new_categs2.Designer.cs">
+      <DependentUpon>201812212113469_new_categs2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -324,6 +336,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812190158321_kategorie_subs.resx">
       <DependentUpon>201812190158321_kategorie_subs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812212031400_new_categs.resx">
+      <DependentUpon>201812212031400_new_categs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812212033108_new_categs1.resx">
+      <DependentUpon>201812212033108_new_categs1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812212113469_new_categs2.resx">
+      <DependentUpon>201812212113469_new_categs2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

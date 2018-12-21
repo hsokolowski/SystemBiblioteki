@@ -43,7 +43,7 @@ namespace Biblioteka.Controllers
             BookVM vm = new BookVM();
             List<Book> list = vm.Get_list();
             CategoryVM vm2 = new CategoryVM();
-            ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
+            ViewBag.kategorie = new SelectList(vm2.Get_list(), "ID", "Name");
             // dodać plusowanie w repo
             vm.Dodaj(a);
             return RedirectToAction("Index");
