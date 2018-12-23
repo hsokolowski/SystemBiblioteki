@@ -397,6 +397,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Koszyk.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Category\Add.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
