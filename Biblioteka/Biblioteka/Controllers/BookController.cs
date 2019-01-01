@@ -15,8 +15,22 @@ namespace Biblioteka.Controllers
         public ActionResult Index()
         {
             //TODO zmienić na listę z poleceniem SQL aby wypiwywana była nazwa kate i autor cały
+
             BookVM vm = new BookVM();
             List<Book> list = vm.Get_list();
+            CategoryVM cvm = new CategoryVM();
+            ViewBag.Kats = new SelectList(cvm.Get_list(), "CategoryID", "Name");
+
+            return View(list);
+        }
+        [HttpPost]
+        public ActionResult Index( int Kats)
+        {
+            
+            BookVM vm = new BookVM();
+            List<Book> list =vm.Get_list().Where(a=>a.CategoryID==Kats).ToList();
+            CategoryVM cvm=new CategoryVM();
+            ViewBag.Kats = new SelectList(cvm.Get_list(), "CategoryID", "Name");
             return View(list);
         }
         public ActionResult Bok()

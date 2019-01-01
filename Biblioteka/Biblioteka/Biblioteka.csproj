@@ -309,6 +309,7 @@
     <Content Include="Views\Borrowing\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Add.cshtml" />
+    <Content Include="Views\Borrowing\Archives.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
