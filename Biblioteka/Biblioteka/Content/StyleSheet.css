@@ -34,10 +34,7 @@ main{
         }
 }
 
-#newsfeed {
-    background-color: white;
-    min-height: 30px;
-}
+
 #brand {
     max-height: 55px;
 }

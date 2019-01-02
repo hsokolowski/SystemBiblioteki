@@ -160,9 +160,11 @@
                         <h1>Wyszukaj książkę która Cię interesuje</h1>
                     </div>
                     <div>
-                        <form class="form-inline">
-                            <input class="form-control flex-fill" type="search" placeholder="wyszukaj" aria-label="Wyszukaj" />
-                        </form>
+                        @using (Html.BeginForm("Index", "Book", FormMethod.Get,new { @class="form-inline"}))
+                        {
+                                <input name="searching" class="form-control flex-fill" type="search" placeholder="wyszukaj" aria-label="Wyszukaj" />
+                        }
+
                     </div>
                 </div>
             </div>

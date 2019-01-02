@@ -54,7 +54,7 @@ namespace Biblioteka.Models
 
         public ICollection<Queue> Queues { get; set; }
         public ICollection<News> News { get; set; }
-
+        public ICollection<History> Histories { get; set; }
         //[Display(Name = "Rola")]
         //public string TypeString {
         //    get

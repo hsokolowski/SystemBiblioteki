@@ -3,6 +3,8 @@ using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Dynamic;
 using System.Linq;
 using System.Web;
@@ -12,14 +14,62 @@ namespace Biblioteka.Controllers
 {
     public class BookController : Controller
     {
-        private DB db = new DB();
-        // GET: Book
-        public ActionResult Index()
+        DB dB = new DB();
+       
+        public ActionResult Index(string searching)
         {
+            if (searching!=null)
+            {
+                if (Session["login"] != null)
+                {
+                    int counter = 0;
+                    var history = dB.Histories.ToList();
+                    var NewSearch = new History();
+
+
+                    var userId = (Int32)(Session["adminID"]);
+                    foreach (var item in history)
+                    {
+                        if (item.AccountID == userId)
+                        {
+                            counter++;
+                        }
+                    }
+
+                    if (counter < 5)
+                    {
+                        NewSearch.AccountID = userId;
+                        NewSearch.Search = searching;
+                        NewSearch.SearchDate = DateTime.Now;
+                        dB.Histories.Add(NewSearch);
+                        dB.SaveChanges();
+
+                    }
+                    else
+                    {
+                        var userSearch = dB.Histories.Where(m => m.AccountID.Equals(userId)).ToList();
+
+
+                        System.DateTime today = System.DateTime.Now;
+                        System.TimeSpan duration = userSearch.Select(m => m.SearchDate - DateTime.Now).Min();
+                        System.DateTime answer = today.Add(duration);
+
+                        var oldest = userSearch.Where(m => m.SearchDate == answer).Max();
+
+                        oldest.Search = searching;
+                        oldest.SearchDate = DateTime.Now;
+                        dB.Histories.AddOrUpdate(oldest);
+                        dB.SaveChanges();
+
+                    }
+                }
+
+            }
             //TODO zmienić na listę z poleceniem SQL aby wypiwywana była nazwa kate i autor cały
-            BookVM vm = new BookVM();
-            List<Book> list = vm.Get_list();
-            return View(list);
+
+
+
+            return View(dB.Books.Where(x=>x.Title.StartsWith(searching) || searching == null).ToList());
         }
         public ActionResult Bok()
         {

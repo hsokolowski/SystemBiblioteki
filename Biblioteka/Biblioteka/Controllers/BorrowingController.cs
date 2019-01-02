@@ -31,7 +31,7 @@ namespace Biblioteka.Controllers
 
             foreach (var item in list_book)
             {
-                Repository repo_book = repositories.ElementAt(item.Repository.RepositoryID-1);
+                Repository repo_book = repositories.ElementAtOrDefault(item.Repository.RepositoryID-1);
 
                 if (repo_book.Amount != 0)
                 {
@@ -51,10 +51,10 @@ namespace Biblioteka.Controllers
                 }
                 else
                 {
-                    return View("Empty repository of this book");//trzeba zablokować możliwość wypożyczenia gdy nie jest dostępna
+                    return RedirectToAction("Borrow_failed");//trzeba zablokować możliwość wypożyczenia gdy nie jest dostępna
                 }
             }
-            return View("Success");
+            return View("Success_borrow");
         }
     }
 }

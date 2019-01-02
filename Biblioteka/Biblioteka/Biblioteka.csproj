@@ -331,6 +331,14 @@
     <Compile Include="Migrations\201812192242095_book_borrow_fix.Designer.cs">
       <DependentUpon>201812192242095_book_borrow_fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901011356182_search_history.cs" />
+    <Compile Include="Migrations\201901011356182_search_history.Designer.cs">
+      <DependentUpon>201901011356182_search_history.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901011556167_search_history1.cs" />
+    <Compile Include="Migrations\201901011556167_search_history1.Designer.cs">
+      <DependentUpon>201901011556167_search_history1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -344,6 +352,7 @@
     <Compile Include="Models\GlobalV1.cs" />
     <Compile Include="Frees\IndentityModels.cs" />
     <Compile Include="Models\GMailer.cs" />
+    <Compile Include="Models\History.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Penalty.cs" />
     <Compile Include="Models\Repository.cs" />
@@ -399,6 +408,8 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Category\Add.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Borrowing\Borrow_failed.cshtml" />
+    <Content Include="Views\Borrowing\Borrow_success.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -409,6 +420,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812192242095_book_borrow_fix.resx">
       <DependentUpon>201812192242095_book_borrow_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901011356182_search_history.resx">
+      <DependentUpon>201901011356182_search_history.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901011556167_search_history1.resx">
+      <DependentUpon>201901011556167_search_history1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

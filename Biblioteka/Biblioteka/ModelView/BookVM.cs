@@ -10,6 +10,11 @@ namespace Biblioteka.ModelView
 {
     public class BookVM
     {
+        public DB DB()
+        {
+            DB dB = new DB();
+            return dB;
+        }
         public List<Book> Get_list()
         {
             DB mDb = new DB();
