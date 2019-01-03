@@ -16,16 +16,11 @@ namespace Biblioteka.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            AccountVM vm = new AccountVM();
-            List<Account> lista = vm.Get_list();
-            
-            return View(lista);
+            AccountVM userBL = new AccountVM();
+            List<Account> list = userBL.Get_list();
+            return View(list);
         }
-        public ActionResult Lista()
-        {
-            BorrowingVM vm = new BorrowingVM();
-            return View(vm.Get_list());
-        }
+        
         public ActionResult Koszyk()
         {
             var list = System.Web.HttpContext.Current.Session["Zamowienie"];
@@ -39,9 +34,9 @@ namespace Biblioteka.Controllers
 
             //BorrowingVM vm = new BorrowingVM();
             //Borrowing b = new Borrowing();
-
+            
             int licznik=0;
-            var tym = list.SingleOrDefault(m => m.id_book == id);
+            var tym = list.SingleOrDefault(m => m.BookID == id);
 
             List<Book> koszyk;
             if (Session["Zamowienie"] != null)
@@ -54,14 +49,7 @@ namespace Biblioteka.Controllers
 
             if (tym != null)
             {
-                //b.id_book = id;
-                //b.id_reader = kto;
-                //b.date_borrow = DateTime.Now;
-                //b.date_back = b.date_borrow.AddDays(5);
-                //b.id_queue = 1;
-                //b.id_penalty = 1;
-                //vm.Dodaj(b);
-                //List<Borrowing> wypo = vm.Get_list();
+                
                 koszyk.Add(tym);
                 licznik = koszyk.Count();
                 HttpContext.Session["Zamowienie"] = koszyk;
@@ -72,70 +60,21 @@ namespace Biblioteka.Controllers
             {
                 TempData["Message"] = "Ten film jest już w Ulubionych!";
                 TempData["ID_z_ulub"] = id;
-                return RedirectToAction("Ksiazki");
+                return RedirectToAction("Index","Book");
                 //jest w bazie
             }
         }
         public ActionResult DeleteKoszyk(int id)
         {
             List<Book> list =(List<Book>) System.Web.HttpContext.Current.Session["Zamowienie"];
-            Book book =list.Where(m=>m.id_book==id).FirstOrDefault();
+            Book book =list.Where(m=>m.BookID==id).FirstOrDefault();
             list.Remove(book);
             var tmp = Session["Licznik"].ToString();
             Session["Licznik"] =Int32.Parse(tmp)-1;
             Session["Zamowienie"] = list;
             return View("Koszyk", list);
         }
-        public ActionResult Konto(int id = 0)
-        {
-            Account a = new Account();
-            return View(a);
-        }
-        [HttpPost]
-        public ActionResult Konto(Account p)
-        {
-            AccountVM userBL = new AccountVM();
-            List<Account> list = userBL.Get_list();
-
-            if (list.Any(x => x.login == p.login))
-            {
-                ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
-                return View("Account", p);
-            }
-
-            userBL.Dodaj(p);
-            ViewBag.Succesmessage = "Rejestracja pomyślna!";
-            return RedirectToAction("Index");
-        }
-        public ActionResult Edit(int id)
-        {
-            AccountVM vm = new AccountVM();
-            List<Account> lista = vm.Get_list();
-            Account a= lista.Where(s => s.id_account == id).FirstOrDefault();
-            return View(a);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Account m)
-        {
-            AccountVM vm = new AccountVM();
-            vm.Update(m);
-            ViewBag.Succesmessage = "Edycja pomyślna!";
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Details(int id)
-        {
-            AccountVM vm = new AccountVM();
-            Account u = vm.Find(id);
-            return View(u);
-        }
-        public ActionResult Delete(int id)
-        {
-            AccountVM vm = new AccountVM();
-            vm.Delete(id);
-            return RedirectToAction("Index");
-        }
+       
         [HttpPost]
         [AllowAnonymous]
         public ActionResult Login(Account user, string ReturnUrl)  //Autoryzacja Logownie
@@ -145,15 +84,15 @@ namespace Biblioteka.Controllers
             using (DAL.DB db = new DAL.DB())
             {
                 //var tym = Encrypt.GetHash(user.password);
-                var userdeatils = db.Accounts.Where(x => x.login == user.login && x.password == user.password).FirstOrDefault();
+                var userdeatils = db.Accounts.Where(x => x.Login == user.Login && x.Password == user.Password).FirstOrDefault();
                 if (userdeatils == null)
                 {
-                    ViewBag.LoginErrorMessage = "Nie poprawny login lub hasło";
+                    ViewBag.LoginErrorMessage = "Niepoprawny login lub hasło";
                     return View("Login", user);
                 }
                 else
                 {
-                    if(userdeatils.activ==false)
+                    if(userdeatils.Active==false)
                     {
                         ViewBag.LoginErrorMessage = "Konto nie aktywowane";
                         return View("Login", user);
@@ -170,9 +109,9 @@ namespace Biblioteka.Controllers
                     
                     Session["Licznik"] = licznik;
                     ///
-                    Session["adminID"] = userdeatils.id_account;
-                    Session["login"] = userdeatils.login;
-                    FormsAuthentication.SetAuthCookie(user.login, false);
+                    Session["adminID"] = userdeatils.AccountID;
+                    Session["login"] = userdeatils.Login;
+                    FormsAuthentication.SetAuthCookie(user.Login, false);
                     
                     if (Url.IsLocalUrl(ReturnUrl))
                     {
@@ -200,163 +139,15 @@ namespace Biblioteka.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Home");
         }
-        //[CustomAuthorize(Roles="Admin")]
-        [AdminRole]
-        public ActionResult Admin()
-        {
-            return View();
-        }
-        [Authorize]
-        public ActionResult Dodaj_kategorie(int id = 0)
-        {
-            Category c = new Category();
-            return View(c);
-        }
-        [HttpPost]
-        public ActionResult Dodaj_kategorie(Category c)
-        {
-            CategoryVM vm = new CategoryVM();
-            List<Category> list = vm.Get_list();
+       
+        
+       
+        
+        
 
-            if (list.Any(x => x.name==c.name))
-            {
-                ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
-                return View("Dodaj_kategorie", c);
-            }
-            vm.Dodaj(c);
-            return RedirectToAction("Index");
-        }
-        public ActionResult Kategorie()
-        {
-            CategoryVM cvm = new CategoryVM();
-            List<Category> lista2 = cvm.Get_list();
-            return View(lista2);
-        }
-        public ActionResult Ksiazki()
-        {
-            BookVM vm = new BookVM();
-            CategoryVM vm1 = new CategoryVM();
-            AuthorVM vm2 = new AuthorVM();
-            dynamic mymodel = new ExpandoObject();
-            mymodel.book = vm.Get_list();
-            mymodel.cate = vm1.Get_list();
-            mymodel.auth = vm2.Get_list();
-            return View(mymodel);
-        }
-        public ActionResult Borrow(int id)
-        {
-            BorrowingVM vm = new BorrowingVM();
-            
-            Borrowing b = new Borrowing();
-            b.id_reader = id;
-            b.date_borrow = DateTime.Now;
-            // TODO zmienić pozniej na parametr ustawiany przez admina;
-            b.date_back = b.date_borrow.AddDays(30);
-            b.id_books = (List<Book>)Session["Zamowienie"];
+        
 
-            //defaoltowo na 0
-            b.id_penalty = 0;
-            b.id_queue = 0;
-            vm.Dodaj(b);
-            List<Borrowing> list = vm.Get_list();
-            return View("Lista",list);
-        }
-
-        public ActionResult Autor(int id=0)
-        {
-            Author a = new Author();
-            return View(a);
-        }
-        [HttpPost]
-        public ActionResult Autor(Author a)
-        {
-            AuthorVM vm = new AuthorVM();
-            List<Author> list = vm.Get_list();
-
-            if (list.Any(x => x.name == a.name && x.surname==a.surname))
-            {
-                ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
-                return View("Autor", a);
-            }
-            vm.Dodaj(a);
-            return RedirectToAction("Index");
-        }
-        public ActionResult Edit_Author(int id)
-        {
-            AuthorVM vm = new AuthorVM();
-            List<Author> lista = vm.Get_list();
-            Author a = lista.Where(s => s.id_author == id).FirstOrDefault();
-            return View(a);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit_Author(Author m)
-        {
-            AuthorVM vm = new AuthorVM();
-            vm.Update(m);
-            ViewBag.Succesmessage = "Edycja pomyślna!";
-            return RedirectToAction("Index"); //zmienić
-        }
-        public ActionResult Details_Author(int id)
-        {
-            AuthorVM vm = new AuthorVM();
-            Author u = vm.Find(id);
-            return View(u);
-        }
-        public ActionResult Delete_Author(int id)
-        {
-            AuthorVM vm = new AuthorVM();
-            vm.Delete(id);
-            return RedirectToAction("Index");//zmienić
-        }
-
-        public ActionResult BookAdd(int id=0)
-        {
-            Book b = new Book();
-            return View(b);
-        }
-        [HttpPost]
-        public ActionResult BookAdd(Book a)
-        {
-            BookVM vm = new BookVM();
-            List<Book> list = vm.Get_list();
-
-            //if (list.Any(x => x.name == a.name && x.surname == a.surname))
-            //{
-            //    ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";
-            //    return View("Dodaj_kategorie", a);
-            //}
-            vm.Dodaj(a);
-            return RedirectToAction("Index");
-        }
-        public ActionResult BookEdit(int id)
-        {
-            BookVM vm = new BookVM();
-            List<Book> lista = vm.Get_list();
-            Book a = lista.Where(s => s.id_book == id).FirstOrDefault();
-            return View(a);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult BookEdit(Book m)
-        {
-            BookVM vm = new BookVM();
-            vm.Update(m);
-            ViewBag.Succesmessage = "Edycja pomyślna!";
-            return RedirectToAction("Index"); //zmienić
-        }
-        public ActionResult BookDetails(int id)
-        {
-            BookVM vm = new BookVM();
-            Book u = vm.Find(id);
-            return View(u);
-        }
-        public ActionResult BookDelete(int id)
-        {
-            BookVM vm = new BookVM();
-            vm.Delete(id);
-            return RedirectToAction("Index");//zmienić
-        }
+       
 
     }
 }

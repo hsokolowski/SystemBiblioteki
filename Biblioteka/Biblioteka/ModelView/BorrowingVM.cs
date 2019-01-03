@@ -19,6 +19,7 @@ namespace Biblioteka.ModelView
         public void Dodaj(Borrowing u)
         {
             DB mDb = new DB();
+
             mDb.Borrowings.Add(u);
             mDb.Configuration.ValidateOnSaveEnabled = false;
             //LayerBus.BusPass.DodajFilm(u);
@@ -69,7 +70,7 @@ namespace Biblioteka.ModelView
         public void Delete(int id)
         {
             DB db = new DB();
-            Borrowing move = new Borrowing() { id_borrow = id };
+            Borrowing move = new Borrowing() { BorrowID = id };
             db.Borrowings.Attach(move);
             db.Borrowings.Remove(move);
             db.SaveChanges();

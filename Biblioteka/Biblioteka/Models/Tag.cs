@@ -9,15 +9,13 @@ namespace Biblioteka.Models
     public class Tag
     {
         [Key]
-        public string id_tag { get; set; }
+        public int TagID { get; set; }
 
         [Display(Name = "Tag")]
         [Required]
-        public string tag { get; set; }
-
-        [Required]
-        [Display(Name ="ID Książki")]
-        public int id_book { get; set; }
+        public string Name { get; set; }
+        public int BookID { get; set; }
+        public Book Book { get; set; }
 
     }
 }

@@ -1,76 +1,155 @@
-﻿main {
-    min-height:500px;
-    font-size: 17px;
-    
-}
-
-#container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000px;
-}
-
-h1 {
-    font-size: 36px;
-    font-weight: 400;
-    color: cornflowerblue;
-    margin: 20px;
-}
-
-h2 {
-    font-size: 36px;
-    font-weight: 400;
-    color: cornflowerblue;
-    margin: 20px;
-}
-
-.navbar {
-    min-height: 57px;
-}
-
-#newsfeed {
-    background-color: white;
-    min-height: 30px;
-}
-
-#user {
-    color: rgba(255,255,255,.5);
-}
-
-.info {
-    position:absolute;
-    bottom:0;
-    text-align: center;
-    width:100%;
-}
-#kontener{
+﻿/*NAvbar*/
+main{
     height:100%;
 }
-a.tilelink {
-    height: 170px;
-    width: 350px;
-    text-decoration: none;
-}
-.card-body{
-    min-height:142px;
-}
-.tile1 {
-    height:170px;
-    width:350px;
-}
-.tile1:hover {
-    background-color:lightgray;
-}
-a.tilelinkhtml5 {
-    text-decoration: none;
+#user {
+    color: rgba(0,0,0,.5);
 }
 
-.cardSpec {
-    min-width: 230px;
-    min-height: 142px;
-    text-align:center;
+@media screen and (max-width: 1024px) {
+    .navbar {
+        min-height: 57px;
+        max-height: 57px;
+        font-size: large;
+        background: #57ba98;    
+        font-weight: bold;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    
+  
 }
 
-.icon-size{
-    font-size:76px;
+@media screen and (min-width: 1024px) {
+    .navbar {
+        min-height: 57px;
+        max-height: 57px;
+        font-size: large;
+        background: #57ba98;      
+        font-weight: bold;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+        .navbar ul {
+            max-height: 43px;
+        }
 }
+
+
+#brand {
+    max-height: 55px;
+}
+
+/*Footer*/
+.info {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+   color:black;
+}
+    
+/*login page*/
+
+html,
+body,
+#bg-login {
+    height: 100%;
+}
+
+#bg-login {
+    background: url("images/books-2.jpg")no-repeat center;
+    background-size: cover;
+    overflow: auto;
+    padding-bottom: 100px;
+
+}
+#bg-login, h1 {
+    color: #F2F2F2;
+}
+#Search, input {
+    color: #F2F2F2;
+    min-width:inherit;
+
+}
+
+/*Add account*/
+html,
+body,
+#bg-new-account {
+
+    overflow:auto;
+}
+#bg-new-account {
+    background: url("images/books-2.jpg")no-repeat center;
+    background-size: cover;
+    overflow: auto;
+    padding-bottom: 100px;
+}
+.myform form{
+    
+}
+@media screen and (min-width: 1024px) {
+
+}
+
+/*Details account*/
+html,
+body,
+#bg-details-account {
+    overflow: auto;
+}
+
+#bg-details-account {
+    background: url("images/books-2.jpg")no-repeat center;
+    background-size: cover;
+    overflow: auto;
+    padding-bottom: 100px;
+}
+
+.myform form {
+}
+
+@media screen and (min-width: 1024px) {
+
+}
+
+    /*admin panel*/
+    a.tilelink {
+        height: 170px;
+        width: 350px;
+        text-decoration: none;
+    }
+
+    .card-body {
+        min-height: 142px;
+    }
+
+    .tile1 {
+        height: 170px;
+        width: 350px;
+    }
+
+        .tile1:hover {
+            background-color: lightgray;
+        }
+
+    a.tilelinkhtml5 {
+        text-decoration: none;
+    }
+
+    .cardSpec {
+        min-width: 230px;
+        min-height: 142px;
+        text-align: center;
+    }
+
+    .icon-size {
+        font-size: 76px;
+    }
+
+    div.container6 {
+        height: 50em;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }

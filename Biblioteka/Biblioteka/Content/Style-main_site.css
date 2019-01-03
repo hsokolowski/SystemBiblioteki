@@ -1,0 +1,62 @@
+﻿
+
+#user {
+    color: rgba(0,0,0,.5);
+}
+
+.navbar {
+    min-height: 57px;
+    max-height: 57px;
+    font-size: large;
+    background: #57ba98;
+    font-weight: bold !important;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.navbar ul {
+    max-height: 43px;
+}
+/*main background + seach engine*/
+html,
+body,
+#intro {
+    height: 100%;
+}
+#intro {
+    background: url("images/books.jpg")no-repeat center;
+    background-size: cover;
+    overflow:auto;
+    padding-bottom:100px;
+}
+
+#Search {
+    color: #F2F2F2;
+}
+
+
+
+
+
+/*footer*/
+.info {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    
+}
+
+div.container6 {
+    
+    height:50%;
+    /*height: 50em;
+    display: flex;
+    align-items: center;
+    justify-content: center;*/
+
+        
+}
+
+
+
+    

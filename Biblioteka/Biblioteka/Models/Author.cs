@@ -9,18 +9,20 @@ namespace Biblioteka.Models
     public class Author
     {
         [Key]
-        public int id_author { get; set; }
+        public int AuthorID { get; set; }
 
         [Display(Name = "Imię")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [Display(Name = "Nazwisko")]
         [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string surname { get; set; }
+        public string Surname { get; set; }
 
-        [Display(Name = "Kraj")]
-        [Required(ErrorMessage = "To pole jest wymagane!")]
-        public string country { get; set; }
+        //[Display(Name = "Kraj")]
+        //[Required(ErrorMessage = "To pole jest wymagane!")]
+        //public string Country { get; set; }
+
+        public virtual ICollection<AutBook> AutBooks { get; set; }
     }
 }

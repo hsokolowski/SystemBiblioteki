@@ -1,0 +1,76 @@
+﻿@model Biblioteka.Models.Account
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div id="bg-details-account" class="view flex-center rgba-black-light">
+    <div class=" container-fluid full-bg-image d-flex align-items-center justify-content-center flex-center ">
+     
+            <div  class="card bg-white row d-flex justify-content-center" style="width:400px; ">
+                <div class="col-12 text-center mt-1">
+                    <h1>Twoje dane</h1>
+                </div>
+                <hr/>
+                <div class="col-md-12 text-center mt-0">
+                    <div class="row text-left">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(m => m.Name):
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Name)
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row text-left">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(m => m.Surname):
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Surname)
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row text-left">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(m => m.Pesel):
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Pesel)
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row text-left">
+                        <div class="col-6">
+                            Czy aktywne? :
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Active)
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row text-left">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(m => m.Role):
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(m => Model.Role)
+                        </div>
+                    </div>
+                <hr/>
+
+                    @Html.ActionLink("Edytuj", "Edit", new { id = Model.AccountID }, new { @class = "btn btn-default" })
+
+                </div>
+
+            </div>
+      
+        @*@Html.ActionLink("Wróć", "Index", null, new { @class = "backtolist" })*@
+
+
+    </div>
+</div>

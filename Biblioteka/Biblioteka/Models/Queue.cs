@@ -10,17 +10,18 @@ namespace Biblioteka.Models
     public class Queue
     {
         [Key]
-        public int id_queue { get; set; }
+        public int QueueID { get; set; }
 
         [Display(Name = "ID Książki")]
         //[ForeignKey("Book")]
-        public int id_book { get; set; }
-
+        public int BookID { get; set; }
+        public Book Book { get; set; }
         [Display(Name = "Kolejka")]
-        public int queue { get; set; }
+        public int Order { get; set; }
 
         [Display(Name = "Czytelnik")]
         //[ForeignKey("Account")]
-        public int id_reader { get; set; }
+        public int AccountID { get; set; }
+        public Account Account { get; set; }
     }
 }
