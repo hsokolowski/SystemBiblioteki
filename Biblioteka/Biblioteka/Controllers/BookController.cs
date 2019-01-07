@@ -22,46 +22,65 @@ namespace Biblioteka.Controllers
             {
                 if (Session["login"] != null)
                 {
-                    int counter = 0;
-                    var history = dB.Histories.ToList();
-                    var NewSearch = new History();
+                    
+                    
 
 
                     var userId = (Int32)(Session["adminID"]);
-                    foreach (var item in history)
-                    {
-                        if (item.AccountID == userId)
-                        {
-                            counter++;
-                        }
-                    }
+                    var userSearch = dB.Histories.Where(a => a.AccountID == userId).ToList();
 
-                    if (counter < 5)
+                    if (userSearch.Count() >= 5)
                     {
-                        NewSearch.AccountID = userId;
-                        NewSearch.Search = searching;
-                        NewSearch.SearchDate = DateTime.Now;
-                        dB.Histories.Add(NewSearch);
+                        var oldest_search = userSearch.OrderBy(a => a.SearchDate).First();
+                        oldest_search.Search = searching;
+                        oldest_search.SearchDate = DateTime.Now;
+                        dB.Histories.AddOrUpdate(oldest_search);
                         dB.SaveChanges();
-
                     }
                     else
                     {
-                        var userSearch = dB.Histories.Where(m => m.AccountID.Equals(userId)).ToList();
-
-
-                        System.DateTime today = System.DateTime.Now;
-                        System.TimeSpan duration = userSearch.Select(m => m.SearchDate - DateTime.Now).Min();
-                        System.DateTime answer = today.Add(duration);
-                       
-                        var oldest = userSearch.Where(m => m.SearchDate == answer).Max();
-
-                        oldest.Search = searching;
-                        oldest.SearchDate = DateTime.Now;
-                        dB.Histories.AddOrUpdate(oldest);
+                        dB.Histories.Add( new History { AccountID=userId, Search=searching, SearchDate=DateTime.Now} );
                         dB.SaveChanges();
-
                     }
+
+                    //XD po co to było  
+                    //var history = dB.Histories.ToList();
+                    //var NewSearch = new History();
+                    //int counter = 0;
+                    //foreach (var item in history)
+                    //{
+                    //    if (item.AccountID == userId)
+                    //    {
+                    //        counter++;
+                    //    }
+                    //}
+
+                    //if (counter < 5)
+                    //{
+                    //    NewSearch.AccountID = userId;
+                    //    NewSearch.Search = searching;
+                    //    NewSearch.SearchDate = DateTime.Now;
+                    //    dB.Histories.Add(NewSearch);
+                    //    dB.SaveChanges();
+
+                    //}
+                    //else
+                    //{
+
+                    //    var userSearch = dB.Histories.Where(m => m.AccountID.Equals(userId)).ToList();
+
+                    //    System.DateTime today = System.DateTime.Now;
+                    //    System.TimeSpan duration = userSearch.Select(m => m.SearchDate - DateTime.Now).Min();
+                    //    System.DateTime answer = today.Add(duration);
+
+                    //    var oldest = userSearch.Where(m => m.SearchDate == answer).Max();
+
+                    //    oldest.Search = searching;
+                    //    oldest.SearchDate = DateTime.Now;
+                    //    dB.Histories.AddOrUpdate(oldest);
+                    //    dB.SaveChanges();
+
+                    //}
                 }
 
             }
