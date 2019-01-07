@@ -95,9 +95,16 @@ namespace Biblioteka.Controllers
         {
             BookVM vm = new BookVM();
             List<Book> list = vm.Get_list();
+            CategoryVM vm2 = new CategoryVM();
+            List<Category> list2 = vm2.Get_list();
+
+            var final = (from p in list
+                                   join c in list2 on p.CategoryID equals c.CategoryID
+                                     select new { ID = p.BookID, Tytul = p.Title, Rok = p.Year, Kategoria = c.Name, Strony = p.Pages, ISBN = p.ISBN, DlaKogo = p.for_who_string });
+            ViewBag.Final = final;
             //TODO w widoku foreach reverse i take(3)  -> @foreach (var u in Model.Reverse().Take(3))
             // pobranie z bazy ścieżek do okładek i zapisania w viewbagach i potem wypisanie ich w widoku w <img>
-            return View(); 
+            return View(list); 
         }
     }
 }
