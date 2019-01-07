@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Biblioteka.Models.Borrowing>
+
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Książka</th>
+        <th>Data wypożyczenia</th>
+        <th>Data zwrotu</th>
+        <th>Kara</th>
+        <th>Kolejka</th>
+    </tr>
+
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td style="width:60px;">@b.BorrowID</td>
+            <td style="width:60px;">@b.Books</td>
+            <td style="width:60px;">@b.Borrow_date</td>
+
+            <td style="width:60px;">@b.Return_date</td>
+            <td style="width:60px;">@b.PenaltyID</td>
+            <td style="width:60px;">@b.QueueID</td>
+            
+        </tr>
+    }
+</table>

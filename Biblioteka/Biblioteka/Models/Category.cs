@@ -11,11 +11,15 @@ namespace Biblioteka.Models
         [Key]
         public int CategoryID { get; set; }
 
-        [Display(Name ="Nazwa")]
+        [Display(Name = "Nazwa")]
         public string Name { get; set; }
 
-        [Display(Name = "Nadrzędna")]
+        [Display(Name = "Nadrzędna1")]
         public virtual ICollection<SubCategory> SubCategories { get; set; }
+
+        [Required]
+        [Display(Name = "Nadrzędna2")]
+        public string SubCategs { get; set; }
 
     }
 }

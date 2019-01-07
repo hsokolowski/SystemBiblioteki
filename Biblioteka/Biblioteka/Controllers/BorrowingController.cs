@@ -55,5 +55,19 @@ namespace Biblioteka.Controllers
             }
             return View("Borrow_success");
         }
+        //Archwium wypożyczeń od najnowszych
+        public ActionResult Archives(int id)
+        {
+            if(Session["adminID"]==null)
+            {
+                return View("Index", "Home");
+            }
+            //int ID = Int32.Parse(Session["adminID"].ToString());
+            int ID = id;
+            BorrowingVM vm = new BorrowingVM();
+            List<Borrowing> list = vm.Get_list().Where(a => a.ReaderID == ID).Reverse().ToList();
+
+            return View(list);
+        }
     }
 }
