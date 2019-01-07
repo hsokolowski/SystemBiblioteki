@@ -16,7 +16,7 @@ namespace Biblioteka.Controllers
     {
         DB dB = new DB();
        
-        public ActionResult Index(string searching)
+        public ActionResult Index(string searching,string option)
         {
             if (searching!=null)
             {
@@ -53,7 +53,7 @@ namespace Biblioteka.Controllers
                         System.DateTime today = System.DateTime.Now;
                         System.TimeSpan duration = userSearch.Select(m => m.SearchDate - DateTime.Now).Min();
                         System.DateTime answer = today.Add(duration);
-
+                       
                         var oldest = userSearch.Where(m => m.SearchDate == answer).Max();
 
                         oldest.Search = searching;
@@ -65,9 +65,19 @@ namespace Biblioteka.Controllers
                 }
 
             }
-            //TODO zmienić na listę z poleceniem SQL aby wypiwywana była nazwa kate i autor cały
+            
 
-
+            switch (option)
+            {
+                case "ISBN":
+                    
+                    break;
+                case "":
+                    Console.WriteLine("Case 2");
+                    break;
+                default:
+                    break;
+            }
 
             return View(dB.Books.Where(x=>x.Title.StartsWith(searching) || searching == null).ToList());
         }

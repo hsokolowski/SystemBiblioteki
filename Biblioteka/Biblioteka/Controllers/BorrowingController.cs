@@ -42,7 +42,6 @@ namespace Biblioteka.Controllers
                         BookID = item.BookID,
                         PenaltyID = 1,
                         QueueID = 0
-
                     };
                     b.Return_date = b.Borrow_date.AddDays(30);
                     borrowingVM.Dodaj(b);
@@ -54,7 +53,7 @@ namespace Biblioteka.Controllers
                     return RedirectToAction("Borrow_failed");//trzeba zablokować możliwość wypożyczenia gdy nie jest dostępna
                 }
             }
-            return View("Success_borrow");
+            return View("Borrow_success");
         }
     }
 }
