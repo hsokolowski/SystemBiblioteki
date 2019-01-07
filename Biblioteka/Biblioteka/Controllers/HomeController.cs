@@ -16,6 +16,10 @@ namespace Biblioteka.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            NewsVM vm = new NewsVM();
+            List<News> list_news = vm.Get_list().Take(3).ToList();
+            ViewBag.News = list_news;
+            //-----
             AccountVM userBL = new AccountVM();
             List<Account> list = userBL.Get_list();
             return View(list);

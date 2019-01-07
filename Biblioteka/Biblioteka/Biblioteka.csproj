@@ -310,6 +310,10 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Add.cshtml" />
     <Content Include="Views\Borrowing\Archives.cshtml" />
+    <Content Include="Views\News\Add.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -319,7 +323,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\File\" />
-    <Folder Include="Views\News\" />
     <Folder Include="Views\Penalty\" />
     <Folder Include="Views\Queue\" />
     <Folder Include="Views\Repository\" />

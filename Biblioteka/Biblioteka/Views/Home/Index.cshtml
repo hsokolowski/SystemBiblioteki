@@ -8,6 +8,21 @@
 <h1>Biblioteka System</h1>
 
 <div>
+    <div>
+        Newsy:
+        <ul>
+            @foreach (var news in ViewBag.News)
+            {
+                <div>
+                   Dodał: @news.AccountID
+                  <div> Data: @news.Date</div>
+                  <div>Treść: @news.Content</div>
+                   <hr />
+                </div>
+            }
+            
+        </ul>
+    </div>
     <table>
         <tr>
             <th>Nr.</th>
