@@ -6,14 +6,24 @@
 
 <div class="container mb-2 mt-3">
 
-    @using (Html.BeginForm("Index", "Book", FormMethod.Get, new { @class = "row" }))
+    @using (Html.BeginForm("Index", "Book", FormMethod.Get))
     {
-        <div class="col-8">
-            <input id="myInput" name="searching" class=" form-control flex-fill" type="text" placeholder="wyszukaj" aria-label="Wyszukaj" />
-        </div>
-        <div class="col-4 input-group">
-            <input class="btn-dark  flex-fill" type="submit" value="Wyszukaj" />
-        </div>
+        
+    <div class="row">
+        <div class="col-2">Szukaj po:</div>
+        <div class="col-1">   @Html.RadioButton("searchby", "Title",true ) <text>Tutuł</text></div>
+        <div class="col-1">   @Html.RadioButton("searchby", "Author")<text>Autor</text></div>
+        <div class="col-1">   @Html.RadioButton("searchby", "ISBN")<text>ISBN</text> </div>
+        <div class="col-1">   @Html.RadioButton("searchby", "Year") <text>Rok</text></div>
+    </div>
+            <div class="row">
+                <div class="col-8">
+                    <input id="myInput" name="searching" class=" form-control flex-fill" type="text" placeholder="wyszukaj" aria-label="Wyszukaj" />
+                </div>
+                <div class="col-4 input-group">
+                    <input class="btn-dark  flex-fill" type="submit" value="Wyszukaj" />
+                </div>
+            </div>
     }
 
 </div>
@@ -81,7 +91,7 @@
                                 @item.ISBN
                             </td>
                             <td>
-                                @item.for_who_string
+                                @item.for_who_string                              
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
@@ -92,8 +102,6 @@
                                     <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", "Home", new { id = item.BookID, kto = (Session["adminID"]) }, null)
                                 }
                             </td>
-
-
                         </tr>
                     }
                 }
@@ -106,7 +114,7 @@
 
 
 
-<script>
+@*<script>
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
@@ -115,4 +123,4 @@
             });
         });
     });
-</script>
+</script>*@

@@ -141,7 +141,10 @@ namespace Biblioteka.Controllers
         }
        
         
-       
+       public ActionResult View()
+        {
+            return View();
+        }
         
         
 

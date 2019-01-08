@@ -15,23 +15,22 @@ namespace Biblioteka.Controllers
     public class BookController : Controller
     {
         DB dB = new DB();
-       
-        public ActionResult Index(string searching,string option)
+
+        public ActionResult Index(string searching, string searchby)
         {
-            if (searching!=null)
+            if (searching != null)
             {
+
+
                 if (Session["login"] != null)
                 {
-                    
-                    
-
 
                     var userId = (Int32)(Session["adminID"]);
-                    var userSearch = dB.Histories.Where(a => a.AccountID == userId).ToList();
+                    var user_history = dB.Histories.Where(a => a.AccountID == userId).ToList();
 
-                    if (userSearch.Count() >= 5)
+                    if (user_history.Count() >= 5)
                     {
-                        var oldest_search = userSearch.OrderBy(a => a.SearchDate).First();
+                        var oldest_search = user_history.OrderBy(a => a.SearchDate).First();
                         oldest_search.Search = searching;
                         oldest_search.SearchDate = DateTime.Now;
                         dB.Histories.AddOrUpdate(oldest_search);
@@ -39,67 +38,86 @@ namespace Biblioteka.Controllers
                     }
                     else
                     {
-                        dB.Histories.Add( new History { AccountID=userId, Search=searching, SearchDate=DateTime.Now} );
+                        dB.Histories.Add(new History { AccountID = userId, Search = searching, SearchDate = DateTime.Now });
                         dB.SaveChanges();
                     }
-
-                    //XD po co to było  
-                    //var history = dB.Histories.ToList();
-                    //var NewSearch = new History();
-                    //int counter = 0;
-                    //foreach (var item in history)
-                    //{
-                    //    if (item.AccountID == userId)
-                    //    {
-                    //        counter++;
-                    //    }
-                    //}
-
-                    //if (counter < 5)
-                    //{
-                    //    NewSearch.AccountID = userId;
-                    //    NewSearch.Search = searching;
-                    //    NewSearch.SearchDate = DateTime.Now;
-                    //    dB.Histories.Add(NewSearch);
-                    //    dB.SaveChanges();
-
-                    //}
-                    //else
-                    //{
-
-                    //    var userSearch = dB.Histories.Where(m => m.AccountID.Equals(userId)).ToList();
-
-                    //    System.DateTime today = System.DateTime.Now;
-                    //    System.TimeSpan duration = userSearch.Select(m => m.SearchDate - DateTime.Now).Min();
-                    //    System.DateTime answer = today.Add(duration);
-
-                    //    var oldest = userSearch.Where(m => m.SearchDate == answer).Max();
-
-                    //    oldest.Search = searching;
-                    //    oldest.SearchDate = DateTime.Now;
-                    //    dB.Histories.AddOrUpdate(oldest);
-                    //    dB.SaveChanges();
-
-                    //}
                 }
 
             }
-            
 
-            switch (option)
+           // var book_auth = dB.Books.SelectMany(a => a.AutBooks).Select(a => a.Author);
+
+            ViewBag.viewBag = dB.Books.Where(a => a.BookID == 4).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
+
+
+
+               var book_aut = dB.Books
+                .Select(a => new
+                {
+                    Title = a.Title,
+                    Isbn = a.ISBN,
+                    Pages = a.Pages,
+                    Year = a.Year,                    
+                    Authors = a.AutBooks.Select(b => new { Name = b.Author.Name , Surname = b.Author.Surname }).ToList()
+                }).ToList();
+
+         
+
+            Int32.TryParse(searching, out int s);
+
+            switch (searchby)
             {
                 case "ISBN":
-                    
+                    ViewBag.ISBNSearch = book_aut.Where(x => x.Isbn == s || searching == null).ToList();
                     break;
-                case "":
-                    Console.WriteLine("Case 2");
+                case "Author":
+                    foreach (var item in book_aut)
+                    {
+                        foreach (var item2 in book_aut.Select(x=>x.Authors).ToList())
+                        {
+                            item2.Where(x => x.Name==searching);
+                            
+                        }
+                    }
+                    break;
+                case "Title":
+                    ViewBag.TitleSearch = book_aut.Where(x => x.Title.StartsWith(searching) || searching == null).ToList();
+                    break;
+                case "Year":
+                    ViewBag.YearSearch = book_aut.Where(x => x.Year == s || searching == null).ToList();
                     break;
                 default:
-                    break;
+                    return View(dB.Books.Where(x => x.Title.StartsWith(searching) || searching == null).ToList());
+                    
             }
 
-            return View(dB.Books.Where(x=>x.Title.StartsWith(searching) || searching == null).ToList());
+            return View(dB.Books.Where(x => x.Title.StartsWith(searching) || searching == null).ToList());
+
         }
+
+        public JsonResult GetHistory(string searchTerm)
+        {
+            var userId = (Int32)(Session["adminID"]);
+            var user_history = dB.Histories.Where(a => a.AccountID == userId).ToList();
+            var books = dB.Books.ToList();
+            if (searchTerm != null)
+            {
+                user_history = user_history.Where(a => a.Search.Contains(searchTerm)).ToList();
+                books = books.Where(a => a.Title.Contains(searchTerm)).ToList();
+            }
+            var modifiedData = user_history.Select(a => new
+            {
+                search = a.Search,
+            });
+            var modifiedData2 = books.Select(a => new
+            {
+                id = a.BookID,
+                search = a.Title
+
+            });
+            return Json(modifiedData, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Bok()
         {
             BookVM vm = new BookVM();
@@ -114,8 +132,8 @@ namespace Biblioteka.Controllers
         public ActionResult Add(int id = 0)
         {
             AuthorVM authorVM = new AuthorVM();
-            ViewBag.Authors = authorVM.Get_list().Select(a => a.Name+ " " + a.Surname);
-             
+            ViewBag.Authors = authorVM.Get_list().Select(a => a.Name + " " + a.Surname);
+
 
             Book b = new Book();
             CategoryVM vm2 = new CategoryVM();
@@ -147,7 +165,7 @@ namespace Biblioteka.Controllers
             BookVM vm = new BookVM();
             vm.Update(m);
             ViewBag.Succesmessage = "Edycja pomyślna!";
-            return RedirectToAction("Index"); 
+            return RedirectToAction("Index");
         }
         public ActionResult Details(int id)
         {
@@ -168,7 +186,7 @@ namespace Biblioteka.Controllers
             List<Book> list = vm.Get_list();
             //TODO w widoku foreach reverse i take(3)  -> @foreach (var u in Model.Reverse().Take(3))
             // pobranie z bazy ścieżek do okładek i zapisania w viewbagach i potem wypisanie ich w widoku w <img>
-            return View(); 
+            return View();
         }
     }
 }
