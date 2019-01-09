@@ -47,7 +47,6 @@ namespace Biblioteka.Controllers
 
            // var book_auth = dB.Books.SelectMany(a => a.AutBooks).Select(a => a.Author);
 
-            ViewBag.viewBag = dB.Books.Where(a => a.BookID == 4).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
 
 
 
@@ -61,7 +60,7 @@ namespace Biblioteka.Controllers
                     Authors = a.AutBooks.Select(b => new { Name = b.Author.Name , Surname = b.Author.Surname }).ToList()
                 }).ToList();
 
-         
+        var a = book_aut.Select(a=>a.Authors)
 
             Int32.TryParse(searching, out int s);
 
@@ -169,6 +168,10 @@ namespace Biblioteka.Controllers
         }
         public ActionResult Details(int id)
         {
+
+            ViewBag.viewBag = dB.Books.Where(a => a.BookID == 4).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
+
+
             BookVM vm = new BookVM();
             Book u = vm.Find(id);
             return View(u);

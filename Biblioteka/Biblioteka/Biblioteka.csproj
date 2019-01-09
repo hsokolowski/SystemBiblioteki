@@ -386,13 +386,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901071416554_history_borrow.cs" />
-    <Compile Include="Migrations\201901071416554_history_borrow.Designer.cs">
-      <DependentUpon>201901071416554_history_borrow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901071435425_new.cs" />
-    <Compile Include="Migrations\201901071435425_new.Designer.cs">
-      <DependentUpon>201901071435425_new.cs</DependentUpon>
+    <Compile Include="Migrations\201901091234163_new.cs" />
+    <Compile Include="Migrations\201901091234163_new.Designer.cs">
+      <DependentUpon>201901091234163_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -481,11 +477,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901071416554_history_borrow.resx">
-      <DependentUpon>201901071416554_history_borrow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901071435425_new.resx">
-      <DependentUpon>201901071435425_new.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901091234163_new.resx">
+      <DependentUpon>201901091234163_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

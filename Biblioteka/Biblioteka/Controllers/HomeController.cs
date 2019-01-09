@@ -140,12 +140,7 @@ namespace Biblioteka.Controllers
             return RedirectToAction("Login", "Home");
         }
        
-        
-       public ActionResult View()
-        {
-            return View();
-        }
-        
+ 
         
 
         
