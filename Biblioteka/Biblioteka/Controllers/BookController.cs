@@ -60,7 +60,7 @@ namespace Biblioteka.Controllers
                     Authors = a.AutBooks.Select(b => new { Name = b.Author.Name , Surname = b.Author.Surname }).ToList()
                 }).ToList();
 
-        var a = book_aut.Select(a=>a.Authors)
+       
 
             Int32.TryParse(searching, out int s);
 

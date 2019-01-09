@@ -386,9 +386,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901091234163_new.cs" />
-    <Compile Include="Migrations\201901091234163_new.Designer.cs">
-      <DependentUpon>201901091234163_new.cs</DependentUpon>
+    <Compile Include="Migrations\201901091441270_newa.cs" />
+    <Compile Include="Migrations\201901091441270_newa.Designer.cs">
+      <DependentUpon>201901091441270_newa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -477,8 +477,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901091234163_new.resx">
-      <DependentUpon>201901091234163_new.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901091441270_newa.resx">
+      <DependentUpon>201901091441270_newa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
