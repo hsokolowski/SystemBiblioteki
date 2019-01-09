@@ -67,7 +67,17 @@
         </dd>
 
     </dl>
+    <div>
+        @using (Html.BeginForm("Index","Book",FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="file"/><br/>
+            <input type="submit" value="Save"/>
+        }
+    </div>
 </div>
+
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
     @Html.ActionLink("Back to List", "Index")

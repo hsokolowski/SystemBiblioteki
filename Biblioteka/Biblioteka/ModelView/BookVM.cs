@@ -25,9 +25,7 @@ namespace Biblioteka.ModelView
         {
             DB mDb = new DB();
             mDb.Books.Add(u);
-           
             mDb.Configuration.ValidateOnSaveEnabled = false;
-            //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
         }
         public void Update(Book a)
@@ -39,9 +37,6 @@ namespace Biblioteka.ModelView
             try
             {
                 db.SaveChanges();
-                // Your code...
-                // Could also be before try if you know the exception occurs in SaveChanges
-
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
@@ -70,7 +65,6 @@ namespace Biblioteka.ModelView
             db.Books.Attach(u);
             u = db.Books.Find(id);
             return u;
-
         }
         public void Delete(int id)
         {
@@ -79,7 +73,6 @@ namespace Biblioteka.ModelView
             db.Books.Attach(move);
             db.Books.Remove(move);
             db.SaveChanges();
-
         }
     }
 }

@@ -390,6 +390,10 @@
     <Compile Include="Migrations\201901091441270_newa.Designer.cs">
       <DependentUpon>201901091441270_newa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901092132543_autbook.cs" />
+    <Compile Include="Migrations\201901092132543_autbook.Designer.cs">
+      <DependentUpon>201901092132543_autbook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -415,6 +419,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ModelView\AuthorVM.cs" />
+    <Compile Include="ModelView\Autors_books.cs" />
     <Compile Include="ModelView\BookVM.cs" />
     <Compile Include="ModelView\BorrowingVM.cs" />
     <Compile Include="ModelView\CategoryVM.cs" />
@@ -480,6 +485,12 @@
     <EmbeddedResource Include="Migrations\201901091441270_newa.resx">
       <DependentUpon>201901091441270_newa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901092132543_autbook.resx">
+      <DependentUpon>201901092132543_autbook.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\File\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

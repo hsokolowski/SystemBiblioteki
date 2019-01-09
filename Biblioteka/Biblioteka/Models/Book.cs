@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteka.ModelView;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -50,6 +51,8 @@ namespace Biblioteka.Models
         public virtual ICollection<Queue> Queues { get; set; }
 
         public virtual Repository Repository { get; set; }
+
+        public Autors_books autors_Books { get; set; }
 
         [Display(Name = "Przeznaczona:")]
         public string for_who_string

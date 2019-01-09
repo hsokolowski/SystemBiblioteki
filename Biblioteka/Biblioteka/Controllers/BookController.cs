@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using File = Biblioteka.Models.File;
 
 namespace Biblioteka.Controllers
 {
@@ -45,52 +47,73 @@ namespace Biblioteka.Controllers
 
             }
 
-           // var book_auth = dB.Books.SelectMany(a => a.AutBooks).Select(a => a.Author);
+            // var book_auth = dB.Books.SelectMany(a => a.AutBooks).Select(a => a.Author);
+            //var book_aut = dB.Books
+            //   .Select(a => new
+            //   {
+            //       Title = a.Title,
+            //       Isbn = a.ISBN,
+            //       Pages = a.Pages,
+            //       Year = a.Year,
+            //       Authors = a.AutBooks.Select(b => new { Name = b.Author.Name, Surname = b.Author.Surname }).ToList()
+
+
+
+           //Book book = new Book();
+           var book_aut = dB.Books
+             .Select(a => new Autors_books
+             {
+                 BookID = a.BookID,
+                 Title = a.Title,
+                 ISBN = a.ISBN,
+                 Pages = a.Pages,
+                 Year = a.Year,
+                 Authors = a.AutBooks.Select(b => new Autors_books.Autors_books2
+                 {
+                     Name = b.Author.Name,
+                     Surname = b.Author.Surname,
+                     Books  = b.Author.AutBooks.Select(ab => new Autors_books
+                     {
+                         BookID = ab.Book.BookID,
+                         Title = ab.Book.Title,
+                         ISBN = ab.Book.ISBN,
+                         Pages = ab.Book.Pages,
+                         Year = ab.Book.Year,
+                         Authors = ab.Book.AutBooks.Select(b2 => new Autors_books.Autors_books2 { Name = b2.Author.Name, Surname = b2.Author.Surname}).ToList()
+                     }
+                 )
+                 })
+                 .ToList(),
+             }).ToList();
 
 
 
 
-               var book_aut = dB.Books
-                .Select(a => new
-                {
-                    Title = a.Title,
-                    Isbn = a.ISBN,
-                    Pages = a.Pages,
-                    Year = a.Year,                    
-                    Authors = a.AutBooks.Select(b => new { Name = b.Author.Name , Surname = b.Author.Surname }).ToList()
-                }).ToList();
-
-       
 
             Int32.TryParse(searching, out int s);
 
             switch (searchby)
             {
                 case "ISBN":
-                    ViewBag.ISBNSearch = book_aut.Where(x => x.Isbn == s || searching == null).ToList();
+                    return View(dB.Books.Where(x => x.ISBN == s || searching == null).ToList());
                     break;
                 case "Author":
-                    foreach (var item in book_aut)
-                    {
-                        foreach (var item2 in book_aut.Select(x=>x.Authors).ToList())
-                        {
-                            item2.Where(x => x.Name==searching);
-                            
-                        }
-                    }
+                    return View(book_aut
+                        .SelectMany(x => x.Authors 
+                        .Where(a => a.Surname.StartsWith(searching))).ToList());
                     break;
+                    
                 case "Title":
-                    ViewBag.TitleSearch = book_aut.Where(x => x.Title.StartsWith(searching) || searching == null).ToList();
+                    return View(dB.Books.Where(x => x.Title.StartsWith(searching) || searching == null).ToList());
                     break;
                 case "Year":
-                    ViewBag.YearSearch = book_aut.Where(x => x.Year == s || searching == null).ToList();
+                    return View(dB.Books.Where(x => x.Year == s || searching == null).ToList());
                     break;
                 default:
-                    return View(dB.Books.Where(x => x.Title.StartsWith(searching) || searching == null).ToList());
-                    
+                    return View(book_aut);
             }
 
-            return View(dB.Books.Where(x => x.Title.StartsWith(searching) || searching == null).ToList());
+
 
         }
 
@@ -150,6 +173,21 @@ namespace Biblioteka.Controllers
             vm.Dodaj(a);
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public ActionResult Add(int id, HttpPostedFileBase file)
+        {
+            BookVM vm = new BookVM();
+            Book u = vm.Find(id);
+            if (file == null)
+            {
+                return View(u);
+            }
+            string path = Server.MapPath("~/App_Data/File");
+            string fileName = Path.GetFileName(file.FileName);
+            string fullPath = Path.Combine(path, fileName);
+            file.SaveAs(fullPath);
+            return RedirectToAction("Index");
+        }
         public ActionResult Edit(int id)
         {
             BookVM vm = new BookVM();
@@ -170,12 +208,12 @@ namespace Biblioteka.Controllers
         {
 
             ViewBag.viewBag = dB.Books.Where(a => a.BookID == 4).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
-
-
             BookVM vm = new BookVM();
             Book u = vm.Find(id);
             return View(u);
         }
+      
+       
         public ActionResult Delete(int id)
         {
             BookVM vm = new BookVM();

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Biblioteka.Models.Book>
+﻿@model IEnumerable<Biblioteka.ModelView.Autors_books>
 
 @{
     ViewBag.Title = "Index";
@@ -8,22 +8,22 @@
 
     @using (Html.BeginForm("Index", "Book", FormMethod.Get))
     {
-        
-    <div class="row">
-        <div class="col-2">Szukaj po:</div>
-        <div class="col-1">   @Html.RadioButton("searchby", "Title",true ) <text>Tutuł</text></div>
-        <div class="col-1">   @Html.RadioButton("searchby", "Author")<text>Autor</text></div>
-        <div class="col-1">   @Html.RadioButton("searchby", "ISBN")<text>ISBN</text> </div>
-        <div class="col-1">   @Html.RadioButton("searchby", "Year") <text>Rok</text></div>
-    </div>
-            <div class="row">
-                <div class="col-8">
-                    <input id="myInput" name="searching" class=" form-control flex-fill" type="text" placeholder="wyszukaj" aria-label="Wyszukaj" />
-                </div>
-                <div class="col-4 input-group">
-                    <input class="btn-dark  flex-fill" type="submit" value="Wyszukaj" />
-                </div>
+
+        <div class="row">
+            <div class="col-2">Szukaj po:</div>
+            <div class="col-1">   @Html.RadioButton("searchby", "Title", true) <text>Tutuł</text></div>
+            <div class="col-1">   @Html.RadioButton("searchby", "Author")<text>Autor</text></div>
+            <div class="col-1">   @Html.RadioButton("searchby", "ISBN")<text>ISBN</text> </div>
+            <div class="col-1">   @Html.RadioButton("searchby", "Year") <text>Rok</text></div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <input id="myInput" name="searching" class=" form-control flex-fill" type="text" placeholder="wyszukaj" aria-label="Wyszukaj" />
             </div>
+            <div class="col-4 input-group">
+                <input class="btn-dark  flex-fill" type="submit" value="Wyszukaj" />
+            </div>
+        </div>
     }
 
 </div>
@@ -34,7 +34,7 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Repository.RepositoryID)
+                        @Html.DisplayNameFor(model => model.BookID)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Title)
@@ -42,19 +42,15 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Year)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CategoryID)
-                    </th>
+
                     <th>
                         @Html.DisplayNameFor(model => model.Pages)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ISBN)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.for_who_string)
-                    </th>
-                    <th></th>
+
+                    @*<th></th>*@
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -68,41 +64,35 @@
                 }
                 else
                 {
-
                     foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @item.BookID
-                            </td>
-                            <td>
-                                @item.Title
-                            </td>
-                            <td>
-                                @item.Year
-                            </td>
-                            <td>
-                                @item.CategoryID
-                            </td>
-                            <td>
-                                @item.Pages
-                            </td>
-                            <td>
-                                @item.ISBN
-                            </td>
-                            <td>
-                                @item.for_who_string                              
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.BookID })
-                                @if (Session["login"] != null)
-                                {
-                                    <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", "Home", new { id = item.BookID, kto = (Session["adminID"]) }, null)
-                                }
-                            </td>
-                        </tr>
+                    <tr>
+                        @foreach (var item2 in item.Authors )
+                        {
+                            <td>@item2.Name " "@item2.Surname  </td>
+                        }
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            @item.Year
+                        </td>
+                        <td>
+                            @item.Pages
+                        </td>
+                        <td>
+                            @item.ISBN
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.BookID })
+                            @if (Session["login"] != null)
+                            {
+                                <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", "Home", new { id = item.BookID, kto = (Session["adminID"]) }, null)
+                            }
+                        </td>
+                    </tr>
                     }
                 }
 
@@ -115,12 +105,12 @@
 
 
 @*<script>
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
             });
         });
-    });
-</script>*@
+    </script>*@
