@@ -13,7 +13,7 @@ namespace Biblioteka.ModelView
         public int ISBN { get; set; }
         public int Pages { get; set; }
         public int Year { get; set; }
-         public IEnumerable<Autors_books2> Authors { get; set; }
+        public IEnumerable<Autors_books2> Authors { get; set; }
 
         public class Autors_books2
         {

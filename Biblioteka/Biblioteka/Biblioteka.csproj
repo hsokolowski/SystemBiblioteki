@@ -386,13 +386,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901091441270_newa.cs" />
-    <Compile Include="Migrations\201901091441270_newa.Designer.cs">
-      <DependentUpon>201901091441270_newa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901092132543_autbook.cs" />
-    <Compile Include="Migrations\201901092132543_autbook.Designer.cs">
-      <DependentUpon>201901092132543_autbook.cs</DependentUpon>
+    <Compile Include="Migrations\201901100929541_autbook.cs" />
+    <Compile Include="Migrations\201901100929541_autbook.Designer.cs">
+      <DependentUpon>201901100929541_autbook.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -482,15 +478,12 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901091441270_newa.resx">
-      <DependentUpon>201901091441270_newa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901092132543_autbook.resx">
-      <DependentUpon>201901092132543_autbook.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="App_Data\File\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\File\" />
+    <EmbeddedResource Include="Migrations\201901100929541_autbook.resx">
+      <DependentUpon>201901100929541_autbook.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -47,44 +47,45 @@ namespace Biblioteka.Controllers
 
             }
 
-            // var book_auth = dB.Books.SelectMany(a => a.AutBooks).Select(a => a.Author);
+
             //var book_aut = dB.Books
-            //   .Select(a => new
+            //   .Select(a => new 
             //   {
             //       Title = a.Title,
-            //       Isbn = a.ISBN,
+            //       ISBN = a.ISBN,
             //       Pages = a.Pages,
             //       Year = a.Year,
-            //       Authors = a.AutBooks.Select(b => new { Name = b.Author.Name, Surname = b.Author.Surname }).ToList()
+            //       Authors = a.AutBooks.Select(b => new  { Name = b.Author.Name, Surname = b.Author.Surname }).ToList()
+            //   }).ToList();
 
 
 
-           //Book book = new Book();
-           var book_aut = dB.Books
-             .Select(a => new Autors_books
-             {
-                 BookID = a.BookID,
-                 Title = a.Title,
-                 ISBN = a.ISBN,
-                 Pages = a.Pages,
-                 Year = a.Year,
-                 Authors = a.AutBooks.Select(b => new Autors_books.Autors_books2
-                 {
-                     Name = b.Author.Name,
-                     Surname = b.Author.Surname,
-                     Books  = b.Author.AutBooks.Select(ab => new Autors_books
-                     {
-                         BookID = ab.Book.BookID,
-                         Title = ab.Book.Title,
-                         ISBN = ab.Book.ISBN,
-                         Pages = ab.Book.Pages,
-                         Year = ab.Book.Year,
-                         Authors = ab.Book.AutBooks.Select(b2 => new Autors_books.Autors_books2 { Name = b2.Author.Name, Surname = b2.Author.Surname}).ToList()
-                     }
-                 )
-                 })
-                 .ToList(),
-             }).ToList();
+
+            var book_aut = dB.Books
+      .Select(a => new Autors_books
+      {
+          BookID = a.BookID,
+          Title = a.Title,
+          ISBN = a.ISBN,
+          Pages = a.Pages,
+          Year = a.Year,
+          Authors = a.AutBooks.Select(b => new Autors_books.Autors_books2
+          {
+              Name = b.Author.Name,
+              Surname = b.Author.Surname,
+              Books = b.Author.AutBooks.Select(ab => new Autors_books
+              {
+                  BookID = ab.Book.BookID,
+                  Title = ab.Book.Title,
+                  ISBN = ab.Book.ISBN,
+                  Pages = ab.Book.Pages,
+                  Year = ab.Book.Year,
+                  Authors = ab.Book.AutBooks.Select(b2 => new Autors_books.Autors_books2 { Name = b2.Author.Name, Surname = b2.Author.Surname }).ToList()
+              }
+          )
+          })
+          .ToList(),
+      }).ToList();
 
 
 

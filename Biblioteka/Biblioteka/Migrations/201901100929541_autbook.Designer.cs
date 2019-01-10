@@ -13,7 +13,7 @@ namespace Biblioteka.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201901092132543_autbook"; }
+            get { return "201901100929541_autbook"; }
         }
         
         string IMigrationMetadata.Source
