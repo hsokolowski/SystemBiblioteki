@@ -52,7 +52,7 @@ namespace Biblioteka.Models
 
         public virtual Repository Repository { get; set; }
 
-        public Autors_books autors_Books { get; set; }
+       // public Autors_books autors_Books { get; set; }
 
         [Display(Name = "Przeznaczona:")]
         public string for_who_string

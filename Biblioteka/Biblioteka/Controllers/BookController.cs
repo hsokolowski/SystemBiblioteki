@@ -18,11 +18,28 @@ namespace Biblioteka.Controllers
     {
         DB dB = new DB();
 
-        public ActionResult Index(string searching, string searchby)
+        public ActionResult Index()
         {
+
+            BookVM vm = new BookVM();
+            CategoryVM cvm = new CategoryVM();
+            ViewBag.Kats = new SelectList(cvm.Get_list(), "CategoryID", "Name");
+
+            return View(dB.Books.ToList());
+            
+
+        }
+        [HttpPost]
+        public ActionResult Index(string searching, string searchby, int kats)
+        {
+
+            BookVM vm = new BookVM();
+            List<Book> list = vm.Get_list().Where(a => a.CategoryID == kats).ToList();
+            CategoryVM cvm = new CategoryVM();
+            ViewBag.Kats = new SelectList(cvm.Get_list(), "CategoryID", "Name");
+
             if (searching != null)
             {
-
 
                 if (Session["login"] != null)
                 {
@@ -61,31 +78,31 @@ namespace Biblioteka.Controllers
 
 
 
-            var book_aut = dB.Books
-      .Select(a => new Autors_books
-      {
-          BookID = a.BookID,
-          Title = a.Title,
-          ISBN = a.ISBN,
-          Pages = a.Pages,
-          Year = a.Year,
-          Authors = a.AutBooks.Select(b => new Autors_books.Autors_books2
-          {
-              Name = b.Author.Name,
-              Surname = b.Author.Surname,
-              Books = b.Author.AutBooks.Select(ab => new Autors_books
-              {
-                  BookID = ab.Book.BookID,
-                  Title = ab.Book.Title,
-                  ISBN = ab.Book.ISBN,
-                  Pages = ab.Book.Pages,
-                  Year = ab.Book.Year,
-                  Authors = ab.Book.AutBooks.Select(b2 => new Autors_books.Autors_books2 { Name = b2.Author.Name, Surname = b2.Author.Surname }).ToList()
-              }
-          )
-          })
-          .ToList(),
-      }).ToList();
+            //      var book_aut = dB.Books
+            //.Select(a => new Autors_books
+            //{
+            //    BookID = a.BookID,
+            //    Title = a.Title,
+            //    ISBN = a.ISBN,
+            //    Pages = a.Pages,
+            //    Year = a.Year,
+            //    Authors = a.AutBooks.Select(b => new Autors_books.Autors_books2
+            //    {
+            //        Name = b.Author.Name,
+            //        Surname = b.Author.Surname,
+            //        Books = b.Author.AutBooks.Select(ab => new Autors_books
+            //        {
+            //            BookID = ab.Book.BookID,
+            //            Title = ab.Book.Title,
+            //            ISBN = ab.Book.ISBN,
+            //            Pages = ab.Book.Pages,
+            //            Year = ab.Book.Year,
+            //            Authors = ab.Book.AutBooks.Select(b2 => new Autors_books.Autors_books2 { Name = b2.Author.Name, Surname = b2.Author.Surname }).ToList()
+            //        }
+            //    )
+            //    })
+            //    .ToList(),
+            //}).ToList();
 
 
 
@@ -97,21 +114,17 @@ namespace Biblioteka.Controllers
             {
                 case "ISBN":
                     return View(dB.Books.Where(x => x.ISBN == s || searching == null).ToList());
-                    break;
-                case "Author":
-                    return View(book_aut
-                        .SelectMany(x => x.Authors 
-                        .Where(a => a.Surname.StartsWith(searching))).ToList());
-                    break;
                     
                 case "Title":
                     return View(dB.Books.Where(x => x.Title.StartsWith(searching) || searching == null).ToList());
-                    break;
+                    
                 case "Year":
                     return View(dB.Books.Where(x => x.Year == s || searching == null).ToList());
-                    break;
+                case "Category":
+                    ViewBag.Kats = new SelectList(cvm.Get_list(), "CategoryID", "Name");
+                    return View(list);
                 default:
-                    return View(book_aut);
+                    return View(dB.Books.Where(x => x.Title.StartsWith(searching) || searching == null).ToList());
             }
 
 
@@ -120,25 +133,30 @@ namespace Biblioteka.Controllers
 
         public JsonResult GetHistory(string searchTerm)
         {
-            var userId = (Int32)(Session["adminID"]);
-            var user_history = dB.Histories.Where(a => a.AccountID == userId).ToList();
-            var books = dB.Books.ToList();
-            if (searchTerm != null)
+            if ((Session["adminID"]) != null)
             {
-                user_history = user_history.Where(a => a.Search.Contains(searchTerm)).ToList();
-                books = books.Where(a => a.Title.Contains(searchTerm)).ToList();
-            }
-            var modifiedData = user_history.Select(a => new
-            {
-                search = a.Search,
-            });
-            var modifiedData2 = books.Select(a => new
-            {
-                id = a.BookID,
-                search = a.Title
+                var userId = (Int32)(Session["adminID"]);
+                var user_history = dB.Histories.Where(a => a.AccountID == userId).ToList();
+                var books = dB.Books.ToList();
+                if (searchTerm != null)
+                {
+                    user_history = user_history.Where(a => a.Search.Contains(searchTerm)).ToList();
+                    books = books.Where(a => a.Title.Contains(searchTerm)).ToList();
+                }
+                var modifiedData = user_history.Select(a => new
+                {
+                    search = a.Search,
+                });
+                var modifiedData2 = books.Select(a => new
+                {
+                    id = a.BookID,
+                    search = a.Title
 
-            });
-            return Json(modifiedData, JsonRequestBehavior.AllowGet);
+                });
+                return Json(modifiedData, JsonRequestBehavior.AllowGet);
+            }
+                return Json(null, JsonRequestBehavior.AllowGet);
+
         }
 
         public ActionResult Bok()
@@ -163,6 +181,8 @@ namespace Biblioteka.Controllers
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
             return View(b);
         }
+
+      
         [HttpPost]
         public ActionResult Add(Book a)
         {
@@ -170,25 +190,28 @@ namespace Biblioteka.Controllers
             List<Book> list = vm.Get_list();
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
+
             // dodać plusowanie w repo
             vm.Dodaj(a);
             return RedirectToAction("Index");
         }
-        [HttpPost]
-        public ActionResult Add(int id, HttpPostedFileBase file)
-        {
-            BookVM vm = new BookVM();
-            Book u = vm.Find(id);
-            if (file == null)
-            {
-                return View(u);
-            }
-            string path = Server.MapPath("~/App_Data/File");
-            string fileName = Path.GetFileName(file.FileName);
-            string fullPath = Path.Combine(path, fileName);
-            file.SaveAs(fullPath);
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //public ActionResult Add(Book a, HttpPostedFileBase file)
+        //{
+        //    BookVM vm = new BookVM();
+        //    Book u = vm.Find(id);
+        //    if (file == null)
+        //    {
+        //        return View(u);
+        //    }
+        //    string path = Server.MapPath("~/App_Data/File");
+        //    string fileName = Path.GetFileName(file.FileName);
+        //    string fullPath = Path.Combine(path, fileName);
+        //    file.SaveAs(fullPath);
+        //    return RedirectToAction("Index");
+        //}
+       
+
         public ActionResult Edit(int id)
         {
             BookVM vm = new BookVM();
@@ -207,8 +230,10 @@ namespace Biblioteka.Controllers
         }
         public ActionResult Details(int id)
         {
-
-            ViewBag.viewBag = dB.Books.Where(a => a.BookID == 4).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
+            var idCat = dB.Books.Where(x => x.BookID == id).Select(x => x.CategoryID).FirstOrDefault().ToString();
+            Int32.TryParse(idCat, out int id_cat);
+            ViewBag.viewBag = dB.Books.Where(a => a.BookID == id).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
+            ViewBag.Category = dB.Categories.Where(x => x.CategoryID == id_cat).Select(x => x.Name).FirstOrDefault().ToString();
             BookVM vm = new BookVM();
             Book u = vm.Find(id);
             return View(u);
@@ -226,9 +251,24 @@ namespace Biblioteka.Controllers
         {
             BookVM vm = new BookVM();
             List<Book> list = vm.Get_list();
+            var list_books = list.OrderByDescending(a => a.BookID);
+            var listTop3 = list_books.Take(3);
+            List<int> list_categoryID = new List<int>();
+            List<String> list_categoryName = new List<string>();
+
+            foreach (var item in listTop3)
+            {
+                Int32.TryParse(dB.Books.Where(x => x.BookID == item.BookID).Select(x => x.CategoryID).FirstOrDefault().ToString(), out int id_cat);
+                list_categoryID.Add(id_cat);
+            }
+            foreach (var item in list_categoryID)
+            {
+               list_categoryName.Add(dB.Categories.Where(x => x.CategoryID == item).Select(x => x.Name).FirstOrDefault().ToString());
+            }
+            ViewBag.Category = list_categoryName;
             //TODO w widoku foreach reverse i take(3)  -> @foreach (var u in Model.Reverse().Take(3))
             // pobranie z bazy ścieżek do okładek i zapisania w viewbagach i potem wypisanie ich w widoku w <img>
-            return View();
+            return View(listTop3);
         }
     }
 }

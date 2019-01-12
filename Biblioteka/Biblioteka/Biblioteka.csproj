@@ -390,6 +390,10 @@
     <Compile Include="Migrations\201901100929541_autbook.Designer.cs">
       <DependentUpon>201901100929541_autbook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901101446567_123.cs" />
+    <Compile Include="Migrations\201901101446567_123.Designer.cs">
+      <DependentUpon>201901101446567_123.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -463,6 +467,7 @@
     <Content Include="Views\Borrowing\Borrow_failed.cshtml" />
     <Content Include="Views\Borrowing\Borrow_success.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Book\NewBooks.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -483,6 +488,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901100929541_autbook.resx">
       <DependentUpon>201901100929541_autbook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901101446567_123.resx">
+      <DependentUpon>201901101446567_123.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

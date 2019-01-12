@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Biblioteka.ModelView.Autors_books>
+﻿@model IEnumerable<Biblioteka.Models.Book>
 
 @{
     ViewBag.Title = "Index";
@@ -9,13 +9,14 @@
     @using (Html.BeginForm("Index", "Book", FormMethod.Get))
     {
 
-        <div class="row">
-            <div class="col-2">Szukaj po:</div>
-            <div class="col-1">   @Html.RadioButton("searchby", "Title", true) <text>Tutuł</text></div>
-            <div class="col-1">   @Html.RadioButton("searchby", "Author")<text>Autor</text></div>
-            <div class="col-1">   @Html.RadioButton("searchby", "ISBN")<text>ISBN</text> </div>
-            <div class="col-1">   @Html.RadioButton("searchby", "Year") <text>Rok</text></div>
-        </div>
+    <div class="row">
+        <div class="col-2">Szukaj po:</div>
+        <div class="col-1">   @Html.RadioButton("searchby", "Title", true) <text>Tutuł</text></div>
+        <div class="col-1">   @Html.RadioButton("searchby", "Author")<text>Autor</text></div>
+        <div class="col-1">   @Html.RadioButton("searchby", "ISBN")<text>ISBN</text> </div>
+        <div class="col-1">   @Html.RadioButton("searchby", "Year") <text>Rok</text></div>
+        @Html.DropDownList("Kats", null, htmlAttributes: new { @class = "form-control" })
+    </div>
         <div class="row">
             <div class="col-8">
                 <input id="myInput" name="searching" class=" form-control flex-fill" type="text" placeholder="wyszukaj" aria-label="Wyszukaj" />
@@ -67,10 +68,7 @@
                     foreach (var item in Model)
                     {
                     <tr>
-                        @foreach (var item2 in item.Authors )
-                        {
-                            <td>@item2.Name " "@item2.Surname  </td>
-                        }
+                        
                         <td>
                             @item.Title
                         </td>

@@ -172,7 +172,25 @@
 
                         }
                     </div>
+                    <div class="text-white">
+                        <h2>
+                            Newsy:
+                        </h2>            
+                        <ul>
+                            @foreach (var news in ViewBag.News)
+                            {
+                            <div>
+                                <div style="float:left;">Dodał: @news.AccountID |</div>
+                                <div style="float:left;">|Data: @news.Date</div>
+                                <div style="clear:both;">Tytuł: @news.Title</div>
+                                <div>Treść: @news.Content</div>
 
+                                <hr />
+                            </div>
+                            }
+
+                        </ul>
+                    </div>
                 </div>
             </div>
 
