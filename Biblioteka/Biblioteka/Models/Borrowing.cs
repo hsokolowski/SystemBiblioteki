@@ -21,6 +21,9 @@ namespace Biblioteka.Models
         [Display(Name = "Data zwrotu")]
         public DateTime Return_date { get; set; }
 
+        [Display(Name = "Czy zwrócone")]
+        public Boolean Returned { get; set; }
+
         [Display(Name = "Kara")]
         public int PenaltyID { get; set; }
         public Penalty Penalty { get; set; }
