@@ -334,3 +334,4 @@ ASALocalRun/
 *.config
 *.config
 Biblioteka/Biblioteka/Web.config
+*.config

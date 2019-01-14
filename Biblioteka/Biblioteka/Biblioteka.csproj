@@ -386,13 +386,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901100929541_autbook.cs" />
-    <Compile Include="Migrations\201901100929541_autbook.Designer.cs">
-      <DependentUpon>201901100929541_autbook.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901101446567_123.cs" />
-    <Compile Include="Migrations\201901101446567_123.Designer.cs">
-      <DependentUpon>201901101446567_123.cs</DependentUpon>
+    <Compile Include="Migrations\201901141723044_borrow.cs" />
+    <Compile Include="Migrations\201901141723044_borrow.Designer.cs">
+      <DependentUpon>201901141723044_borrow.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -486,11 +482,8 @@
     <Folder Include="App_Data\File\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901100929541_autbook.resx">
-      <DependentUpon>201901100929541_autbook.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901101446567_123.resx">
-      <DependentUpon>201901101446567_123.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901141723044_borrow.resx">
+      <DependentUpon>201901141723044_borrow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
