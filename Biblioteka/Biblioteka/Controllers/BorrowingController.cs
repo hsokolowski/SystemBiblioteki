@@ -42,6 +42,7 @@ namespace Biblioteka.Controllers
                             Borrow_date = DateTime.Now,
                             BookID = item.BookID,
                             PenaltyID = 1,
+                            Returned = false,
                             QueueID = 0
                         };
                         b.Return_date = b.Borrow_date.AddDays(30);
@@ -72,5 +73,6 @@ namespace Biblioteka.Controllers
 
             return View(list);
         }
+        
     }
 }

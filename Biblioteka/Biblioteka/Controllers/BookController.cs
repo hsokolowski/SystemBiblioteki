@@ -217,6 +217,10 @@ namespace Biblioteka.Controllers
             BookVM vm = new BookVM();
             List<Book> lista = vm.Get_list();
             Book a = lista.Where(s => s.BookID == id).FirstOrDefault();
+
+            CategoryVM vm2 = new CategoryVM();
+            ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
+
             return View(a);
         }
         [HttpPost]
