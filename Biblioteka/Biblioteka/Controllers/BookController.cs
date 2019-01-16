@@ -85,7 +85,7 @@ namespace Biblioteka.Controllers
         public ActionResult Add(int id = 0)
         {
             AuthorVM authorVM = new AuthorVM();
-            ViewBag.Authors = authorVM.Get_list().Select(a => a.Name+ " " + a.Surname);
+            ViewBag.Authors = authorVM.Get_list().Select(a => a.Name+ " " + a.Surname);// dodać id
              
 
             Book b = new Book();
@@ -94,8 +94,9 @@ namespace Biblioteka.Controllers
             return View(b);
         }
         [HttpPost]
-        public ActionResult Add(Book a)
+        public ActionResult Add(FormCollection kontrolki,Book a)
         {
+            //kontrolki[""]
             BookVM vm = new BookVM();
             List<Book> list = vm.Get_list();
             CategoryVM vm2 = new CategoryVM();
