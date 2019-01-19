@@ -327,17 +327,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812192242095_book_borrow_fix.cs" />
-    <Compile Include="Migrations\201812192242095_book_borrow_fix.Designer.cs">
-      <DependentUpon>201812192242095_book_borrow_fix.cs</DependentUpon>
+    <Compile Include="Migrations\201901161729450_newbaby.cs" />
+    <Compile Include="Migrations\201901161729450_newbaby.Designer.cs">
+      <DependentUpon>201901161729450_newbaby.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901011356182_search_history.cs" />
-    <Compile Include="Migrations\201901011356182_search_history.Designer.cs">
-      <DependentUpon>201901011356182_search_history.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901011556167_search_history1.cs" />
-    <Compile Include="Migrations\201901011556167_search_history1.Designer.cs">
-      <DependentUpon>201901011556167_search_history1.cs</DependentUpon>
+    <Compile Include="Migrations\201901180015589_v1.cs" />
+    <Compile Include="Migrations\201901180015589_v1.Designer.cs">
+      <DependentUpon>201901180015589_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -410,6 +406,7 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Borrowing\Borrow_failed.cshtml" />
     <Content Include="Views\Borrowing\Borrow_success.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -418,22 +415,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812192242095_book_borrow_fix.resx">
-      <DependentUpon>201812192242095_book_borrow_fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901011356182_search_history.resx">
-      <DependentUpon>201901011356182_search_history.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901011556167_search_history1.resx">
-      <DependentUpon>201901011556167_search_history1.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901161729450_newbaby.resx">
+      <DependentUpon>201901161729450_newbaby.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901180015589_v1.resx">
+      <DependentUpon>201901180015589_v1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

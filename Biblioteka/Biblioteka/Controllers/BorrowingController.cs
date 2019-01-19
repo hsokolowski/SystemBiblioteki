@@ -41,10 +41,11 @@ namespace Biblioteka.Controllers
                         Borrow_date = DateTime.Now,
                         BookID = item.BookID,
                         PenaltyID = 1,
-                        QueueID = 0
+                        QueueID = 0,
+                        Returned= false
 
                     };
-                    b.Return_date = b.Borrow_date.AddDays(30);
+                    b.Return_date = b.Borrow_date.AddDays(1);
                     borrowingVM.Dodaj(b);
                     repositoryVM.Minus_amount(repo_book);
                    

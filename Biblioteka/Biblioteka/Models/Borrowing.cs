@@ -32,5 +32,8 @@ namespace Biblioteka.Models
         public int BookID { get; set; }
         public Book Book { get; set; }
 
+        [Display(Name ="Czy zwrócona?")]
+        public bool Returned { get; set; }
+
     }
 }

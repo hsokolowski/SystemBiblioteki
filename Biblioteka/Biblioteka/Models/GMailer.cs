@@ -34,8 +34,8 @@ namespace Biblioteka.Models
             smtp.Port = GmailPort;
             smtp.EnableSsl = GmailSSL;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential(GmailUsername, GmailPassword);
+            smtp.UseDefaultCredentials = false;
 
             using (var message = new MailMessage(GmailUsername, ToEmail))
             {
