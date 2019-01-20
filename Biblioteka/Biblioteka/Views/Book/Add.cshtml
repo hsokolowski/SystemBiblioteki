@@ -7,7 +7,7 @@
 <h2>BookAdd</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Add", "Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -62,12 +62,7 @@
             @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
         </div>
     </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+
     <div class="form-group">
         @Html.LabelFor(model => model.for_who_string, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -76,14 +71,20 @@
             @Html.ValidationMessageFor(model => model.for_who_string, "", new { @class = "text-danger" })
         </div>
     </div>
+    
+        <input type="file" name="file1" class="danger-color-dark" />
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Dodaj" class="btn btn-default" />
+            </div>
         </div>
-    </div>
+
+    
+    
 </div>
 }
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

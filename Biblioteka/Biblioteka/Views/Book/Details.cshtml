@@ -11,11 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Repository.RepositoryID)
+            @Html.DisplayNameFor(model => model.BookID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Repository.RepositoryID)
+            @Html.DisplayFor(model => model.BookID)
         </dd>
 
         <dt>
@@ -66,19 +66,14 @@
             @Html.DisplayFor(model => model.for_who_string)
         </dd>
 
-    </dl>
-    <div>
-        @using (Html.BeginForm("Index","Book",FormMethod.Post, new { @enctype = "multipart/form-data" }))
-        {
-            <input type="file" name="file"/><br/>
-            <input type="submit" value="Save"/>
-        }
-    </div>
-</div>
 
+    </dl>
+
+</div>
 
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Download", "Download", new { id = Model.BookID }, new { target = "_blank" }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -170,12 +170,11 @@ namespace Biblioteka.Controllers
             mymodel.auth = vm2.Get_list();
             return View(mymodel);
         }
+        
         public ActionResult Add(int id = 0)
         {
             AuthorVM authorVM = new AuthorVM();
             ViewBag.Authors = authorVM.Get_list().Select(a => a.Name + " " + a.Surname);
-
-
             Book b = new Book();
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
@@ -184,12 +183,26 @@ namespace Biblioteka.Controllers
 
       
         [HttpPost]
-        public ActionResult Add(Book a)
+        public ActionResult Add(Book a , HttpPostedFileBase file1)
         {
+            
             BookVM vm = new BookVM();
             List<Book> list = vm.Get_list();
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
+            //upload pliku
+            var model = Server.MapPath("~/App_Data/File/") + file1.FileName;
+            if (file1.ContentLength > 0)
+            {
+                file1.SaveAs(model);
+                dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = file1.FileName, Path = model });
+                dB.SaveChanges();
+                ViewBag.Msg = "Uploaded Succesfully";
+            }
+            else
+            {
+                ViewBag.Msg = "Uploaded Failed";
+            }
 
             // dodać plusowanie w repo
             vm.Dodaj(a);
@@ -225,11 +238,26 @@ namespace Biblioteka.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Book m)
+        public ActionResult Edit(Book a, HttpPostedFileBase file1)
         {
             BookVM vm = new BookVM();
-            vm.Update(m);
+            vm.Update(a);
             ViewBag.Succesmessage = "Edycja pomyślna!";
+
+            //upload pliku
+            var model = Server.MapPath("~/App_Data/File/") + file1.FileName;
+            if (file1.ContentLength > 0)
+            {
+                file1.SaveAs(model);
+                dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = file1.FileName, Path = model });
+                dB.SaveChanges();
+                ViewBag.Msg = "Uploaded Succesfully";
+            }
+            else
+            {
+                ViewBag.Msg = "Uploaded Failed";
+            }
+
             return RedirectToAction("Index");
         }
         public ActionResult Details(int id)
@@ -243,6 +271,13 @@ namespace Biblioteka.Controllers
             return View(u);
         }
       
+        public FileResult Download(int id)
+        {
+            
+            var filePath = dB.Files.Where(x => x.Book.BookID == id).Select(x=>x.Path).FirstOrDefault();
+            return File(filePath,"image/png");
+        }
+
        
         public ActionResult Delete(int id)
         {
