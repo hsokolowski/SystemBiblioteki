@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Biblioteka.ModelView
@@ -17,6 +18,8 @@ namespace Biblioteka.ModelView
             List<Account> listaDB = mDb.Accounts.ToList();
             return listaDB;
         }
+        
+
         public void Dodaj(Account u)
         {
             DB mDb = new DB();

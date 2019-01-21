@@ -26,26 +26,32 @@ namespace Biblioteka.Controllers
             return View();
         }
        
-        public ActionResult SendMails()
+        public async Task<ActionResult> SendMails()
         {
             AccountVM acc = new AccountVM();
             BorrowingVM bor = new BorrowingVM();
             BookVM book = new BookVM();
-
-            var emails = from b in book.Get_list()
-                         from o in bor.Get_list() 
-                         from a in acc.Get_list() 
+            
+            List<Book> books = await Task.Run(() => book.Get_list());
+            List<Account> accounts = await Task.Run(() => acc.Get_list());
+            List<Borrowing> borrows = await Task.Run(() => bor.Get_list());
+          
+            var emails = from b in  books
+                         from o in borrows
+                         from a in accounts
                          where o.BookID==b.BookID && a.AccountID==o.ReaderID && o.Returned==false && o.Return_date < DateTime.Now
-                         select new
+                         select new 
                          {
                              a.Email,
                              b.Title
                          };
-
+           
             GMailer.GmailUsername = "panmail1212p@gmail.com";
             GMailer.GmailPassword = "zaq1@wsx";
             GMailer mailer = new GMailer();
-            Parallel.ForEach(emails, e =>
+           
+
+            Parallel.ForEach(emails,  e =>
             {
         
                 mailer.ToEmail = e.Email;
@@ -56,16 +62,16 @@ namespace Biblioteka.Controllers
             });
             ViewBag.Mails1 = "Wysłano próśb " + emails.Count();
 
-            var emails1 = from b in book.Get_list()
-                         from o in bor.Get_list()
-                         from a in acc.Get_list()
-                         where o.BookID == b.BookID && a.AccountID == o.ReaderID && o.Returned == false  && o.Return_date.Date == DateTime.Now.Date.AddDays(1)
+            var emails1 = from b in books
+                          from o in borrows
+                          from a in accounts
+                          where o.BookID == b.BookID && a.AccountID == o.ReaderID && o.Returned == false  && o.Return_date.Date == DateTime.Now.Date.AddDays(1)
                           select new
                          {
                              a.Email,
                              b.Title
                          };
-
+           
             Parallel.ForEach(emails, e =>
             {
                 mailer.ToEmail = e.Email;
@@ -76,8 +82,9 @@ namespace Biblioteka.Controllers
             });
 
             ViewBag.Mails2 = "Wysłano przypomnień " + emails1.Count();
+            
             return View("Admin");
         }
-
+        
     }
 }
