@@ -346,9 +346,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901191309096_new.cs" />
-    <Compile Include="Migrations\201901191309096_new.Designer.cs">
-      <DependentUpon>201901191309096_new.cs</DependentUpon>
+    <Compile Include="Migrations\201901211046186_new.cs" />
+    <Compile Include="Migrations\201901211046186_new.Designer.cs">
+      <DependentUpon>201901211046186_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -442,8 +442,8 @@
     <Folder Include="App_Data\File\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901191309096_new.resx">
-      <DependentUpon>201901191309096_new.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901211046186_new.resx">
+      <DependentUpon>201901211046186_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

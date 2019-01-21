@@ -7,12 +7,10 @@ namespace Biblioteka.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Borrowings", "Returned", c => c.Boolean(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Borrowings", "Returned");
         }
     }
 }
