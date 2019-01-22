@@ -14,8 +14,11 @@ namespace Biblioteka.Models
         [Display(Name = "Tag")]
         [Required]
         public string Name { get; set; }
-        public int BookID { get; set; }
-        public Book Book { get; set; }
+
+        public virtual ICollection<TagBook> TagBooks { get; set; }
+
+        //public int BookID { get; set; }
+        //public Book Book { get; set; }
 
     }
 }

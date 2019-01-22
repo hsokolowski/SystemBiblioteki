@@ -26,7 +26,8 @@ namespace Biblioteka.DAL
         public DbSet<File> Files { get; set; }
         public DbSet<AutBook> AutBooks { get; set; }
         public DbSet<Tag> Tags { get; set; }
-       public DbSet<History> Histories { get; set; }
+        public DbSet<TagBook> TagBooks { get; set; }
+        public DbSet<History> Histories { get; set; }
 
     }
 }

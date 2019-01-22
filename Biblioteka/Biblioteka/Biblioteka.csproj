@@ -350,6 +350,14 @@
     <Compile Include="Migrations\201901211046186_new.Designer.cs">
       <DependentUpon>201901211046186_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901222013583_dupaa.cs" />
+    <Compile Include="Migrations\201901222013583_dupaa.Designer.cs">
+      <DependentUpon>201901222013583_dupaa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901222021598_Tag_book.cs" />
+    <Compile Include="Migrations\201901222021598_Tag_book.Designer.cs">
+      <DependentUpon>201901222021598_Tag_book.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -370,6 +378,7 @@
     <Compile Include="Models\Queue.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TagBook.cs" />
     <Compile Include="ModelView\AccountVM.cs" />
     <Compile Include="ModelView\AuthorizationVM.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -445,6 +454,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901211046186_new.resx">
       <DependentUpon>201901211046186_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901222013583_dupaa.resx">
+      <DependentUpon>201901222013583_dupaa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901222021598_Tag_book.resx">
+      <DependentUpon>201901222021598_Tag_book.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

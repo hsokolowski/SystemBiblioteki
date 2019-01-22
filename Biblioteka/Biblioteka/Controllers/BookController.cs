@@ -173,75 +173,90 @@ namespace Biblioteka.Controllers
 
         public ActionResult Add(int id = 0)
         {
-            AuthorVM authorVM = new AuthorVM();
-            ViewBag.Authors = authorVM.Get_list().Select(a => a.Name + " " + a.Surname);
-            Book b = new Book();
+           
+            Book a = new Book();
+
             CategoryVM vm2 = new CategoryVM();
+
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
-            return View(b);
+            return View(a);
         }
 
 
         [HttpPost]
         public ActionResult Add(Book a, HttpPostedFileBase file1, HttpPostedFileBase file2, String tag)
         {
-            List<String> tags = new List<string>();
-            tags.AddRange(tag.Split(','));
-            foreach (var item in tags)
-            {
-                if (dB.Tags.Where(x => x.Name == item)!= null){
-                    
-                }
-            }
-
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
-            //upload pliku
-            dB.Books.Add(a);
-            if (file1 != null)
-            {
-                //upload pliku
-                var model = Server.MapPath("~/App_Data/File/") + file1.FileName;
-                if (file1.ContentLength > 0)
-                {
-                    file1.SaveAs(model);
-                    dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "png", Path = model });
+           
 
+
+            List<String> tags = new List<string>();
+            tags.AddRange(tag.Split(','));
+
+            using (var dbContextTransaction = dB.Database.BeginTransaction())
+            {
+                try
+                {
+                    dB.Books.Add(a);
+                    dB.SaveChanges();
+
+                    foreach (var item in tags)
+                    {
+                        var ta = dB.Tags.Where(x => x.Name == item).ToList();
+                        if (ta.Count() != 0)
+                        {
+                            dB.TagBooks.AddOrUpdate(new TagBook { TagID = dB.Tags.Where(x => x.Name == item).Select(x => x.TagID).FirstOrDefault(), Tag = dB.Tags.Where(x => x.Name == item).First(), BookID = a.BookID});
+                            dB.SaveChanges();
+                        }
+                        else
+                        {
+                            dB.Tags.Add(new Tag { Name = item });
+                            dB.SaveChanges();
+                            dB.TagBooks.Add(new TagBook { BookID = a.BookID, TagID = dB.Tags.Where(x => x.Name == item).Select(x => x.TagID).FirstOrDefault(), Tag = dB.Tags.Where(x => x.Name == item).First() });
+                        }
+                    }
+
+
+
+
+                    //upload pliku
+                    if (file1 != null)
+                    {
+                        //upload pliku
+                        var model = Server.MapPath("~/App_Data/File/") + file1.FileName;
+                        if (file1.ContentLength > 0)
+                        {
+                            file1.SaveAs(model);
+                            dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "png", Path = model });
+                            dB.SaveChanges();
+                        }
+                    }
+                    if (file2 != null)
+                    {
+                        //upload pliku
+                        var model2 = Server.MapPath("~/App_Data/File/") + file2.FileName;
+                        if (file2.ContentLength > 0)
+                        {
+                            file2.SaveAs(model2);
+                            dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "pdf", Path = model2 });
+                            dB.SaveChanges();
+                        }
+                    }
+
+                    dbContextTransaction.Commit();
+                }
+                catch (Exception)
+                {
+                    dbContextTransaction.Rollback();
                 }
             }
-            if (file2 != null)
-            {
-                //upload pliku
-                var model2 = Server.MapPath("~/App_Data/File/") + file2.FileName;
-                if (file2.ContentLength > 0)
-                {
-                    file2.SaveAs(model2);
-                    dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "pdf", Path = model2 });
-
-                }
-            }
 
 
-            // dodać plusowanie w repo
-            dB.SaveChanges();
+          
             return RedirectToAction("Index");
         }
-        //[HttpPost]
-        //public ActionResult Add(Book a, HttpPostedFileBase file)
-        //{
-        //    BookVM vm = new BookVM();
-        //    Book u = vm.Find(id);
-        //    if (file == null)
-        //    {
-        //        return View(u);
-        //    }
-        //    string path = Server.MapPath("~/App_Data/File");
-        //    string fileName = Path.GetFileName(file.FileName);
-        //    string fullPath = Path.Combine(path, fileName);
-        //    file.SaveAs(fullPath);
-        //    return RedirectToAction("Index");
-        //}
-
+  
 
         public ActionResult Edit(int id)
         {
@@ -257,36 +272,76 @@ namespace Biblioteka.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Book a, HttpPostedFileBase file1, HttpPostedFileBase file2, String tag)
         {
-
-
+            CategoryVM vm2 = new CategoryVM();
+            ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
             
             List<String> tags = new List<string>();
             tags.AddRange(tag.Split(','));
 
-            dB.Books.AddOrUpdate(a);
-            if (file1 != null)
-            {
-                //upload pliku
-                var model = Server.MapPath("~/App_Data/File/") + file1.FileName;
-                if (file1.ContentLength > 0)
-                {
-                    file1.SaveAs(model);
-                    dB.Files.AddOrUpdate(new File { Book = a, BookID = a.BookID, Name = "png", Path = model });
 
+            using (var dbContextTransaction = dB.Database.BeginTransaction())
+            {
+                try
+                {
+                    foreach (var item in tags)
+                    {
+                        var ta = dB.Tags.Where(x => x.Name == item).ToList();
+                        if (ta.Count() != 0)
+                        {
+                            if (dB.TagBooks.Where(x => x.BookID == a.BookID && x.TagID == dB.Tags.Where(y => y.Name == item).Select(y=>y.TagID).FirstOrDefault()).ToList().Count()==0)
+                            {
+                                dB.TagBooks.AddOrUpdate(new TagBook { TagID = dB.Tags.Where(x => x.Name == item).Select(x => x.TagID).FirstOrDefault(), Tag = dB.Tags.Where(x => x.Name == item).First(), BookID = a.BookID });
+                                dB.SaveChanges();
+                            }
+                            else
+                            {
+                                bool test = false;
+                            }
+                            
+                        }
+                        else
+                        {
+                            dB.Tags.Add(new Tag { Name = item });
+                            dB.SaveChanges();
+                            dB.TagBooks.Add(new TagBook { BookID = a.BookID, TagID = dB.Tags.Where(x => x.Name == item).Select(x => x.TagID).FirstOrDefault(), Tag = dB.Tags.Where(x => x.Name == item).First() });
+                        }
+                    }
+
+                    //upload pliku
+                    if (file1 != null)
+                    {
+                        //upload pliku
+                        var model = Server.MapPath("~/App_Data/File/") + file1.FileName;
+                        if (file1.ContentLength > 0)
+                        {
+                            file1.SaveAs(model);
+                            dB.Files.AddOrUpdate(new File { Book = a, BookID = a.BookID, Name = "png", Path = model });
+                            dB.SaveChanges();
+                        }
+                    }
+                    if (file2 != null)
+                    {
+                        //upload pliku
+                        var model2 = Server.MapPath("~/App_Data/File/") + file2.FileName;
+                        if (file2.ContentLength > 0)
+                        {
+                            file2.SaveAs(model2);
+                            dB.Files.AddOrUpdate(new File { Book = a, BookID = a.BookID, Name = "pdf", Path = model2 });
+                            dB.SaveChanges();
+                        }
+                    }
+
+                    dB.Books.AddOrUpdate(a);
+                    dB.SaveChanges();
+
+                    dbContextTransaction.Commit();
+                }
+                catch (Exception)
+                {
+                    dbContextTransaction.Rollback();
                 }
             }
-            if (file2 != null)
-            {
-                //upload pliku
-                var model2 = Server.MapPath("~/App_Data/File/") + file2.FileName;
-                if (file2.ContentLength > 0)
-                {
-                    file2.SaveAs(model2);
-                    dB.Files.AddOrUpdate(new File { Book = a, BookID = a.BookID, Name = "pdf", Path = model2 });
 
-                }
-            }
-            dB.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult Details(int id)
@@ -302,7 +357,7 @@ namespace Biblioteka.Controllers
 
         public FileResult Download(int id)
         {
-           
+
             var filePath = dB.Files.Where(x => x.Book.BookID == id && x.Name == "png").Select(x => x.Path).FirstOrDefault();
 
             //if (filePath != null) { return File(filePath, "image/png"); } else

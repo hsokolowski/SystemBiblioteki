@@ -44,7 +44,7 @@ namespace Biblioteka.Models
 
         public virtual ICollection<AutBook> AutBooks { get; set; }
 
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<TagBook> TagBooks { get; set; }
 
         public virtual ICollection<Borrowing> Borrowings { get; set; }
 
@@ -52,7 +52,7 @@ namespace Biblioteka.Models
 
         public virtual Repository Repository { get; set; }
 
-       // public Autors_books autors_Books { get; set; }
+       
 
         [Display(Name = "Przeznaczona:")]
         public string for_who_string
