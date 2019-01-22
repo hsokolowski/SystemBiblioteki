@@ -424,6 +424,7 @@
     <Content Include="Views\Borrowing\Borrow_success.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Book\NewBooks.cshtml" />
+    <Content Include="Views\Book\Empty.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

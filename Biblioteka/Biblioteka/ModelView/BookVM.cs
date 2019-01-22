@@ -71,9 +71,10 @@ namespace Biblioteka.ModelView
             DB db = new DB();
             Book move = new Book() { BookID = id };
             //Trzeba kasować repo razem z książką bo jest relacja 1do1
-          //  Repository repository = new Repository() { Book = move };
+            Repository repository = new Repository() { Book = move };
             db.Books.Attach(move);
             db.Books.Remove(move);
+            //db.Repositories.Attach(repository);
             //db.Repositories.Remove(repository);
             db.SaveChanges();
         }

@@ -74,6 +74,8 @@
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
-    @Html.ActionLink("Download", "Download", new { id = Model.BookID }, new { target = "_blank" }) |
+    @Html.ActionLink("Pobierz obrazek", "Download", new { id = Model.BookID }, new { target = "_blank" }) |
+    @Html.ActionLink("Pobierz spis treści", "Download2", new { id = Model.BookID }, new { target = "_blank" }) |
+    @ViewBag.msg
     @Html.ActionLink("Back to List", "Index")
 </p>

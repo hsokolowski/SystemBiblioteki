@@ -26,7 +26,7 @@ namespace Biblioteka.Controllers
             ViewBag.Kats = new SelectList(cvm.Get_list(), "CategoryID", "Name");
 
             return View(dB.Books.ToList());
-            
+
 
         }
         [HttpPost]
@@ -114,10 +114,10 @@ namespace Biblioteka.Controllers
             {
                 case "ISBN":
                     return View(dB.Books.Where(x => x.ISBN == s || searching == null).ToList());
-                    
+
                 case "Title":
                     return View(dB.Books.Where(x => x.Title.StartsWith(searching) || searching == null).ToList());
-                    
+
                 case "Year":
                     return View(dB.Books.Where(x => x.Year == s || searching == null).ToList());
                 case "Category":
@@ -155,7 +155,7 @@ namespace Biblioteka.Controllers
                 });
                 return Json(modifiedData, JsonRequestBehavior.AllowGet);
             }
-                return Json(null, JsonRequestBehavior.AllowGet);
+            return Json(null, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -170,7 +170,7 @@ namespace Biblioteka.Controllers
             mymodel.auth = vm2.Get_list();
             return View(mymodel);
         }
-        
+
         public ActionResult Add(int id = 0)
         {
             AuthorVM authorVM = new AuthorVM();
@@ -181,35 +181,49 @@ namespace Biblioteka.Controllers
             return View(b);
         }
 
-      
+
         [HttpPost]
-        public ActionResult Add(Book a , HttpPostedFileBase file1)
+        public ActionResult Add(Book a, HttpPostedFileBase file1, HttpPostedFileBase file2, String tag)
         {
-            
-            BookVM vm = new BookVM();
-            List<Book> list = vm.Get_list();
+            List<String> tags = new List<string>();
+            tags.AddRange(tag.Split(','));
+            foreach (var item in tags)
+            {
+                if (dB.Tags.Where(x => x.Name == item)!= null){
+                    
+                }
+            }
+
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
             //upload pliku
+            dB.Books.Add(a);
             if (file1 != null)
             {
+                //upload pliku
                 var model = Server.MapPath("~/App_Data/File/") + file1.FileName;
                 if (file1.ContentLength > 0)
                 {
                     file1.SaveAs(model);
-                    dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = file1.FileName, Path = model });
-                    dB.SaveChanges();
-                    ViewBag.Msg = "Uploaded Succesfully";
-                }
-                else
-                {
-                    ViewBag.Msg = "Uploaded Failed";
+                    dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "png", Path = model });
+
                 }
             }
-           
+            if (file2 != null)
+            {
+                //upload pliku
+                var model2 = Server.MapPath("~/App_Data/File/") + file2.FileName;
+                if (file2.ContentLength > 0)
+                {
+                    file2.SaveAs(model2);
+                    dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "pdf", Path = model2 });
+
+                }
+            }
+
 
             // dodać plusowanie w repo
-            vm.Dodaj(a);
+            dB.SaveChanges();
             return RedirectToAction("Index");
         }
         //[HttpPost]
@@ -227,13 +241,12 @@ namespace Biblioteka.Controllers
         //    file.SaveAs(fullPath);
         //    return RedirectToAction("Index");
         //}
-       
+
 
         public ActionResult Edit(int id)
         {
-            BookVM vm = new BookVM();
-            List<Book> lista = vm.Get_list();
-            Book a = lista.Where(s => s.BookID == id).FirstOrDefault();
+
+            var a = dB.Books.Where(s => s.BookID == id).FirstOrDefault();
 
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
@@ -242,15 +255,15 @@ namespace Biblioteka.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Book a, HttpPostedFileBase file1, String tag )
+        public ActionResult Edit(Book a, HttpPostedFileBase file1, HttpPostedFileBase file2, String tag)
         {
-            BookVM vm = new BookVM();
-            vm.Update(a);
-            ViewBag.Succesmessage = "Edycja pomyślna!";
-            List<String> tags = new List<string>();
-          
-                tags.AddRange(tag.Split(','));
+
+
             
+            List<String> tags = new List<string>();
+            tags.AddRange(tag.Split(','));
+
+            dB.Books.AddOrUpdate(a);
             if (file1 != null)
             {
                 //upload pliku
@@ -258,15 +271,22 @@ namespace Biblioteka.Controllers
                 if (file1.ContentLength > 0)
                 {
                     file1.SaveAs(model);
-                    dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = file1.FileName, Path = model });
-                    dB.SaveChanges();
-                    ViewBag.Msg = "Uploaded Succesfully";
-                }
-                else
-                {
-                    ViewBag.Msg = "Uploaded Failed";
+                    dB.Files.AddOrUpdate(new File { Book = a, BookID = a.BookID, Name = "png", Path = model });
+
                 }
             }
+            if (file2 != null)
+            {
+                //upload pliku
+                var model2 = Server.MapPath("~/App_Data/File/") + file2.FileName;
+                if (file2.ContentLength > 0)
+                {
+                    file2.SaveAs(model2);
+                    dB.Files.AddOrUpdate(new File { Book = a, BookID = a.BookID, Name = "pdf", Path = model2 });
+
+                }
+            }
+            dB.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult Details(int id)
@@ -279,14 +299,29 @@ namespace Biblioteka.Controllers
             Book u = vm.Find(id);
             return View(u);
         }
-      
+
         public FileResult Download(int id)
-        {            
-            var filePath = dB.Files.Where(x => x.Book.BookID == id).Select(x=>x.Path).FirstOrDefault();
+        {
+           
+            var filePath = dB.Files.Where(x => x.Book.BookID == id && x.Name == "png").Select(x => x.Path).FirstOrDefault();
+
+            //if (filePath != null) { return File(filePath, "image/png"); } else
+            //{
+            //    return View("~/Views//Book/Empty.cshtml");
+            //}
+            return File(filePath, "image/png");
+        }
+
+        public FileResult Download2(int id)
+        {
+            var filePath = dB.Files.Where(x => x.Book.BookID == id && x.Name == "pdf").Select(x => x.Path).FirstOrDefault();
+            //if (filePath != null) { return File(filePath, "application/pdf"); }else
+            //{
+            //return View("~/Views//Book/Empty.cshtml");
+            //}
             return File(filePath, "application/pdf");
         }
 
-       
         public ActionResult Delete(int id)
         {
             BookVM vm = new BookVM();
@@ -310,7 +345,7 @@ namespace Biblioteka.Controllers
             }
             foreach (var item in list_categoryID)
             {
-               list_categoryName.Add(dB.Categories.Where(x => x.CategoryID == item).Select(x => x.Name).FirstOrDefault().ToString());
+                list_categoryName.Add(dB.Categories.Where(x => x.CategoryID == item).Select(x => x.Name).FirstOrDefault().ToString());
             }
             ViewBag.Category = list_categoryName;
             //TODO w widoku foreach reverse i take(3)  -> @foreach (var u in Model.Reverse().Take(3))
