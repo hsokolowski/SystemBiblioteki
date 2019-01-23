@@ -115,6 +115,7 @@ namespace Biblioteka.Controllers
                     ///
                     Session["adminID"] = userdeatils.AccountID;
                     Session["login"] = userdeatils.Login;
+
                     FormsAuthentication.SetAuthCookie(user.Login, false);
                     
                     if (Url.IsLocalUrl(ReturnUrl))

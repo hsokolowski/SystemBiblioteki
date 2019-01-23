@@ -1,4 +1,5 @@
-﻿using Biblioteka.Models;
+﻿using Biblioteka.DAL;
+using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,9 @@ namespace Biblioteka.Controllers
             var userId = (Int32)(Session["adminID"]);
             if (list_book!=null)
             {
+                DB db = new DB();
+                Longlife l = db.Longlifes.Where(x => x.LonglifeID == 1).FirstOrDefault();
+                int days = l.longlife;
                 foreach (var item in list_book)
                 {
                     Repository repo_book = repositories.Where(a => a.RepositoryID == item.Repository.RepositoryID).FirstOrDefault();
@@ -45,7 +49,7 @@ namespace Biblioteka.Controllers
                             Returned = false,
                             QueueID = 0
                         };
-                        b.Return_date = b.Borrow_date.AddDays(30);
+                        b.Return_date = b.Borrow_date.AddDays(days);
                         borrowingVM.Dodaj(b);
                         repositoryVM.Minus_amount(repo_book);
                         Session["Zamowienie"] = null;
@@ -59,20 +63,33 @@ namespace Biblioteka.Controllers
             }
             return View();
         }
-        //Archwium wypożyczeń od najnowszych
-        public ActionResult Archives(int id)
+        [Authorize]
+        public ActionResult Archiwum()
         {
-            if(Session["adminID"]==null)
-            {
-                return View("Index", "Home");
-            }
-            //int ID = Int32.Parse(Session["adminID"].ToString());
-            int ID = id;
+            var userId = (Int32)(Session["adminID"]);
+
             BorrowingVM vm = new BorrowingVM();
-            List<Borrowing> list = vm.Get_list().Where(a => a.ReaderID == ID).Reverse().ToList();
+            BookVM bo = new BookVM();
+
+            var list = from b in vm.Get_list()
+                       join k in bo.Get_list() on b.BookID equals k.BookID
+                       where b.ReaderID == userId
+                       orderby b.BorrowID descending
+                       select new
+                       {
+                           b.BorrowID,
+                           b.Borrow_date,
+                           b.Return_date,
+                           b.Returned,
+                           k.Title
+                       };
+            if (list == null)
+            {
+                ViewBag.Archiwum = "Nic jeszcze nie zostało wypożyczone."; // TODO odsłużyć w widoku + wyświetlanie listy
+            }
 
             return View(list);
         }
-        
+
     }
 }
