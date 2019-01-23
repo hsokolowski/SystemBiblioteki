@@ -8,7 +8,15 @@
 <div style="color:red;">
     @ViewBag.Mails2
 </div>
-<div>
-    Długość wypożyczania:
-    <input type="text" id="long"/>   @*z formcollection*@
-</div>
+
+@using (Html.BeginForm("Admin", "Admin", FormMethod.Post))
+{
+    <div  >
+        Długość wypożyczania:
+        <input type="text" name="inputName" style="color:black;"/>
+        @ViewBag.Longlife
+        <input type="submit" style="color:black;"/>
+        @*z formcollection*@
+    </div>
+}
+

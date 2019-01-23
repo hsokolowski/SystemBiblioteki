@@ -1,4 +1,5 @@
-﻿using Biblioteka.Models;
+﻿using Biblioteka.DAL;
+using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,10 @@ namespace Biblioteka.Controllers
             var list_book = Session["Zamowienie"] as IEnumerable<Biblioteka.Models.Book>;
             var userId = (Int32)(Session["adminID"]);
 
+            DB db = new DB();
+            Longlife l = db.Longlifes.Where(x => x.LonglifeID == 1).FirstOrDefault();
+            int days = l.longlife;
+
             foreach (var item in list_book)
             {
                 Repository repo_book = repositories.ElementAtOrDefault(item.Repository.RepositoryID - 1);
@@ -41,7 +46,7 @@ namespace Biblioteka.Controllers
                         Returned = false
 
                     };
-                    b.Return_date = b.Borrow_date.AddDays(1);
+                    b.Return_date = b.Borrow_date.AddDays(days);
                     borrowingVM.Dodaj(b);
                     repositoryVM.Minus_amount(repo_book);
 

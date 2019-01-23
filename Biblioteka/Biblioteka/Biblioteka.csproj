@@ -335,6 +335,10 @@
     <Compile Include="Migrations\201901180015589_v1.Designer.cs">
       <DependentUpon>201901180015589_v1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901231317184_linglife1234.cs" />
+    <Compile Include="Migrations\201901231317184_linglife1234.Designer.cs">
+      <DependentUpon>201901231317184_linglife1234.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -349,6 +353,7 @@
     <Compile Include="Frees\IndentityModels.cs" />
     <Compile Include="Models\GMailer.cs" />
     <Compile Include="Models\History.cs" />
+    <Compile Include="Models\Longlife.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Penalty.cs" />
     <Compile Include="Models\Repository.cs" />
@@ -427,6 +432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901180015589_v1.resx">
       <DependentUpon>201901180015589_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901231317184_linglife1234.resx">
+      <DependentUpon>201901231317184_linglife1234.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

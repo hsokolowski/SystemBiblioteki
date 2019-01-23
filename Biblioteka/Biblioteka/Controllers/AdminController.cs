@@ -1,8 +1,10 @@
 ﻿using Biblioteka.CustomFilters;
+using Biblioteka.DAL;
 using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -23,6 +25,36 @@ namespace Biblioteka.Controllers
         [AdminRole]
         public ActionResult Admin()
         {
+            DB db = new DB();
+            if(!db.Longlifes.Any())
+            {
+                ViewBag.Longlife = "Długość wypożyczenia: " + db.Longlifes.OrderByDescending(o => o.LonglifeID).FirstOrDefault();
+            }
+            
+            
+
+
+            return View();
+        }
+        [AdminRole]
+        [HttpPost]
+        public ActionResult Admin(FormCollection form)
+        {
+            string value = Convert.ToString(form["inputName"]);
+             DB db = new DB();
+            //ViewBag.Longlife = "Długość wypożyczenia: " + db.Longlifes.Last();
+            if(value!=null&&value!="")
+            {
+                int days = Int32.Parse(value);
+
+                Longlife l = db.Longlifes.Where(x => x.LonglifeID == 1).FirstOrDefault();
+                l.longlife = days;
+                db.Entry(l).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Longlife = "Długość wypożyczenia została ustawiona na: " + days +" dni!";
+            }
+
+
             return View();
         }
        

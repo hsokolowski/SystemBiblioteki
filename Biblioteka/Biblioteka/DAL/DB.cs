@@ -28,5 +28,8 @@ namespace Biblioteka.DAL
         public DbSet<Tag> Tags { get; set; }
        public DbSet<History> Histories { get; set; }
 
+        public DbSet<Longlife> Longlifes { get; set; }
+
+
     }
 }
