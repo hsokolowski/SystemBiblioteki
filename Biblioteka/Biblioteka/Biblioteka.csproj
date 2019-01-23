@@ -346,17 +346,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901211046186_new.cs" />
-    <Compile Include="Migrations\201901211046186_new.Designer.cs">
-      <DependentUpon>201901211046186_new.cs</DependentUpon>
+    <Compile Include="Migrations\201901231042394_tags.cs" />
+    <Compile Include="Migrations\201901231042394_tags.Designer.cs">
+      <DependentUpon>201901231042394_tags.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901222013583_dupaa.cs" />
-    <Compile Include="Migrations\201901222013583_dupaa.Designer.cs">
-      <DependentUpon>201901222013583_dupaa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901222021598_Tag_book.cs" />
-    <Compile Include="Migrations\201901222021598_Tag_book.Designer.cs">
-      <DependentUpon>201901222021598_Tag_book.cs</DependentUpon>
+    <Compile Include="Migrations\201901231339329_FUllanme.cs" />
+    <Compile Include="Migrations\201901231339329_FUllanme.Designer.cs">
+      <DependentUpon>201901231339329_FUllanme.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -434,6 +430,7 @@
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Book\NewBooks.cshtml" />
     <Content Include="Views\Book\Empty.cshtml" />
+    <Content Include="Views\Book\TagSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -452,14 +449,11 @@
     <Folder Include="App_Data\File\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901211046186_new.resx">
-      <DependentUpon>201901211046186_new.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901231042394_tags.resx">
+      <DependentUpon>201901231042394_tags.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901222013583_dupaa.resx">
-      <DependentUpon>201901222013583_dupaa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901222021598_Tag_book.resx">
-      <DependentUpon>201901222021598_Tag_book.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901231339329_FUllanme.resx">
+      <DependentUpon>201901231339329_FUllanme.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

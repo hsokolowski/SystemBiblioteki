@@ -19,9 +19,9 @@ namespace Biblioteka.Models
         [Required(ErrorMessage = "To pole jest wymagane!")]
         public string Surname { get; set; }
 
-        //[Display(Name = "Kraj")]
-        //[Required(ErrorMessage = "To pole jest wymagane!")]
-        //public string Country { get; set; }
+        [Display(Name = "Imie i Nazwisko")]
+        [Required(ErrorMessage = "To pole jest wymagane!")]
+        public string FullName { get; set; }
 
         public virtual ICollection<AutBook> AutBooks { get; set; }
     }

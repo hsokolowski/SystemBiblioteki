@@ -171,9 +171,9 @@ namespace Biblioteka.Controllers
             return View(mymodel);
         }
 
-        public ActionResult Add(int id = 0)
+        public ActionResult Add()
         {
-           
+
             Book a = new Book();
 
             CategoryVM vm2 = new CategoryVM();
@@ -184,29 +184,72 @@ namespace Biblioteka.Controllers
 
 
         [HttpPost]
-        public ActionResult Add(Book a, HttpPostedFileBase file1, HttpPostedFileBase file2, String tag)
+        public ActionResult Add(Book a, HttpPostedFileBase file1, HttpPostedFileBase file2, String tag, String author)
         {
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
-           
 
+            List<String> authors = new List<string>();
+            authors.AddRange(author.Split(','));
 
             List<String> tags = new List<string>();
             tags.AddRange(tag.Split(','));
 
+
+            //foreach (var item in authors)
+            //{
+            //    var autorList = dB.Authors.Where(x => x.FullName.StartsWith(item)).ToList();
+            //    if (autorList.Count() != 0)
+            //    {
+            //        dB.AutBooks.AddOrUpdate(new AutBook { AuthorID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Author = dB.Authors.Where(x => x.FullName == item).First(), BookID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Book = a });
+            //        dB.SaveChanges();
+            //    }
+            //    else
+            //    {
+            //        var name_surname = item.Split(' ');
+            //        dB.Authors.Add(new Author { FullName = item, Name = name_surname[0], Surname = name_surname[1] });
+            //        dB.SaveChanges();
+            //        dB.AutBooks.Add(new AutBook { AuthorID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Author = dB.Authors.Where(x => x.FullName == item).First(), BookID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Book = a });
+
+            //    }
+            //}
+
+
+
+
+
             using (var dbContextTransaction = dB.Database.BeginTransaction())
             {
-                try
-                {
-                    dB.Books.Add(a);
-                    dB.SaveChanges();
 
+                dB.Books.Add(a);
+
+                if (author != "")
+                {
+                    foreach (var item in authors)
+                    {
+                        var autorList = dB.Authors.Where(x => x.FullName.StartsWith(item)).ToList();
+                        if (autorList.Count() != 0)
+                        {
+                            dB.AutBooks.AddOrUpdate(new AutBook { AuthorID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Author = dB.Authors.Where(x => x.FullName == item).First(), BookID = a.BookID, Book = a });
+                            dB.SaveChanges();
+                        }
+                        else
+                        {
+                            var name_surname = item.Split(' ');
+                            dB.Authors.Add(new Author { FullName = item, Name = name_surname[0], Surname = name_surname[1] });
+                            dB.SaveChanges();
+                            dB.AutBooks.Add(new AutBook { AuthorID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Author = dB.Authors.Where(x => x.FullName == item).First(), BookID = a.BookID, Book = a });
+                        }
+                    }
+                }
+                if (tag != "")
+                {
                     foreach (var item in tags)
                     {
                         var ta = dB.Tags.Where(x => x.Name == item).ToList();
                         if (ta.Count() != 0)
                         {
-                            dB.TagBooks.AddOrUpdate(new TagBook { TagID = dB.Tags.Where(x => x.Name == item).Select(x => x.TagID).FirstOrDefault(), Tag = dB.Tags.Where(x => x.Name == item).First(), BookID = a.BookID});
+                            dB.TagBooks.AddOrUpdate(new TagBook { TagID = dB.Tags.Where(x => x.Name == item).Select(x => x.TagID).FirstOrDefault(), Tag = dB.Tags.Where(x => x.Name == item).First(), BookID = a.BookID });
                             dB.SaveChanges();
                         }
                         else
@@ -216,44 +259,40 @@ namespace Biblioteka.Controllers
                             dB.TagBooks.Add(new TagBook { BookID = a.BookID, TagID = dB.Tags.Where(x => x.Name == item).Select(x => x.TagID).FirstOrDefault(), Tag = dB.Tags.Where(x => x.Name == item).First() });
                         }
                     }
-
-                    //upload pliku
-                    if (file1 != null)
-                    {
-                        //upload pliku
-                        var model = Server.MapPath("~/App_Data/File/") + file1.FileName;
-                        if (file1.ContentLength > 0)
-                        {
-                            file1.SaveAs(model);
-                            dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "png", Path = model });
-                            dB.SaveChanges();
-                        }
-                    }
-                    if (file2 != null)
-                    {
-                        //upload pliku
-                        var model2 = Server.MapPath("~/App_Data/File/") + file2.FileName;
-                        if (file2.ContentLength > 0)
-                        {
-                            file2.SaveAs(model2);
-                            dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "pdf", Path = model2 });
-                            dB.SaveChanges();
-                        }
-                    }
-
-                    dbContextTransaction.Commit();
                 }
-                catch (Exception)
+                //upload pliku
+                if (file1 != null)
                 {
-                    dbContextTransaction.Rollback();
+                    //upload pliku
+                    var model = Server.MapPath("~/App_Data/File/") + file1.FileName;
+                    if (file1.ContentLength > 0)
+                    {
+                        file1.SaveAs(model);
+                        dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "png", Path = model });
+                        dB.SaveChanges();
+                    }
                 }
+                if (file2 != null)
+                {
+                    //upload pliku
+                    var model2 = Server.MapPath("~/App_Data/File/") + file2.FileName;
+                    if (file2.ContentLength > 0)
+                    {
+                        file2.SaveAs(model2);
+                        dB.Files.Add(new File { Book = a, BookID = a.BookID, Name = "pdf", Path = model2 });
+                        dB.SaveChanges();
+                    }
+                }
+                dB.SaveChanges();
+                dbContextTransaction.Commit();
+
             }
 
 
-          
+
             return RedirectToAction("Index");
         }
-  
+
 
         public ActionResult Edit(int id)
         {
@@ -271,7 +310,7 @@ namespace Biblioteka.Controllers
         {
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
-            
+
             List<String> tags = new List<string>();
             tags.AddRange(tag.Split(','));
 
@@ -285,7 +324,7 @@ namespace Biblioteka.Controllers
                         var ta = dB.Tags.Where(x => x.Name == item).ToList();
                         if (ta.Count() != 0)
                         {
-                            if (dB.TagBooks.Where(x => x.BookID == a.BookID && x.TagID == dB.Tags.Where(y => y.Name == item).Select(y=>y.TagID).FirstOrDefault()).ToList().Count()==0)
+                            if (dB.TagBooks.Where(x => x.BookID == a.BookID && x.TagID == dB.Tags.Where(y => y.Name == item).Select(y => y.TagID).FirstOrDefault()).ToList().Count() == 0)
                             {
                                 dB.TagBooks.AddOrUpdate(new TagBook { TagID = dB.Tags.Where(x => x.Name == item).Select(x => x.TagID).FirstOrDefault(), Tag = dB.Tags.Where(x => x.Name == item).First(), BookID = a.BookID });
                                 dB.SaveChanges();
@@ -344,14 +383,18 @@ namespace Biblioteka.Controllers
             //Lista autorów
             ViewBag.Author = dB.Books.Where(a => a.BookID == id).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
 
-            ViewBag.Tags = dB.Books.Where(a => a.BookID == id).SelectMany(a => a.TagBooks).Select(a => new { a.Tag.Name }).ToList();
-           
+            ViewBag.Tags = dB.Books.Where(a => a.BookID == id).SelectMany(a => a.TagBooks).Select(a => a.Tag).ToList();
+
             ViewBag.Category = dB.Categories.Where(x => x.CategoryID == id_cat).Select(x => x.Name).FirstOrDefault().ToString();
             BookVM vm = new BookVM();
             Book u = vm.Find(id);
             return View(u);
         }
-
+        public ActionResult TagSearch(String tag)
+        {
+            var Bookstags = dB.TagBooks.Where(x => x.Tag.Name == tag).Select(x => x.Book).ToList();
+            return View(Bookstags);
+        }
         public FileResult Download(int id)
         {
 

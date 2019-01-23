@@ -3,10 +3,12 @@ namespace Biblioteka.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Tag_book : DbMigration
+    public partial class tags : DbMigration
     {
         public override void Up()
         {
+            DropForeignKey("dbo.Tags", "BookID", "dbo.Books");
+            DropIndex("dbo.Tags", new[] { "BookID" });
             CreateTable(
                 "dbo.TagBooks",
                 c => new
@@ -21,15 +23,19 @@ namespace Biblioteka.Migrations
                 .Index(t => t.TagID)
                 .Index(t => t.BookID);
             
+            DropColumn("dbo.Tags", "BookID");
         }
         
         public override void Down()
         {
+            AddColumn("dbo.Tags", "BookID", c => c.Int(nullable: false));
             DropForeignKey("dbo.TagBooks", "TagID", "dbo.Tags");
             DropForeignKey("dbo.TagBooks", "BookID", "dbo.Books");
             DropIndex("dbo.TagBooks", new[] { "BookID" });
             DropIndex("dbo.TagBooks", new[] { "TagID" });
             DropTable("dbo.TagBooks");
+            CreateIndex("dbo.Tags", "BookID");
+            AddForeignKey("dbo.Tags", "BookID", "dbo.Books", "BookID", cascadeDelete: true);
         }
     }
 }

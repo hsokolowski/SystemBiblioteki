@@ -65,15 +65,19 @@
         <dd>
             @Html.DisplayFor(model => model.for_who_string)
         </dd> 
-        <dt>
-            Tagi
-        </dt>
+        
 
         <dd>
+            <div style="float:left;" >Tagi:</div>
             @foreach (var item in ViewBag.Tags)
             {
-               <a href="#">@item.Name</a>
+                string nazwa = item.Name;
+
+               <div class="ml-1" style="float:left;"> 
+                     @Html.ActionLink(nazwa, "TagSearch", "Book", new { tag = @item.Name},null) 
+               </div>
             }
+            <div style="clear:both;"></div>
         </dd>
 
 
