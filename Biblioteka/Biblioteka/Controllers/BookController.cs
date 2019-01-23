@@ -217,9 +217,6 @@ namespace Biblioteka.Controllers
                         }
                     }
 
-
-
-
                     //upload pliku
                     if (file1 != null)
                     {
@@ -293,11 +290,6 @@ namespace Biblioteka.Controllers
                                 dB.TagBooks.AddOrUpdate(new TagBook { TagID = dB.Tags.Where(x => x.Name == item).Select(x => x.TagID).FirstOrDefault(), Tag = dB.Tags.Where(x => x.Name == item).First(), BookID = a.BookID });
                                 dB.SaveChanges();
                             }
-                            else
-                            {
-                                bool test = false;
-                            }
-                            
                         }
                         else
                         {
@@ -348,7 +340,12 @@ namespace Biblioteka.Controllers
         {
             var idCat = dB.Books.Where(x => x.BookID == id).Select(x => x.CategoryID).FirstOrDefault().ToString();
             Int32.TryParse(idCat, out int id_cat);
-            ViewBag.viewBag = dB.Books.Where(a => a.BookID == id).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
+
+            //Lista autorów
+            ViewBag.Author = dB.Books.Where(a => a.BookID == id).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
+
+            ViewBag.Tags = dB.Books.Where(a => a.BookID == id).SelectMany(a => a.TagBooks).Select(a => new { a.Tag.Name }).ToList();
+           
             ViewBag.Category = dB.Categories.Where(x => x.CategoryID == id_cat).Select(x => x.Name).FirstOrDefault().ToString();
             BookVM vm = new BookVM();
             Book u = vm.Find(id);

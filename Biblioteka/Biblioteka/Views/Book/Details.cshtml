@@ -64,6 +64,16 @@
 
         <dd>
             @Html.DisplayFor(model => model.for_who_string)
+        </dd> 
+        <dt>
+            Tagi
+        </dt>
+
+        <dd>
+            @foreach (var item in ViewBag.Tags)
+            {
+               <a href="#">@item.Name</a>
+            }
         </dd>
 
 
