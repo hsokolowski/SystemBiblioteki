@@ -114,7 +114,6 @@ namespace Biblioteka.Controllers
             {
                 case "ISBN":
                     return View(dB.Books.Where(x => x.ISBN == s || searching == null).ToList());
-
                 case "Title":
                     return View(dB.Books.Where(x => x.Title.StartsWith(searching) || searching == null).ToList());
 
@@ -131,44 +130,39 @@ namespace Biblioteka.Controllers
 
         }
 
-        public JsonResult GetHistory(string searchTerm)
+        //public JsonResult GetHistory(string searchTerm)
+        //{
+        //    if ((Session["adminID"]) != null)
+        //    {
+        //        var userId = (Int32)(Session["adminID"]);
+        //        var user_history = dB.Histories.Where(a => a.AccountID == userId).ToList();
+        //        var books = dB.Books.ToList();
+        //        if (searchTerm != null)
+        //        {
+        //            user_history = user_history.Where(a => a.Search.Contains(searchTerm)).ToList();
+        //            books = books.Where(a => a.Title.Contains(searchTerm)).ToList();
+        //        }
+        //        var modifiedData = user_history.Select(a => new
+        //        {
+        //            search = a.Search,
+        //        });
+        //        var modifiedData2 = books.Select(a => new
+        //        {
+        //            id = a.BookID,
+        //            search = a.Title
+
+        //        });
+        //        return Json(modifiedData, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(null, JsonRequestBehavior.AllowGet);
+
+        //}
+
+        public ActionResult SearchHistory()
         {
-            if ((Session["adminID"]) != null)
-            {
-                var userId = (Int32)(Session["adminID"]);
-                var user_history = dB.Histories.Where(a => a.AccountID == userId).ToList();
-                var books = dB.Books.ToList();
-                if (searchTerm != null)
-                {
-                    user_history = user_history.Where(a => a.Search.Contains(searchTerm)).ToList();
-                    books = books.Where(a => a.Title.Contains(searchTerm)).ToList();
-                }
-                var modifiedData = user_history.Select(a => new
-                {
-                    search = a.Search,
-                });
-                var modifiedData2 = books.Select(a => new
-                {
-                    id = a.BookID,
-                    search = a.Title
-
-                });
-                return Json(modifiedData, JsonRequestBehavior.AllowGet);
-            }
-            return Json(null, JsonRequestBehavior.AllowGet);
-
-        }
-
-        public ActionResult Bok()
-        {
-            BookVM vm = new BookVM();
-            CategoryVM vm1 = new CategoryVM();
-            AuthorVM vm2 = new AuthorVM();
-            dynamic mymodel = new ExpandoObject();
-            mymodel.book = vm.Get_list();
-            mymodel.cate = vm1.Get_list();
-            mymodel.auth = vm2.Get_list();
-            return View(mymodel);
+            var userId = (Int32)(Session["adminID"]);
+            var user_history = dB.Histories.Where(a => a.AccountID == userId).ToList();
+            return View(user_history);
         }
 
         public ActionResult Add()
@@ -194,30 +188,7 @@ namespace Biblioteka.Controllers
 
             List<String> tags = new List<string>();
             tags.AddRange(tag.Split(','));
-
-
-            //foreach (var item in authors)
-            //{
-            //    var autorList = dB.Authors.Where(x => x.FullName.StartsWith(item)).ToList();
-            //    if (autorList.Count() != 0)
-            //    {
-            //        dB.AutBooks.AddOrUpdate(new AutBook { AuthorID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Author = dB.Authors.Where(x => x.FullName == item).First(), BookID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Book = a });
-            //        dB.SaveChanges();
-            //    }
-            //    else
-            //    {
-            //        var name_surname = item.Split(' ');
-            //        dB.Authors.Add(new Author { FullName = item, Name = name_surname[0], Surname = name_surname[1] });
-            //        dB.SaveChanges();
-            //        dB.AutBooks.Add(new AutBook { AuthorID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Author = dB.Authors.Where(x => x.FullName == item).First(), BookID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Book = a });
-
-            //    }
-            //}
-
-
-
-
-
+            
             using (var dbContextTransaction = dB.Database.BeginTransaction())
             {
 
@@ -410,10 +381,7 @@ namespace Biblioteka.Controllers
         public FileResult Download2(int id)
         {
             var filePath = dB.Files.Where(x => x.Book.BookID == id && x.Name == "pdf").Select(x => x.Path).FirstOrDefault();
-            //if (filePath != null) { return File(filePath, "application/pdf"); }else
-            //{
-            //return View("~/Views//Book/Empty.cshtml");
-            //}
+           
             return File(filePath, "application/pdf");
         }
 

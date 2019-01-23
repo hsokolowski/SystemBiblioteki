@@ -114,7 +114,21 @@ namespace Biblioteka.Controllers
                     Session["Licznik"] = licznik;
                     ///
                     Session["adminID"] = userdeatils.AccountID;
+
                     Session["login"] = userdeatils.Login;
+
+                    if (userdeatils.Role == Role.Admin)
+                    {
+                        Session["IsAdmin"] = 1; // jest adminem
+                    }
+                    else if (userdeatils.Role == Role.Worker)
+                    {
+                        Session["IsAdmin"] = 2; // jest pracownikiem
+                    }
+                    else
+                    {
+                        Session["IsAdmin"] = 3; // jest czytaczem
+                    }
 
                     FormsAuthentication.SetAuthCookie(user.Login, false);
                     

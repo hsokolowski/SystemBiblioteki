@@ -11,6 +11,7 @@ namespace Biblioteka.Controllers
 {
     public class BorrowingController : Controller
     {
+        DB db = new DB();
         // GET: Borrowing
         public ActionResult Index()
         {
@@ -70,26 +71,48 @@ namespace Biblioteka.Controllers
 
             BorrowingVM vm = new BorrowingVM();
             BookVM bo = new BookVM();
-
+            
             var list = from b in vm.Get_list()
                        join k in bo.Get_list() on b.BookID equals k.BookID
                        where b.ReaderID == userId
                        orderby b.BorrowID descending
-                       select new
+                       select new Your_borrow
                        {
-                           b.BorrowID,
-                           b.Borrow_date,
-                           b.Return_date,
-                           b.Returned,
-                           k.Title
+                           Borrow_date = b.Borrow_date,
+                           Return_date = b.Return_date,
+                           Returned = b.Returned,
+                           Title = k.Title
                        };
+
             if (list == null)
             {
                 ViewBag.Archiwum = "Nic jeszcze nie zostało wypożyczone."; // TODO odsłużyć w widoku + wyświetlanie listy
             }
+            else
+            {
+                ViewBag.borrow = list;
+            }
 
-            return View(list);
+            return View();
         }
 
+        public ActionResult CalculatePenalties()
+        {
+            var toLate = db.Borrowings.Where(x => x.Returned == false && x.Return_date < DateTime.Now).ToList();
+            int a = 0;
+            var penalties = db.Penalties.Select(x => x.Days).ToList();
+            foreach (var item in toLate)
+            {
+                if(DateTime.Now > item.Return_date )
+                {
+                    item.PenaltyID = 2;
+                    a++;
+                }
+                
+            }
+            ViewBag.numPenalty = a;
+            return View("~View/Admin/Admin");
+        }
+       
     }
 }

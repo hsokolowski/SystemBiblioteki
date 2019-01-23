@@ -6,18 +6,14 @@
 
 
 <div class="container mb-2 mt-3">
-
     @using (Html.BeginForm("Index", "Book", FormMethod.Get))
     {
-
-
         <div class="row">
             <div class="col-12">
                 <input id="myInput" name="searching" class=" form-control flex-fill" type="text" placeholder="wyszukaj" aria-label="Wyszukaj" />
             </div>
         </div>
     }
-
 </div>
 
 <div class="container">
@@ -26,23 +22,18 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.BookID)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.Title)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Year)
                     </th>
-
                     <th>
                         @Html.DisplayNameFor(model => model.Pages)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ISBN)
                     </th>
-
-                    @*<th></th>*@
+                  
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -59,7 +50,6 @@
                     foreach (var item in Model)
                     {
                         <tr>
-
                             <td>
                                 @item.Title
                             </td>
@@ -73,9 +63,17 @@
                                 @item.ISBN
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
+
+                                
                                 @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.BookID })
+
+                                @if (Session["admin"] != null)
+                                {
+                                    @Html.ActionLink("Edit |", "Edit", new { id = item.BookID })
+                                    @Html.ActionLink(" Delete |", "Delete", new { id = item.BookID })
+                                }
+
+
                                 @if (Session["login"] != null)
                                 {
                                     <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", "Home", new { id = item.BookID, kto = (Session["adminID"]) }, null)

@@ -15,6 +15,7 @@ namespace Biblioteka.Controllers
     [AdminRole]
     public class AdminController : Controller
     {
+        DB db = new DB();
         // GET: Admin
         public ActionResult Index()
         {
@@ -23,7 +24,7 @@ namespace Biblioteka.Controllers
         [AdminRole]
         public ActionResult Admin()
         {
-            DB db = new DB();
+            
             if (!db.Longlifes.Any())
             {
                 ViewBag.Longlife = "Długość wypożyczenia: " + db.Longlifes.OrderByDescending(o => o.LonglifeID).FirstOrDefault();
@@ -40,7 +41,7 @@ namespace Biblioteka.Controllers
         public ActionResult Admin(FormCollection form)
         {
             string value = Convert.ToString(form["inputName"]);
-            DB db = new DB();
+            
             //ViewBag.Longlife = "Długość wypożyczenia: " + db.Longlifes.Last();
             if (value != null && value != "")
             {
@@ -53,7 +54,26 @@ namespace Biblioteka.Controllers
                 ViewBag.Longlife = "Długość wypożyczenia została ustawiona na: " + days + " dni!";
             }
 
+            
 
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Admin(int? a)
+        {
+            var toLate = db.Borrowings.Where(x => x.Returned == false && x.Return_date < DateTime.Now).ToList();
+             a = 0;
+            var penalties = db.Penalties.Select(x => x.Days).ToList();
+            foreach (var item in toLate)
+            {
+                if (DateTime.Now > item.Return_date)
+                {
+                    item.PenaltyID = 2;
+                    a++;
+                }
+
+            }
+            ViewBag.numPenalty = a;
             return View();
         }
 
