@@ -31,6 +31,15 @@ namespace Biblioteka.ModelView
             repo.Amount = amount - 1;            
             dB.SaveChanges();
         }
+
+        public void Plus_amount(Repository repository)
+        {
+            DB dB = new DB();
+            var amount = repository.Amount;
+            var repo = dB.Repositories.Find(repository.RepositoryID);
+            repo.Amount = amount + 1;
+            dB.SaveChanges();
+        }
         public void Update(Repository a)
         {
             DB db = new DB();

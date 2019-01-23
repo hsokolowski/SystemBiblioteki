@@ -11,11 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Repository.RepositoryID)
+            @Html.DisplayNameFor(model => model.BookID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Repository.RepositoryID)
+            @Html.DisplayFor(model => model.BookID)
         </dd>
 
         <dt>
@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CategoryID)
+            @ViewBag.Category
         </dd>
 
         <dt>
@@ -64,11 +64,32 @@
 
         <dd>
             @Html.DisplayFor(model => model.for_who_string)
+        </dd> 
+        
+
+        <dd>
+            <div style="float:left;" >Tagi:</div>
+            @foreach (var item in ViewBag.Tags)
+            {
+                string nazwa = item.Name;
+
+               <div class="ml-1" style="float:left;"> 
+                     @Html.ActionLink(nazwa, "TagSearch", "Book", new { tag = @item.Name},null) 
+               </div>
+            }
+            <div style="clear:both;"></div>
         </dd>
 
+
     </dl>
+
 </div>
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Pobierz obrazek", "Download", new { id = Model.BookID }, new { target = "_blank" }) |
+    @Html.ActionLink("Pobierz spis treści", "Download2", new { id = Model.BookID }, new { target = "_blank" }) |
+    @ViewBag.msg
     @Html.ActionLink("Back to List", "Index")
 </p>

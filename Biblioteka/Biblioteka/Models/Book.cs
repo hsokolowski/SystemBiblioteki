@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteka.ModelView;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,13 +44,15 @@ namespace Biblioteka.Models
 
         public virtual ICollection<AutBook> AutBooks { get; set; }
 
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<TagBook> TagBooks { get; set; }
 
         public virtual ICollection<Borrowing> Borrowings { get; set; }
 
         public virtual ICollection<Queue> Queues { get; set; }
 
         public virtual Repository Repository { get; set; }
+
+       
 
         [Display(Name = "Przeznaczona:")]
         public string for_who_string

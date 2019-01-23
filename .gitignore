@@ -332,3 +332,7 @@ ASALocalRun/
 /Biblioteka/Biblioteka/App_Data
 *.mdf
 *.config
+*.config
+Biblioteka/Biblioteka/Web.config
+*.config
+Biblioteka/Biblioteka/Web.config

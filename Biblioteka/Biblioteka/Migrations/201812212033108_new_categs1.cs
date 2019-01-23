@@ -3,16 +3,16 @@ namespace Biblioteka.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class search_history1 : DbMigration
+    public partial class new_categs1 : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Histories", "SearchDate", c => c.DateTime(nullable: false));
+            AlterColumn("dbo.Categories", "SubCategs", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Histories", "SearchDate");
+            AlterColumn("dbo.Categories", "SubCategs", c => c.Int(nullable: false));
         }
     }
 }

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Admin</h2>
+
+
+@Html.ActionLink("Wyślij maile!", "SendMails")
+
+
+<div style="color:red;">
+    @ViewBag.Mails1
+</div>
+<div style="color:red;">
+    @ViewBag.Mails2
+</div>
+
+@using (Html.BeginForm("Admin", "Admin", FormMethod.Post))
+{
+    <div>
+        Długość wypożyczania:
+        <input type="text" name="inputName" style="color:black;" />
+        @ViewBag.Longlife
+        <input type="submit" style="color:black;" />
+        @*z formcollection*@
+    </div>
+}

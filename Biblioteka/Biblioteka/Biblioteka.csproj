@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -190,6 +191,15 @@
     <Content Include="Content\MDB-Free_4.5.15\js\modules\wow.js" />
     <Content Include="Content\MDB-Free_4.5.15\js\popper.min.js" />
     <Content Include="Content\MDB-Free_4.5.15\README.txt" />
+    <Content Include="Content\Selectize\css\selectize.bootstrap2.css" />
+    <Content Include="Content\Selectize\css\selectize.bootstrap3.css" />
+    <Content Include="Content\Selectize\css\selectize.css" />
+    <Content Include="Content\Selectize\css\selectize.default.css" />
+    <Content Include="Content\Selectize\css\selectize.legacy.css" />
+    <Content Include="Content\Selectize\js\selectize.js" />
+    <Content Include="Content\Selectize\js\selectize.min.js" />
+    <Content Include="Content\Selectize\js\standalone\selectize.js" />
+    <Content Include="Content\Selectize\js\standalone\selectize.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Style-main_site.css" />
     <Content Include="Content\StyleSheet.css" />
@@ -278,6 +288,15 @@
     <Content Include="Content\MDB-Free_4.5.15\scss\mdb.scss" />
     <Content Include="Content\MDB-Free_4.5.15\scss\_custom-styles.scss" />
     <Content Include="Content\MDB-Free_4.5.15\scss\_custom-variables.scss" />
+    <Content Include="Content\Selectize\less\selectize.less" />
+    <Content Include="Content\Selectize\less\selectize.legacy.less" />
+    <Content Include="Content\Selectize\less\selectize.default.less" />
+    <Content Include="Content\Selectize\less\selectize.bootstrap3.less" />
+    <Content Include="Content\Selectize\less\selectize.bootstrap2.less" />
+    <Content Include="Content\Selectize\less\plugins\remove_button.less" />
+    <Content Include="Content\Selectize\less\plugins\optgroup_columns.less" />
+    <Content Include="Content\Selectize\less\plugins\dropdown_header.less" />
+    <Content Include="Content\Selectize\less\plugins\drag_drop.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\JavaScript.js" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
@@ -327,17 +346,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812192242095_book_borrow_fix.cs" />
-    <Compile Include="Migrations\201812192242095_book_borrow_fix.Designer.cs">
-      <DependentUpon>201812192242095_book_borrow_fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901011356182_search_history.cs" />
-    <Compile Include="Migrations\201901011356182_search_history.Designer.cs">
-      <DependentUpon>201901011356182_search_history.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901011556167_search_history1.cs" />
-    <Compile Include="Migrations\201901011556167_search_history1.Designer.cs">
-      <DependentUpon>201901011556167_search_history1.cs</DependentUpon>
+    <Compile Include="Migrations\201901231513153_nwe.cs" />
+    <Compile Include="Migrations\201901231513153_nwe.Designer.cs">
+      <DependentUpon>201901231513153_nwe.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -353,17 +364,20 @@
     <Compile Include="Frees\IndentityModels.cs" />
     <Compile Include="Models\GMailer.cs" />
     <Compile Include="Models\History.cs" />
+    <Compile Include="Models\Longlife.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Penalty.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Queue.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TagBook.cs" />
     <Compile Include="ModelView\AccountVM.cs" />
     <Compile Include="ModelView\AuthorizationVM.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ModelView\AuthorVM.cs" />
+    <Compile Include="ModelView\Autors_books.cs" />
     <Compile Include="ModelView\BookVM.cs" />
     <Compile Include="ModelView\BorrowingVM.cs" />
     <Compile Include="ModelView\CategoryVM.cs" />
@@ -410,6 +424,11 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Borrowing\Borrow_failed.cshtml" />
     <Content Include="Views\Borrowing\Borrow_success.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Book\NewBooks.cshtml" />
+    <Content Include="Views\Book\Empty.cshtml" />
+    <Content Include="Views\Book\TagSearch.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -418,22 +437,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812192242095_book_borrow_fix.resx">
-      <DependentUpon>201812192242095_book_borrow_fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901011356182_search_history.resx">
-      <DependentUpon>201901011356182_search_history.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901011556167_search_history1.resx">
-      <DependentUpon>201901011556167_search_history1.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\File\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901231513153_nwe.resx">
+      <DependentUpon>201901231513153_nwe.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

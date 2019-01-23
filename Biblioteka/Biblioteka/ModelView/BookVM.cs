@@ -25,9 +25,7 @@ namespace Biblioteka.ModelView
         {
             DB mDb = new DB();
             mDb.Books.Add(u);
-           
             mDb.Configuration.ValidateOnSaveEnabled = false;
-            //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
         }
         public void Update(Book a)
@@ -39,9 +37,6 @@ namespace Biblioteka.ModelView
             try
             {
                 db.SaveChanges();
-                // Your code...
-                // Could also be before try if you know the exception occurs in SaveChanges
-
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
@@ -70,16 +65,18 @@ namespace Biblioteka.ModelView
             db.Books.Attach(u);
             u = db.Books.Find(id);
             return u;
-
         }
         public void Delete(int id)
         {
             DB db = new DB();
             Book move = new Book() { BookID = id };
+            //Trzeba kasować repo razem z książką bo jest relacja 1do1
+            Repository repository = new Repository() { Book = move };
             db.Books.Attach(move);
             db.Books.Remove(move);
+            //db.Repositories.Attach(repository);
+            //db.Repositories.Remove(repository);
             db.SaveChanges();
-
         }
     }
 }

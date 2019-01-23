@@ -33,7 +33,7 @@ namespace Biblioteka.Controllers
         {
             CategoryVM vm = new CategoryVM();
             List<Category> list = vm.Get_list();
-            ViewBag.kategorie = new SelectList(vm.Get_list(), "ID", "Name");
+            ViewBag.kategorie = new SelectList(vm.Get_list(), "CategoryID", "Name");
             if (list.Any(x => x.Name == c.Name))
             {
                 ViewBag.DuplicateMessage = "Taka nazwa już istnieje!";

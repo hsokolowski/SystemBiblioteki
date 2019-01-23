@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Biblioteka.Models.Book>
+
+@{
+    ViewBag.Title = "TagSearch";
+}
+
+
+<div class="container mb-2 mt-3">
+
+    @using (Html.BeginForm("Index", "Book", FormMethod.Get))
+    {
+
+
+        <div class="row">
+            <div class="col-12">
+                <input id="myInput" name="searching" class=" form-control flex-fill" type="text" placeholder="wyszukaj" aria-label="Wyszukaj" />
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Year)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pages)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ISBN)
+                    </th>
+
+                    @*<th></th>*@
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td class="text-center" colspan="8" style="color:red">
+                            Brak rezultatów zapytania.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.Title
+                            </td>
+                            <td>
+                                @item.Year
+                            </td>
+                            <td>
+                                @item.Pages
+                            </td>
+                            <td>
+                                @item.ISBN
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.BookID })
+                                @if (Session["login"] != null)
+                                {
+                                    <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", "Home", new { id = item.BookID, kto = (Session["adminID"]) }, null)
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
