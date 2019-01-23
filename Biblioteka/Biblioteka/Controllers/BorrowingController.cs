@@ -96,6 +96,7 @@ namespace Biblioteka.Controllers
             return View();
         }
 
+       
         public ActionResult CalculatePenalties()
         {
             var toLate = db.Borrowings.Where(x => x.Returned == false && x.Return_date < DateTime.Now).ToList();

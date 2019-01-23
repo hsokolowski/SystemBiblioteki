@@ -27,6 +27,8 @@
     </div>
 }
 
-@Html.ActionLink("Podlicz kary", "Admin", "Admin")
-
-<p>Liczba kar @ViewBag.numPenalty</p>
+@using (Html.BeginForm("CalculatePenalties", "Borrowings", FormMethod.Get))
+{
+    <input  class="btn-black" type="submit" />
+     @ViewBag.numPenalty
+}

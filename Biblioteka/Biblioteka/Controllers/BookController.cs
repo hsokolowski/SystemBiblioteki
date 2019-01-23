@@ -178,7 +178,7 @@ namespace Biblioteka.Controllers
 
 
         [HttpPost]
-        public ActionResult Add(Book a, HttpPostedFileBase file1, HttpPostedFileBase file2, String tag, String author)
+        public ActionResult Add(Book a,int amount, HttpPostedFileBase file1, HttpPostedFileBase file2, String tag, String author)
         {
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
@@ -194,6 +194,9 @@ namespace Biblioteka.Controllers
 
                 dB.Books.Add(a);
 
+                
+                dB.Repositories.Add(new Repository { ISBN=a.ISBN,RepositoryID=a.BookID,Book=a,Amount = amount });
+
                 if (author != "")
                 {
                     foreach (var item in authors)
@@ -207,6 +210,7 @@ namespace Biblioteka.Controllers
                         else
                         {
                             var name_surname = item.Split(' ');
+                            
                             dB.Authors.Add(new Author { FullName = item, Name = name_surname[0], Surname = name_surname[1] });
                             dB.SaveChanges();
                             dB.AutBooks.Add(new AutBook { AuthorID = dB.Authors.Where(x => x.FullName == item).Select(x => x.AuthorID).FirstOrDefault(), Author = dB.Authors.Where(x => x.FullName == item).First(), BookID = a.BookID, Book = a });
@@ -387,9 +391,11 @@ namespace Biblioteka.Controllers
 
         public ActionResult Delete(int id)
         {
-            BookVM vm = new BookVM();
-            // dodać usuwanie w repo
-            vm.Delete(id);
+            var book = dB.Books.Where(x => x.BookID == id).FirstOrDefault();
+            var repo = dB.Repositories.Where(x => x.RepositoryID == id).FirstOrDefault();
+            dB.Books.Remove(book);
+            dB.Repositories.Remove(repo);
+            dB.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult NewBooks()

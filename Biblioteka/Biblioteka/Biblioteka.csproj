@@ -432,6 +432,7 @@
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Borrowing\Archiwum.cshtml" />
     <Content Include="Views\Book\SearchHistory.cshtml" />
+    <Content Include="Views\Borrowing\CalculatePenalties.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
