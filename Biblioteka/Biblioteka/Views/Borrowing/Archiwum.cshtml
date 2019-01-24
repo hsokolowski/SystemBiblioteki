@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Biblioteka.Models.Book>
+
+@{
+    ViewBag.Title = "Archiwum";
+}
+
+<h2>Archiwum</h2>
+
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table ">
+            <thead>
+                <tr>
+
+                    <th>
+                        Data wypożyczenia
+                    </th>
+                    <th>
+                        Data zwrotu
+                    </th>
+                    <th>
+                        Zwrócono?
+                    </th>
+                    <th>
+                        Tytuł?
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody id="myTable">
+
+                <tr>
+                    <td class="text-center" colspan="8" style="color:red">
+                        @ViewBag.Archiwum
+                    </td>
+                </tr>
+
+
+                @foreach (var item in ViewBag.borrow)
+                {
+                    <tr>
+
+                        <td>
+                            @item.Borrow_date
+                        </td>
+                        <td>
+                            @item.Return_date
+                        </td>
+                        <td>
+                            @item.Returned
+                        </td>
+                        <td>
+                            @item.Title
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

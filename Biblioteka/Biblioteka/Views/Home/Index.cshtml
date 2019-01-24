@@ -33,8 +33,7 @@
 <body>
     <header>
 
-        <nav class="navbar navbar-light navbar-expand-lg fixed-top default-color ">
-
+        <nav class="navbar navbar-expand-xl navbar-dark  ">
 
             <button class="navbar-toggler navbartext" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
                 <span class="navbar-toggler-icon"></span>
@@ -43,30 +42,8 @@
             <div class="collapse navbar-collapse" id="mainmenu">
 
                 <ul class="navbar-nav mr-auto">
-
                     <li class="nav-item">
-                        @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "nav-link " })
-
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navabardrop" data-toggle="dropdown">
-                            Kategorie
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item">
-                                @Html.ActionLink("Dodaj kategorie", "Add", "Category", new { area = "" }, new { @class = "nav-link" })
-                            </a>
-                            <a class="dropdown-item">
-                                @Html.ActionLink("Wyświetl kategorie", "Index", "Category", new { area = "" }, new { @class = "nav-link" })
-                            </a>
-
-                        </div>
-                    </li>
-
-
-
-                    <li class="nav-item">
+                        @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Lista Kategorii", "Index", "Category", new { area = "" }, new { @class = "nav-link" })
@@ -75,17 +52,44 @@
                         @Html.ActionLink("Książki", "Index", "Book", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Dodaj książkę", "Add", "Book", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Nowe Książki", "NewBooks", "Book", new { area = "" }, new { @class = "nav-link" })
                     </li>
+                    @if (Session["login"] != null)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Kącik czytelnika", "Archiwum", "Borrowing", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Moja historia wyszukiwania", "SearchHistory", "Book", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
+                    @if (Session["login"] != null)
+                    {
+                        if (Session["IsAdmin"].ToString() == "1")
+                        {
+                            <li class="nav-item dropdown ">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">Dodawnie CRUD</a>
+                                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                                    @Html.ActionLink("Dodaj kategorie", "Add", "Category", new { area = "" }, new { @class = "dropdown-item" })
 
+                                    @Html.ActionLink("Dodaj książkę", "Add", "Book", new { area = "" }, new { @class = "dropdown-item" })
+
+                                    @Html.ActionLink("Użytkownicy", "Index", "Account", new { area = "" }, new { @class = "dropdown-item" })
+
+                                    @Html.ActionLink("Użytkownicy do aktywacji", "Activation", "Admin", new { area = "" }, new { @class = "dropdown-item" })
+
+                                </div>
+                            </li>
+                        }
+                    }
                 </ul>
 
-                @*<form class="form-inline">
-
-                        <input class="form-control mr-1" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
-                        <button class="btn btn-light" type="submit">Znajdź</button>
-
-                    </form>*@
+                <form class="form-inline">
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Wyszukaj" aria-label="Wyszukaj">
+                    </div>
+                </form>
                 <ul class="navbar-nav navbar-right">
 
 
@@ -102,18 +106,11 @@
 
                     }
                     <li id="user" class="nav-item">
-
-                        <a class="navbar-text icon-user">
-                            @if (Session["login"] != null)
-                            {
-                                @Session["login"].ToString()
-                                //@Html.ActionLink(@Session["login"].ToString(),"Details","Account",null,null)
-                            }
-                        </a>
+                        @if (Session["login"] != null)
+                        {
+                            @Html.ActionLink(@Session["login"].ToString(), "Details", "Account", new { id = Session["adminID"] }, new { @class = "navbar-text icon-user" })
+                        }
                     </li>
-
-
-
 
                     @if (Session["login"] != null)
                     {
@@ -168,8 +165,6 @@
                         @using (Html.BeginForm("Index", "Book", FormMethod.Get, new { @class = "form-inline" }))
                         {
                             <input name="searching" class="form-control flex-fill" type="search" placeholder="wyszukaj" aria-label="Wyszukaj" />
-                            <select id="Histories" style="width:500px"></select>
-
                         }
                     </div>
                     <div class="text-white">

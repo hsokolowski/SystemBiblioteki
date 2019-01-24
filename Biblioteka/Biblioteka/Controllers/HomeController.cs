@@ -1,4 +1,5 @@
 ﻿using Biblioteka.CustomFilters;
+using Biblioteka.DAL;
 using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
@@ -17,8 +18,9 @@ namespace Biblioteka.Controllers
         public ActionResult Index()
         {
             NewsVM vm = new NewsVM();
-            List<News> list_news = vm.Get_list().Take(3).ToList();
-            ViewBag.News = list_news;
+            List<News> list_news = vm.Get_list().ToList();
+            list_news.Reverse();
+            ViewBag.News = list_news.Take(3);
             //-----
             AccountVM userBL = new AccountVM();
             List<Account> list = userBL.Get_list();
@@ -46,18 +48,28 @@ namespace Biblioteka.Controllers
             if (Session["Zamowienie"] != null)
             {
                 koszyk = (List<Book>)Session["Zamowienie"];
+                licznik = koszyk.Count();
             }
             else  koszyk = new List<Book>();
 
 
 
+            DB db = new DB();
+            var limit = db.Longlifes.Where(x => x.LonglifeID == 1).FirstOrDefault().limit;
+
             if (tym != null)
             {
-                
+                if (licznik >= limit)
+                {
+                    TempData["limit"] = "Maxymalnie można wypożyczyć 5 książek!";
+                    return RedirectToAction("Index", "Book");
+                }
                 koszyk.Add(tym);
                 licznik = koszyk.Count();
                 HttpContext.Session["Zamowienie"] = koszyk;
                 Session["Licznik"] = licznik;
+                //
+
                 return View("Koszyk", koszyk);
             }
             else
@@ -114,7 +126,21 @@ namespace Biblioteka.Controllers
                     Session["Licznik"] = licznik;
                     ///
                     Session["adminID"] = userdeatils.AccountID;
+
                     Session["login"] = userdeatils.Login;
+
+                    if (userdeatils.Role == Role.Admin)
+                    {
+                        Session["IsAdmin"] = 1; // jest adminem
+                    }
+                    else if (userdeatils.Role == Role.Worker)
+                    {
+                        Session["IsAdmin"] = 2; // jest pracownikiem
+                    }
+                    else
+                    {
+                        Session["IsAdmin"] = 3; // jest czytaczem
+                    }
 
                     FormsAuthentication.SetAuthCookie(user.Login, false);
                     

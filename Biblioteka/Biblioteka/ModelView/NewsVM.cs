@@ -21,6 +21,8 @@ namespace Biblioteka.ModelView
             DB mDb = new DB();
             mDb.News.Add(u);
             mDb.Configuration.ValidateOnSaveEnabled = false;
+
+           
             //LayerBus.BusPass.DodajFilm(u);
             mDb.SaveChanges();
         }

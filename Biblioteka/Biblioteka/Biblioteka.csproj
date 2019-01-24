@@ -346,9 +346,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901231513153_nwe.cs" />
-    <Compile Include="Migrations\201901231513153_nwe.Designer.cs">
-      <DependentUpon>201901231513153_nwe.cs</DependentUpon>
+    <Compile Include="Migrations\201901232352406_life.cs" />
+    <Compile Include="Migrations\201901232352406_life.Designer.cs">
+      <DependentUpon>201901232352406_life.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901241209368_data.cs" />
+    <Compile Include="Migrations\201901241209368_data.Designer.cs">
+      <DependentUpon>201901241209368_data.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -384,6 +388,7 @@
     <Compile Include="ModelView\NewsVM.cs" />
     <Compile Include="ModelView\PenaltyVM.cs" />
     <Compile Include="ModelView\RepositoryVM.cs" />
+    <Compile Include="ModelView\Your_borrow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\IsPesel.cs" />
   </ItemGroup>
@@ -429,6 +434,10 @@
     <Content Include="Views\Book\Empty.cshtml" />
     <Content Include="Views\Book\TagSearch.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Borrowing\Archiwum.cshtml" />
+    <Content Include="Views\Book\SearchHistory.cshtml" />
+    <Content Include="Views\Borrowing\CalculatePenalties.cshtml" />
+    <Content Include="Views\Admin\Activation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -447,8 +456,11 @@
     <Folder Include="App_Data\File\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901231513153_nwe.resx">
-      <DependentUpon>201901231513153_nwe.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901232352406_life.resx">
+      <DependentUpon>201901232352406_life.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901241209368_data.resx">
+      <DependentUpon>201901241209368_data.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

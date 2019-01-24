@@ -12,5 +12,7 @@ namespace Biblioteka.Models
         public int LonglifeID { get; set; }
 
         public int longlife { get; set; }
+
+        public int limit { get; set; }
     }
 }

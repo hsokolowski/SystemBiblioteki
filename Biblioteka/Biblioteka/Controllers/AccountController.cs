@@ -37,7 +37,7 @@ namespace Biblioteka.Controllers
 
             userBL.Dodaj(p);
             ViewBag.Succesmessage = "Rejestracja pomyślna!";
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
         [HttpGet]
         public ActionResult Edit(int id)

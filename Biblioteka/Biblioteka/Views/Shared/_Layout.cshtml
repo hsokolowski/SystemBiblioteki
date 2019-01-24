@@ -37,10 +37,6 @@
 
         <nav class="navbar navbar-expand-xl navbar-dark  ">
 
-            @*<div class="navbar-brand">
-                    <img id="brand" class="navbar-brand mt-2 mb-2" src="~/Content/images/fe4a2370c20e5886f1ddb81b8f651d1b.png" />
-                </div>*@
-
             <button class="navbar-toggler navbartext" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -50,19 +46,6 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         @Html.ActionLink("Biblioteka", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-
-                    </li>
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">Kategorie</a>
-                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-
-                            @Html.ActionLink("Dodaj kategorie", "Add", "Category", new { area = "" }, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Wyświetl kategorie", "Index", "Category", new { area = "" }, new { @class = "dropdown-item " })
-
-                        </div>
-                    </li>
-                    <li class="nav-item">
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Lista Kategorii", "Index", "Category", new { area = "" }, new { @class = "nav-link" })
@@ -71,9 +54,38 @@
                         @Html.ActionLink("Książki", "Index", "Book", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Dodaj książkę", "Add", "Book", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Nowe Książki", "NewBooks", "Book", new { area = "" }, new { @class = "nav-link" })
                     </li>
+                    @if (Session["login"] != null)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Kącik czytelnika", "Archiwum", "Borrowing", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Moja historia wyszukiwania", "SearchHistory", "Book", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
+                    @if (Session["login"] != null)
+                    {
+                        if (Session["IsAdmin"].ToString() == "1")
+                        {
+                            <li class="nav-item dropdown ">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">Dodawnie CRUD</a>
+                                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                                    @Html.ActionLink("Dodaj kategorie", "Add", "Category", new { area = "" }, new { @class = "dropdown-item" })
 
+                                    @Html.ActionLink("Dodaj książkę", "Add", "Book", new { area = "" }, new { @class = "dropdown-item" })
+
+                                    @Html.ActionLink("Użytkownicy", "Index", "Account", new { area = "" }, new { @class = "dropdown-item" })
+                                   
+                                    @Html.ActionLink("Użytkownicy do aktywacji", "Activation", "Admin", new { area = "" }, new { @class = "dropdown-item" })
+                                    
+                                    @Html.ActionLink("Dodaj newsa", "Add", "News", new { area = "" }, new { @class = "dropdown-item" })
+                                </div>
+                            </li>
+                        }
+                    }
                 </ul>
 
                 <form class="form-inline">
@@ -97,18 +109,11 @@
 
                     }
                     <li id="user" class="nav-item">
-
-                        <a class="navbar-text icon-user">
-                            @if (Session["login"] != null)
-                            {
-                                @Session["login"].ToString()
-                                //@Html.ActionLink(@Session["login"].ToString(),"Details","Account",null,null)
-                            }
-                        </a>
+                        @if (Session["login"] != null)
+                        {
+                            @Html.ActionLink(@Session["login"].ToString(), "Details", "Account", new { id = Session["adminID"] }, new { @class = "navbar-text icon-user" })
+                        }
                     </li>
-
-
-
 
                     @if (Session["login"] != null)
                     {
@@ -173,7 +178,7 @@
     <script type="text/javascript" src="~/Content/MDB-Free_4.5.15/js/mdb.min.js"></script>
 
 
-    
+
 
 </body>
 </html>

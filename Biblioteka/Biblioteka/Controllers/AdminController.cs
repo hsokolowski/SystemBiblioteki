@@ -40,6 +40,7 @@ namespace Biblioteka.Controllers
         public ActionResult Admin(FormCollection form)
         {
             string value = Convert.ToString(form["inputName"]);
+            string lim = Convert.ToString(form["limit"]);
             DB db = new DB();
             //ViewBag.Longlife = "Długość wypożyczenia: " + db.Longlifes.Last();
             if (value != null && value != "")
@@ -52,20 +53,30 @@ namespace Biblioteka.Controllers
                 db.SaveChanges();
                 ViewBag.Longlife = "Długość wypożyczenia została ustawiona na: " + days + " dni!";
             }
+            if (lim != null && lim != "")
+            {
+                int limit = Int32.Parse(lim);
+
+                Longlife l = db.Longlifes.Where(x => x.LonglifeID == 1).FirstOrDefault();
+                l.limit = limit;
+                db.Entry(l).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Limit = "Limit wypożyczeń został ustawiona na: " + limit + " książek!";
+            }
 
 
             return View();
         }
 
-        public async Task<ActionResult> SendMails()
+        public ActionResult SendMails()
         {
             AccountVM acc = new AccountVM();
             BorrowingVM bor = new BorrowingVM();
             BookVM book = new BookVM();
 
-            List<Book> books = await Task.Run(() => book.Get_list());
-            List<Account> accounts = await Task.Run(() => acc.Get_list());
-            List<Borrowing> borrows = await Task.Run(() => bor.Get_list());
+            List<Book> books = book.Get_list();
+            List<Account> accounts = acc.Get_list();
+            List<Borrowing> borrows = bor.Get_list();
 
             var emails = from b in books
                          from o in borrows
@@ -84,7 +95,6 @@ namespace Biblioteka.Controllers
 
             Parallel.ForEach(emails, e =>
             {
-
                 mailer.ToEmail = e.Email;
                 mailer.Subject = "BIBLIOTEKA - Zwrot książki";
                 mailer.Body = "Prosimy o zwrot książki '" + e.Title + "' !";
@@ -116,5 +126,20 @@ namespace Biblioteka.Controllers
 
             return View("Admin");
         }
+
+        public ActionResult Activation()
+        {
+            AccountVM vm = new AccountVM();
+            //var list = (from i in vm.Get_list()
+            //            where i.Active==false
+            //            select new Activa( i.AccountID, i.Name, i.Surname,  i.Active));
+            var list = vm.Get_list().Where(x => x.Active == false);
+
+
+            ViewBag.ac = list.ToList();
+
+            return View(list.ToList());
+        }
+
     }
 }

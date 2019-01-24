@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Biblioteka.Models.History>
+
+@{
+    ViewBag.Title = "SearchHistory";
+}
+
+<h2>SearchHistory</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Search)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SearchDate)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Search)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SearchDate)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+}else{
+    <p>Twoja historia jest pusta</p>
+}
