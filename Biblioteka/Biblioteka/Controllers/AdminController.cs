@@ -15,7 +15,6 @@ namespace Biblioteka.Controllers
     [AdminRole]
     public class AdminController : Controller
     {
-        DB db = new DB();
         // GET: Admin
         public ActionResult Index()
         {
@@ -24,7 +23,7 @@ namespace Biblioteka.Controllers
         [AdminRole]
         public ActionResult Admin()
         {
-            
+            DB db = new DB();
             if (!db.Longlifes.Any())
             {
                 ViewBag.Longlife = "Długość wypożyczenia: " + db.Longlifes.OrderByDescending(o => o.LonglifeID).FirstOrDefault();
@@ -41,7 +40,8 @@ namespace Biblioteka.Controllers
         public ActionResult Admin(FormCollection form)
         {
             string value = Convert.ToString(form["inputName"]);
-            
+            string lim = Convert.ToString(form["limit"]);
+            DB db = new DB();
             //ViewBag.Longlife = "Długość wypożyczenia: " + db.Longlifes.Last();
             if (value != null && value != "")
             {
@@ -53,27 +53,18 @@ namespace Biblioteka.Controllers
                 db.SaveChanges();
                 ViewBag.Longlife = "Długość wypożyczenia została ustawiona na: " + days + " dni!";
             }
-
-            
-
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Admin(int? a)
-        {
-            var toLate = db.Borrowings.Where(x => x.Returned == false && x.Return_date < DateTime.Now).ToList();
-             a = 0;
-            var penalties = db.Penalties.Select(x => x.Days).ToList();
-            foreach (var item in toLate)
+            if (lim != null && lim != "")
             {
-                if (DateTime.Now > item.Return_date)
-                {
-                    item.PenaltyID = 2;
-                    a++;
-                }
+                int limit = Int32.Parse(lim);
 
+                Longlife l = db.Longlifes.Where(x => x.LonglifeID == 1).FirstOrDefault();
+                l.limit = limit;
+                db.Entry(l).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Limit = "Limit wypożyczeń został ustawiona na: " + limit + " książek!";
             }
-            ViewBag.numPenalty = a;
+
+
             return View();
         }
 
@@ -136,5 +127,20 @@ namespace Biblioteka.Controllers
 
             return View("Admin");
         }
+
+        public ActionResult Activation()
+        {
+            AccountVM vm = new AccountVM();
+            //var list = (from i in vm.Get_list()
+            //            where i.Active==false
+            //            select new Activa( i.AccountID, i.Name, i.Surname,  i.Active));
+            var list = vm.Get_list().Where(x => x.Active == false);
+
+
+            ViewBag.ac = list.ToList();
+
+            return View(list.ToList());
+        }
+
     }
 }

@@ -29,8 +29,8 @@
 </div>
 
 <div class="container">
-    <div class="bg-warning">
-        @ViewBag.Przekroczony
+    <div class="bg-warning" style="text-align:center;">
+        @TempData["limit"]
     </div>
     <div class="table-responsive">
         <table class="table ">
@@ -82,14 +82,12 @@
                             </td>
                             <td>
 
-
-
                                 @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
 
-                                @if (Session["IsAdmin"] != null)
+                                @if (Session["IsAdmin"].ToString() == "1")
                                 {
-                                    @Html.ActionLink("Edit |", "Edit", new { id = item.BookID })
-                                    @Html.ActionLink(" Delete |", "Delete", new { id = item.BookID })
+                                @Html.ActionLink("Edit |", "Edit", new { id = item.BookID })
+                                @Html.ActionLink(" Delete |", "Delete", new { id = item.BookID })
                                 }
 
                                 @if (Session["login"] != null)
