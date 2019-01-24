@@ -47,6 +47,7 @@ namespace Biblioteka.Controllers
             if (Session["Zamowienie"] != null)
             {
                 koszyk = (List<Book>)Session["Zamowienie"];
+                licznik = koszyk.Count();
             }
             else  koszyk = new List<Book>();
 
@@ -57,17 +58,17 @@ namespace Biblioteka.Controllers
 
             if (tym != null)
             {
-
+                if (licznik >= limit)
+                {
+                    TempData["limit"] = "Maxymalnie można wypożyczyć 5 książek!";
+                    return RedirectToAction("Index", "Book");
+                }
                 koszyk.Add(tym);
                 licznik = koszyk.Count();
                 HttpContext.Session["Zamowienie"] = koszyk;
                 Session["Licznik"] = licznik;
                 //
-                if (licznik == limit)
-                {
-                    ViewBag.Przekroczony = "Maxymalnie można wypożyczyć 5 książek!";
-                    return View("Index", "Book");
-                }
+
                 return View("Koszyk", koszyk);
             }
             else

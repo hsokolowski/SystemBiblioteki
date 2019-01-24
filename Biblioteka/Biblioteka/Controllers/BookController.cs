@@ -394,7 +394,10 @@ namespace Biblioteka.Controllers
             var book = dB.Books.Where(x => x.BookID == id).FirstOrDefault();
             var repo = dB.Repositories.Where(x => x.RepositoryID == id).FirstOrDefault();
             dB.Books.Remove(book);
-            dB.Repositories.Remove(repo);
+            if (repo != null)
+            {
+                dB.Repositories.Remove(repo);
+            }
             dB.SaveChanges();
             return RedirectToAction("Index");
         }
