@@ -40,6 +40,7 @@ namespace Biblioteka.Controllers
         public ActionResult Admin(FormCollection form)
         {
             string value = Convert.ToString(form["inputName"]);
+            string lim = Convert.ToString(form["limit"]);
             DB db = new DB();
             //ViewBag.Longlife = "Długość wypożyczenia: " + db.Longlifes.Last();
             if (value != null && value != "")
@@ -51,6 +52,16 @@ namespace Biblioteka.Controllers
                 db.Entry(l).State = EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.Longlife = "Długość wypożyczenia została ustawiona na: " + days + " dni!";
+            }
+            if (lim != null && lim != "")
+            {
+                int limit = Int32.Parse(lim);
+
+                Longlife l = db.Longlifes.Where(x => x.LonglifeID == 1).FirstOrDefault();
+                l.limit = limit;
+                db.Entry(l).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Limit = "Limit wypożyczeń został ustawiona na: " + limit + " książek!";
             }
 
 

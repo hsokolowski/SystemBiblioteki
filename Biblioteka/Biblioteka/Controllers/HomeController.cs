@@ -1,4 +1,5 @@
 ﻿using Biblioteka.CustomFilters;
+using Biblioteka.DAL;
 using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
@@ -46,18 +47,26 @@ namespace Biblioteka.Controllers
             if (Session["Zamowienie"] != null)
             {
                 koszyk = (List<Book>)Session["Zamowienie"];
+                licznik = koszyk.Count();
             }
             else  koszyk = new List<Book>();
 
-
+            DB db = new DB();
+            var limit = db.Longlifes.Where(x => x.LonglifeID == 1).FirstOrDefault().limit;
 
             if (tym != null)
             {
-                
+                if(licznik>=limit)
+                {
+                    TempData["limit"] = "Maxymalnie można wypożyczyć 5 książek!";
+                    return RedirectToAction("Index", "Book");
+                }
                 koszyk.Add(tym);
                 licznik = koszyk.Count();
                 HttpContext.Session["Zamowienie"] = koszyk;
                 Session["Licznik"] = licznik;
+                //
+                
                 return View("Koszyk", koszyk);
             }
             else
@@ -115,6 +124,20 @@ namespace Biblioteka.Controllers
                     ///
                     Session["adminID"] = userdeatils.AccountID;
                     Session["login"] = userdeatils.Login;
+
+                    // to dodaj adik 23.01.2018
+                    if(userdeatils.Role==Role.Admin)
+                    {
+                        Session["IsAdmin"] = 1; // jest adminem
+                    }
+                    else if(userdeatils.Role==Role.Worker)
+                    {
+                        Session["IsAdmin"] = 2; // jest pracownikiem
+                    }
+                    else
+                    {
+                        Session["IsAdmin"] = 3; // jest czytaczem
+                    }
 
                     FormsAuthentication.SetAuthCookie(user.Login, false);
                     

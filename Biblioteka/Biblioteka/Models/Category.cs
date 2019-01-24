@@ -17,8 +17,8 @@ namespace Biblioteka.Models
         [Display(Name = "Nadrzędna1")]
         public virtual ICollection<SubCategory> SubCategories { get; set; }
 
-        [Required]
-        [Display(Name = "Nadrzędna2")]
+       
+        [Display(Name = "Nadrzędna")]
         public string SubCategs { get; set; }
 
     }

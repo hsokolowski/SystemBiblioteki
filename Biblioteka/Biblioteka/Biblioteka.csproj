@@ -123,10 +123,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\BazaDB.mdf" />
-    <Content Include="App_Data\BazaDB_log.ldf">
-      <DependentUpon>BazaDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\images\books.jpg" />
     <Content Include="Content\images\books-2.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -346,11 +342,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901231513153_nwe.cs" />
-    <Compile Include="Migrations\201901231513153_nwe.Designer.cs">
-      <DependentUpon>201901231513153_nwe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
     <Compile Include="Models\Author.cs" />
@@ -445,11 +436,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\File\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901231513153_nwe.resx">
-      <DependentUpon>201901231513153_nwe.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
