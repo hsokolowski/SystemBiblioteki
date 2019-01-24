@@ -1,4 +1,5 @@
 ﻿using Biblioteka.CustomFilters;
+using Biblioteka.DAL;
 using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
@@ -51,13 +52,22 @@ namespace Biblioteka.Controllers
 
 
 
+            DB db = new DB();
+            var limit = db.Longlifes.Where(x => x.LonglifeID == 1).FirstOrDefault().limit;
+
             if (tym != null)
             {
-                
+
                 koszyk.Add(tym);
                 licznik = koszyk.Count();
                 HttpContext.Session["Zamowienie"] = koszyk;
                 Session["Licznik"] = licznik;
+                //
+                if (licznik == limit)
+                {
+                    ViewBag.Przekroczony = "Maxymalnie można wypożyczyć 5 książek!";
+                    return View("Index", "Book");
+                }
                 return View("Koszyk", koszyk);
             }
             else

@@ -26,10 +26,12 @@
             </div>
         </div>
     }
-
 </div>
 
 <div class="container">
+    <div class="bg-warning">
+        @ViewBag.Przekroczony
+    </div>
     <div class="table-responsive">
         <table class="table ">
             <thead>
@@ -46,7 +48,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.ISBN)
                     </th>
-                  
+
 
                     @*<th></th>*@
                 </tr>
@@ -64,38 +66,39 @@
                 {
                     foreach (var item in Model)
                     {
-                    <tr>
-                        
-                        <td>
-                            @item.Title
-                        </td>
-                        <td>
-                            @item.Year
-                        </td>
-                        <td>
-                            @item.Pages
-                        </td>
-                        <td>
-                            @item.ISBN
-                        </td>
-                        <td>
+                        <tr>
+
+                            <td>
+                                @item.Title
+                            </td>
+                            <td>
+                                @item.Year
+                            </td>
+                            <td>
+                                @item.Pages
+                            </td>
+                            <td>
+                                @item.ISBN
+                            </td>
+                            <td>
 
 
 
-                            @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
 
-                            @if (Session["IsAdmin"] != null)
-                            {
-                                @Html.ActionLink("Edit |", "Edit", new { id = item.BookID }) 
-                                @Html.ActionLink(" Delete |", "Delete", new { id = item.BookID })
-                            }
+                                @if (Session["IsAdmin"] != null)
+                                {
+                                    @Html.ActionLink("Edit |", "Edit", new { id = item.BookID })
+                                    @Html.ActionLink(" Delete |", "Delete", new { id = item.BookID })
+                                }
 
-                            @if (Session["login"] != null)
-                            {
-                                <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", "Home", new { id = item.BookID, kto = (Session["adminID"]) }, null)
-                            }
-                        </td>
-                    </tr>
+                                @if (Session["login"] != null)
+                                {
+                                    <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", "Home", new { id = item.BookID, kto = (Session["adminID"]) }, null)
+                                }
+
+                            </td>
+                        </tr>
                     }
                 }
 
