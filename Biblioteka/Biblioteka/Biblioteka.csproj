@@ -342,6 +342,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901241147327_lvl.cs" />
+    <Compile Include="Migrations\201901241147327_lvl.Designer.cs">
+      <DependentUpon>201901241147327_lvl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
     <Compile Include="Models\Author.cs" />
@@ -437,6 +442,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\File\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901241147327_lvl.resx">
+      <DependentUpon>201901241147327_lvl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
