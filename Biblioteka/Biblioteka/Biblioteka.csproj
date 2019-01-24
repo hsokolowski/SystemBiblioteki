@@ -350,6 +350,10 @@
     <Compile Include="Migrations\201901232352406_life.Designer.cs">
       <DependentUpon>201901232352406_life.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901241209368_data.cs" />
+    <Compile Include="Migrations\201901241209368_data.Designer.cs">
+      <DependentUpon>201901241209368_data.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
@@ -454,6 +458,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901232352406_life.resx">
       <DependentUpon>201901232352406_life.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901241209368_data.resx">
+      <DependentUpon>201901241209368_data.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

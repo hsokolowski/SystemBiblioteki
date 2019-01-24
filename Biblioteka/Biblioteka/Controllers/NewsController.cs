@@ -1,4 +1,5 @@
 ﻿using Biblioteka.CustomFilters;
+using Biblioteka.DAL;
 using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
@@ -15,7 +16,7 @@ namespace Biblioteka.Controllers
         public ActionResult Index()
         {
             NewsVM vm = new NewsVM();
-            List<News> list_news = vm.Get_list().Take(3).ToList();
+            List<News> list_news = vm.Get_list().ToList();
             ViewBag.News = list_news;
             return View(list_news);
         }
@@ -24,17 +25,21 @@ namespace Biblioteka.Controllers
         {
             News b = new News();
             NewsVM vm2 = new NewsVM();
-           
+            b.Date = DateTime.Now;
             return View(b);
         }
         [HttpPost]
         public ActionResult Add(News a)
         {
-            NewsVM vm = new NewsVM();
-            List<News> list = vm.Get_list();
-            NewsVM vm2 = new NewsVM();
-           
-            vm.Dodaj(a);
+            //NewsVM vm = new NewsVM();
+            //List<News> list = vm.Get_list();
+            //NewsVM vm2 = new NewsVM();
+
+            //vm.Dodaj(a);
+            DB dB = new DB();
+            a.Date = DateTime.Now;
+            dB.News.Add(a);
+            dB.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult Edit(int id)

@@ -68,15 +68,15 @@ namespace Biblioteka.Controllers
             return View();
         }
 
-        public async Task<ActionResult> SendMails()
+        public ActionResult SendMails()
         {
             AccountVM acc = new AccountVM();
             BorrowingVM bor = new BorrowingVM();
             BookVM book = new BookVM();
 
-            List<Book> books = await Task.Run(() => book.Get_list());
-            List<Account> accounts = await Task.Run(() => acc.Get_list());
-            List<Borrowing> borrows = await Task.Run(() => bor.Get_list());
+            List<Book> books = book.Get_list();
+            List<Account> accounts = acc.Get_list();
+            List<Borrowing> borrows = bor.Get_list();
 
             var emails = from b in books
                          from o in borrows
@@ -95,7 +95,6 @@ namespace Biblioteka.Controllers
 
             Parallel.ForEach(emails, e =>
             {
-
                 mailer.ToEmail = e.Email;
                 mailer.Subject = "BIBLIOTEKA - Zwrot książki";
                 mailer.Body = "Prosimy o zwrot książki '" + e.Title + "' !";

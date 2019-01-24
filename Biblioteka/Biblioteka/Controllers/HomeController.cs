@@ -18,8 +18,9 @@ namespace Biblioteka.Controllers
         public ActionResult Index()
         {
             NewsVM vm = new NewsVM();
-            List<News> list_news = vm.Get_list().Take(3).ToList();
-            ViewBag.News = list_news;
+            List<News> list_news = vm.Get_list().ToList();
+            list_news.Reverse();
+            ViewBag.News = list_news.Take(3);
             //-----
             AccountVM userBL = new AccountVM();
             List<Account> list = userBL.Get_list();
