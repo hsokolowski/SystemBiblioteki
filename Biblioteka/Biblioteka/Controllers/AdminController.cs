@@ -1,5 +1,6 @@
 ﻿using Biblioteka.CustomFilters;
 using Biblioteka.DAL;
+using Biblioteka.LINQ;
 using Biblioteka.Models;
 using Biblioteka.ModelView;
 using System;
@@ -127,5 +128,20 @@ namespace Biblioteka.Controllers
 
             return View("Admin");
         }
+        
+        public ActionResult Activation()
+        {
+            AccountVM vm = new AccountVM();
+            //var list = (from i in vm.Get_list()
+            //            where i.Active==false
+            //            select new Activa( i.AccountID, i.Name, i.Surname,  i.Active));
+            var list =vm.Get_list().Where(x=>x.Active==false);
+                
+                
+            ViewBag.ac = list.ToList();
+            
+            return View(list.ToList());
+        }
+        
     }
 }

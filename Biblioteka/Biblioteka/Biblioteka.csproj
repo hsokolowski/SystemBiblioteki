@@ -342,6 +342,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LINQ\Activa.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AutBook.cs" />
     <Compile Include="Models\Author.cs" />
@@ -420,6 +421,7 @@
     <Content Include="Views\Book\Empty.cshtml" />
     <Content Include="Views\Book\TagSearch.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Admin\Activation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

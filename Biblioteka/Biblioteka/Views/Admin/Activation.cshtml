@@ -1,0 +1,100 @@
+﻿@*@model IEnumerable<Biblioteka.Models.Account>*@
+@model  ICollection<Biblioteka.Models.Account>
+
+
+@using (Html.BeginForm("Activation", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @*<table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Active)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+
+                <td >
+                    @Html.EditorFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelitem => item.AccountID)
+                    @Html.HiddenFor(modelitem => item.Login)
+                    @Html.HiddenFor(modelitem => item.Password)
+                    @Html.HiddenFor(modelitem => item.Confirmedpassword)
+                    @Html.HiddenFor(modelitem => item.Email)
+                    @Html.HiddenFor(modelitem => item.Pesel)
+                    @Html.HiddenFor(modelitem => item.Role)
+
+                </td>
+            </tr>
+            }
+
+        </table>*@
+
+    <table class="table">
+        <tr>
+            <th>
+                Imię
+            </th>
+            <th>
+                Nazwisko
+            </th>
+
+            <th>
+                Aktywacja
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach(var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelitem => item.AccountID)
+                    @Html.HiddenFor(modelitem => item.Login)
+                    @Html.HiddenFor(modelitem => item.Password)
+                    @Html.HiddenFor(modelitem => item.Confirmedpassword)
+                    @Html.HiddenFor(modelitem => item.Email)
+                    @Html.HiddenFor(modelitem => item.Pesel)
+                    @Html.HiddenFor(modelitem => item.Role)
+                    <i class="icon-edit"></i>@Html.ActionLink("Edytuj", "Edit", "Account", new { id = item.AccountID }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div style="text-align:center">
+        <input type="submit" value="Zatwierdź" style="color:black;" />
+    </div>
+}
