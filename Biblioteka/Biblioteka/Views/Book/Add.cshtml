@@ -4,14 +4,14 @@
     ViewBag.Title = "BookAdd";
 }
 
-<h2>BookAdd</h2>
+
 
 
 @using (Html.BeginForm("Add", "Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+<div class="form-horizontal" style="margin-left:auto;margin-right:auto;overflow:auto;width:70%;">
     <h4>Book @Html.DisplayFor(model => model.BookID, new { htmlAttributes = new { @class = "form-control" } })</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -25,7 +25,7 @@
 
     <div class="col-md-10">
         <p>Podaj autora/ów</p>
-        <input name="author" type="text" id="input-author-selectized">
+        <input name="author" type="text" id="input-author-selectized" required>
     </div>
 
     <div class="form-group">
@@ -63,7 +63,7 @@
     <div class="form-group">
      Podaj liczbę książek
         <div class="col-md-10">
-           <input name="amount" type="number"  placeholder="1"/>
+           <input name="amount" type="number"  placeholder="1" value=1 required/>
         </div>
     </div>
 

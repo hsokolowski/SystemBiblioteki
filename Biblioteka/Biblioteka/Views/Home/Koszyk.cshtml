@@ -4,26 +4,45 @@
     var lista = Session["Zamowienie"] as IEnumerable<Biblioteka.Models.Book>;
     
 }
+<style>
+    .icon-minus-circled:hover {
+        color: #801515;
+    }
+    .icon-minus-circled {
+        color: white;
+    }
+   
+    
+</style>
 
-<h2>Koszyk</h2>
 
-<div>
+<div  style="margin-left:auto;margin-right:auto;overflow:auto;width:70%;">
     <h1>Twój koszyk</h1>
 
-    @if (lista != null)
-    {
-        foreach (var u in lista)
+    <ul class="list-group">
+
+
+
+        @if (lista != null)
         {
-            if (Session["login"] != null)
+
+            foreach (var u in lista)
             {
-                @u.BookID @u.Title <a class="linkUlub" href="@Url.Action("DeleteKoszyk", "Home",new {id = u.BookID})"><i class="icon-minus-circled"></i></a>
+                if (Session["login"] != null)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center"> @u.BookID @u.Title 
+                        <span class="badge badge-primary badge-pill"><a class="linkUlub" href="@Url.Action("DeleteKoszyk", "Home",new {id = u.BookID})"><i class="icon-minus-circled" ></i></a></span>
+        
+                    </li>
+               
+
+                }
             }
+            
+
+            <li class="list-group-item active">@Html.ActionLink("Wypożycz", "Borrow", "Borrowing", null, new { @style = "color:white;" })</li>
+
         }
-        @Html.ActionLink("Wypożycz", "Borrow", "Borrowing",null, null)
-
-
-
-    }
-
+    </ul>
 
 </div>

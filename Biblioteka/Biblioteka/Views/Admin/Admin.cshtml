@@ -8,6 +8,11 @@
         float: left;
         margin-left: auto;
         width: auto;
+        vertical-align: middle;
+        margin: 10px;
+        height: 38px;
+        line-height: 38px;
+        text-align:center;
     }
 
     .links {
@@ -31,13 +36,14 @@
     }
 </style>
 
-<div style="text-align:center;margin-top:15px;">
+<div style="text-align:center;margin-top:15px; ">
     <h2>Panel Administracji</h2>
 
-    <div style="width:70%;margin-left:auto;margin-right:auto; background-color:cadetblue; border-radius:15px;height:70%; padding:15px;  ">
+    <div style="width:70%;margin-left:auto;margin-right:auto; background-color:cadetblue; border-radius:15px;height:70%; padding:15px;  height:auto;  box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ">
 
-        <i class="icon-mail-alt"></i>  @Html.ActionLink("Wyślij maile!", "SendMails", null, new { @class = "links" })
-
+        <div>
+            <i class="icon-mail-alt"></i>  @Html.ActionLink("Wyślij maile!", "SendMails", null, new { @class = "links" })
+        </div>
 
         <div style="color:red;">
             @ViewBag.Mails1
@@ -48,34 +54,57 @@
 
         @using (Html.BeginForm("Admin", "Admin", FormMethod.Post))
         {
-            <div>
-                <div class="div">
-                    Długość wypożyczania:
-                </div>
-                <div class="div">
+        <div style=" padding:5px; overflow: auto; ">
+            <div style=" display: inline-block;text-align: center;margin: 0 auto;">
+                <div class="div" style="">
+                    Długość wypożyczenia:
                     <input type="text" name="inputName" style="color:black;" class="form-control" />
-                    <input type="submit" style="color:black;" class="form-control" id="btn1" />
                 </div>
-                @ViewBag.Longlife
-                <div style="clear:both;"></div>
-                <br />
-                <div class="div">
+                <div class="div" style="">
                     Limit wypożyczonych:
-                </div>
-                <div class="div">
                     <input type="text" name="limit" style="color:black;" class="form-control" />
+
+                </div>
+                <div style="clear:both;"></div>
+                <div style="display:inline-block;margin-top:40px;">
                     <input type="submit" style="color:black;" class="form-control" id="btn2" />
                 </div>
-                @ViewBag.Limit
-
-                @*z formcollection*@
             </div>
+            
+
+            @*<div class="div">
+            Długość wypożyczania:
+        </div>
+        <div class="div">
+            <input type="text" name="inputName" style="color:black;" class="form-control" />
+
+        </div>
+        <div class="div">
+            <input type="submit" style="color:black;" class="form-control" id="btn1" />
+        </div>
+        <div style="clear:both;"></div>
+
+        <div class="div">
+            Limit wypożyczonych:
+        </div>
+        <div class="div">
+            <input type="text" name="limit" style="color:black;" class="form-control" />
+
+        </div>
+        <div class="div">
+            <input type="submit" style="color:black;" class="form-control" id="btn2" />
+        </div>
+        <div style="clear:both;"></div>*@
+            @ViewBag.Limit
+            @ViewBag.Longlife
+            @*z formcollection*@
+        </div>
         }
     </div>
 </div>
 
 @using (Html.BeginForm("CalculatePenalties", "Borrowings", FormMethod.Get))
 {
-    <input class="btn-black" type="submit" />
-    @ViewBag.numPenalty
+    @*<input class="btn-black" type="submit" />
+    @ViewBag.numPenalty*@
 }

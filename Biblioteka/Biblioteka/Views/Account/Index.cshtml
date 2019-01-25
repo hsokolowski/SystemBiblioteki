@@ -6,19 +6,18 @@
 {
     <section class="mt-4">
 
-        <h1>Biblioteka </h1>
+        <h1 class="alert-info" style="text-align:center;">Użytkownicy </h1>
 
 
         <div class="container">
             <div class="row">
-                <p class="col-xl-1 col-lg-">ID</p>
+                <p class="col-sm-1 " style="width:3%;">ID</p>
                 <p class="col-xl-1">Imię</p>
                 <p class="col-xl-1">Nazwisko</p>
                 <p class="col-xl-1">Pesel</p>
                 <p class="col-xl-1">Login</p>
-                <p class="col-xl-1">E-mail</p>
-                <p class="col-xl-1">Hasło</p>
-                <p class="col-xl-1">Aktywność</p>
+                <p class="col-xl-1">E-mail</p>          
+                <p class="col-xl-1">Aktywacja</p>
                 <p class="col-xl-1">Rola</p>
 
             </div>
@@ -28,13 +27,12 @@
                 foreach (var u in Model)
                 {
                     <div class="row">
-                        <p class="col-xl-1">@u.AccountID</p>
+                        <p class="col-sm-1" style="width:3%;">@u.AccountID</p>
                         <p class="col-xl-1">@u.Name</p>
                         <p class="col-xl-1">@u.Surname</p>
                         <p class="col-xl-1">@u.Pesel</p>
                         <p class="col-xl-1">@u.Login</p>
                         <p class="col-xl-1">@u.Email</p>
-                        <p class="col-xl-1 text-hide">@u.Password</p>
                         <p class="col-xl-1">@u.Active</p>
                         <p class="col-xl-1">@u.Role</p>
                         <p class="col-xl-1"><i class="icon-edit"></i>@Html.ActionLink("Edytuj", "Edit", "Account", new { id = u.AccountID }, null)</p>

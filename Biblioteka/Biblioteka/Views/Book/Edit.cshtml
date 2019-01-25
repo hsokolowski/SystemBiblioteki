@@ -4,15 +4,18 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 style="margin-left:auto;margin-right:auto;">Edit</h2>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
 
 @using (Html.BeginForm("Edit", "Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Book</h4>
+<div class="form-horizontal" style="margin-left:auto;margin-right:auto;overflow:auto;width:70%;">
+
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.BookID)
@@ -56,8 +59,20 @@
             @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
         </div>
     </div>
-
-
+    @*<div class="form-group">
+            Podaj liczbę książek
+            <div class="col-md-10">
+                <input name="amount" type="number" placeholder="1" value=1 required />
+            </div>
+        </div>*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.for_who_string, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.for_who_string, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.EnumDropDownListFor(model => model.For_who, "dla kogo?", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.for_who_string, "", new { @class = "text-danger" })
+        </div>
+    </div>
     <div class="col-md-10">
         <p>Podaj tagi</p>
         <input name="tag" type="text" id="input-tags-selectized">
@@ -70,15 +85,14 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Dodaj" class="btn btn-default" />
+            <input type="submit" value="Edytuj" class="btn btn-default" />
         </div>
     </div>
 </div>
+    
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

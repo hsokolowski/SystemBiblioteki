@@ -123,10 +123,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\BazaDB.mdf" />
-    <Content Include="App_Data\BazaDB_log.ldf">
-      <DependentUpon>BazaDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\images\books.jpg" />
     <Content Include="Content\images\books-2.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -346,13 +342,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901232352406_life.cs" />
-    <Compile Include="Migrations\201901232352406_life.Designer.cs">
-      <DependentUpon>201901232352406_life.cs</DependentUpon>
+    <Compile Include="Migrations\201901242150270_css.cs" />
+    <Compile Include="Migrations\201901242150270_css.Designer.cs">
+      <DependentUpon>201901242150270_css.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901241209368_data.cs" />
-    <Compile Include="Migrations\201901241209368_data.Designer.cs">
-      <DependentUpon>201901241209368_data.cs</DependentUpon>
+    <Compile Include="Migrations\201901250144156_pls.cs" />
+    <Compile Include="Migrations\201901250144156_pls.Designer.cs">
+      <DependentUpon>201901250144156_pls.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -456,11 +452,11 @@
     <Folder Include="App_Data\File\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901232352406_life.resx">
-      <DependentUpon>201901232352406_life.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901242150270_css.resx">
+      <DependentUpon>201901242150270_css.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901241209368_data.resx">
-      <DependentUpon>201901241209368_data.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901250144156_pls.resx">
+      <DependentUpon>201901250144156_pls.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

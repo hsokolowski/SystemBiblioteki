@@ -61,7 +61,7 @@ namespace Biblioteka.Controllers
             {
                 if (licznik >= limit)
                 {
-                    TempData["limit"] = "Maxymalnie można wypożyczyć 5 książek!";
+                    TempData["limit"] = "Osiągnięto maksymalny limit książek do wypożyczenia!";
                     return RedirectToAction("Index", "Book");
                 }
                 koszyk.Add(tym);

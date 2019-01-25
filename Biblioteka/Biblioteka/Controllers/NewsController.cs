@@ -54,6 +54,7 @@ namespace Biblioteka.Controllers
         public ActionResult Edit(News m)
         {
             NewsVM vm = new NewsVM();
+            m.Date = DateTime.Now;
             vm.Update(m);
             ViewBag.Succesmessage = "Edycja pomyślna!";
             return RedirectToAction("Index");

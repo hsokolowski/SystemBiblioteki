@@ -84,12 +84,15 @@
 
                                 @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
 
-                                @if (Session["IsAdmin"].ToString() == "1")
+                                @if (Session["IsAdmin"] != null)
                                 {
-                                @Html.ActionLink("Edit |", "Edit", new { id = item.BookID })
-                                @Html.ActionLink(" Delete |", "Delete", new { id = item.BookID })
+                                    if (Session["IsAdmin"].ToString() == "1")
+                                    {
+                                    @Html.ActionLink("Edit |", "Edit", new { id = item.BookID })
+                                    @Html.ActionLink(" Delete |", "Delete", new { id = item.BookID })
                                 }
 
+                                }
                                 @if (Session["login"] != null)
                                 {
                                     <i class="icon-plus-circled"></i>@Html.ActionLink("Dodaj do koszyka", "Koszyk2", "Home", new { id = item.BookID, kto = (Session["adminID"]) }, null)

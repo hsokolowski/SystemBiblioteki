@@ -281,14 +281,16 @@ namespace Biblioteka.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Book a, HttpPostedFileBase file1, HttpPostedFileBase file2, String tag)
+        public ActionResult Edit(Book a,  HttpPostedFileBase file1, HttpPostedFileBase file2, String tag)
         {
+            BookVM vm = new BookVM();
             CategoryVM vm2 = new CategoryVM();
             ViewBag.kategorie = new SelectList(vm2.Get_list(), "CategoryID", "Name");
 
             List<String> tags = new List<string>();
             tags.AddRange(tag.Split(','));
 
+            
 
             using (var dbContextTransaction = dB.Database.BeginTransaction())
             {
@@ -337,6 +339,7 @@ namespace Biblioteka.Controllers
                         }
                     }
 
+                    vm.Update(a);
                     dB.Books.AddOrUpdate(a);
                     dB.SaveChanges();
 
@@ -347,20 +350,20 @@ namespace Biblioteka.Controllers
                     dbContextTransaction.Rollback();
                 }
             }
-
+            
             return RedirectToAction("Index");
         }
         public ActionResult Details(int id)
         {
-            var idCat = dB.Books.Where(x => x.BookID == id).Select(x => x.CategoryID).FirstOrDefault().ToString();
-            Int32.TryParse(idCat, out int id_cat);
-
+            var idCat1 = dB.Books.Where(x => x.BookID == id).Select(x => x.CategoryID).FirstOrDefault().ToString();
+            //Int32.TryParse(idCat, out int id_cat);
+            var idCat = Int32.Parse(idCat1);
             //Lista autorów
             ViewBag.Author = dB.Books.Where(a => a.BookID == id).SelectMany(a => a.AutBooks).Select(a => new { Name = a.Author.Name, Surname = a.Author.Surname }).ToList();
 
             ViewBag.Tags = dB.Books.Where(a => a.BookID == id).SelectMany(a => a.TagBooks).Select(a => a.Tag).ToList();
 
-            ViewBag.Category = dB.Categories.Where(x => x.CategoryID == id_cat).Select(x => x.Name).FirstOrDefault().ToString();
+            ViewBag.Category = dB.Categories.Where(x => x.CategoryID == idCat).Select(x => x.Name).FirstOrDefault().ToString();
             BookVM vm = new BookVM();
             Book u = vm.Find(id);
             return View(u);
@@ -408,7 +411,7 @@ namespace Biblioteka.Controllers
             var list_books = list.OrderByDescending(a => a.BookID);
             var listTop3 = list_books.Take(3);
             List<int> list_categoryID = new List<int>();
-            List<String> list_categoryName = new List<string>();
+            List<string> list_categoryName = new List<string>();
 
             foreach (var item in listTop3)
             {

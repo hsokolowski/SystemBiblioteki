@@ -3,13 +3,23 @@
     ViewBag.Title = "Kategorie";
 }
 
-<h2>Kategorie</h2>
+<div style="margin-left:auto;margin-right:auto;overflow:auto;width:70%;">
+    <h2>Kategorie</h2>
 
-<div>
-    @foreach (var c in Model)
-    {
     <div>
-        @c.CategoryID @c.Name  ><i class="icon-trash-empty"></i>@Html.ActionLink("Kasuj", "Delete", "Category", new { id = c.CategoryID }, new { onclick = "return confirm('Czy chcesz na pewno usunać?');" })
+        @foreach (var c in Model)
+        {
+            <div>
+                @c.CategoryID @c.Name >
+                @if (Session["IsAdmin"] != null)
+                {
+                    if (Session["IsAdmin"].ToString() == "1" || (Session["IsAdmin"].ToString() == "2"))
+                    {
+                        <i class="icon-trash-empty"></i>@Html.ActionLink("Kasuj", "Delete", "Category", new { id = c.CategoryID }, new { onclick = "return confirm('Czy chcesz na pewno usunać?');" })
+                    }
+                }
+
+            </div>
+        }
     </div>
-    }
 </div>
